@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { HomeHero } from "@/components/sections/home-hero";
-import { TrainingDay } from "@/components/sections/training-day";
 import { GeneralSafetyCourses, InternationalCourses } from "@/components/sections/home-courses";
 import { AccreditationCarousel } from "@/components/sections/accreditation-carousel";
 import { CorporateTraining } from "@/components/sections/corporate-training";
@@ -11,7 +10,6 @@ import { LatestBlogs } from "@/components/sections/latest-blogs";
 import { Faq } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 import { contactInfo, socialLinks } from "@/lib/data";
-import { trainers } from "@/lib/content";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
@@ -49,12 +47,11 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HomeHero />
-      <TrainingDay />
+      <AccreditationCarousel />
       <InternationalCourses />
       <GeneralSafetyCourses />
-      <AccreditationCarousel />
       <CorporateTraining />
-      <AboutUs trainers={trainers.map(({ slug, name, credentials, image }) => ({ slug, name, credentials, image }))} />
+      <AboutUs />
       <Testimonials />
       <LatestBlogs />
       <Faq />

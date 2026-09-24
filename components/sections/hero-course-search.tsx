@@ -82,7 +82,7 @@ export function HeroCourseSearch({ courses }: { courses: SearchableCourse[] }) {
       method="get"
       role="search"
       onSubmit={onSubmit}
-      className="relative mt-6 md:mt-8 md:max-w-lg"
+      className="relative hidden md:mt-8 md:block md:max-w-lg"
       onBlur={(event) => {
         // Close when focus leaves the whole search (input and list), not when moving between them.
         if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false);

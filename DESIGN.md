@@ -222,10 +222,18 @@ Friendly and rounded, never sharp. Cards use 20px corners, photo panels 24px, an
 - **Style:** Arbrit Blue at 10% fill, Arbrit Blue label text, full pill, optional 14px leading icon (map pin for places, check badge for awarding bodies). On white cards, Mist fill with navy text.
 
 ### Course Card
+International and General Safety courses use two different cards, chosen per course: anything awarded by an outside body gets the International card, Arbrit-certified courses get the simpler General Safety card.
+
+**International (photo card)**
 - **Character:** a full-bleed course photo washed with Arbrit Blue rising from the bottom (solid blue at the base to near-clear at the top), so the card reads as the brand colour with the subject showing through.
 - **Corner Style:** 20px, at least 23rem tall.
 - **Content (bottom-anchored, white):** course icon and title, optional two-line description, a hairline, then duration / location / certification rows with 14px icons, and a full-width white pill "View course" button in Arbrit Blue.
 - **States:** hover lifts the card 4px, deepens the shadow (Card Hover) and eases the photo to 105%; the button fill shifts to Mist.
+
+**General Safety (simple card)**
+- **Character:** quieter than the International card. A white card (20px, 1px Arbrit Blue 15% ring, Card Rest shadow) with a 3:2 photo on top and content on white below.
+- **Content:** a 12px uppercase "General Safety" eyebrow and the Card Title, both in Arbrit Blue; a hairline; duration and location rows (14px icons, 13px navy at 75%); and a full-width Arbrit Blue "View Course" button (44px, 8px corners) pinned to the bottom. The certificate is left off because every General Safety course ends in the same Arbrit certificate.
+- **States:** hover lifts the card 4px, deepens the shadow (Card Hover), eases the photo to 105% and darkens the button to #00589a.
 
 ### Hero Slider
 - **Behaviour:** full-bleed photos cross-fade (1.2s) every 6.5s behind fixed copy, search and shortcuts; each slide has a portrait crop for phones and a landscape crop from 768px, and settles from 108% scale while active.

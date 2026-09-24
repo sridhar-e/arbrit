@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, BadgeCheck, Flag, HardHat, MapPin, Users } from "lucide-react";
+import { BadgeCheck, Flag, HardHat, MapPin, Users } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { pageHeaderImages } from "@/lib/page-images";
 import { PosterVideo } from "@/components/ui/poster-video";
 import { AboutPhotoStrip } from "@/components/sections/about-photo-strip";
 import { NavyBandTexture } from "@/components/ui/navy-band-texture";
 import { historyGallery } from "@/lib/data";
-import { trainers } from "@/lib/content";
 
 export const metadata: Metadata = pageMetadata({
   title: "About Arbrit Safety | LEEA Licensed Training Partner in the UAE",
   description:
-    "Arbrit Safety Training & Consultancy delivers accredited HSE training and consultancy across Dubai, Abu Dhabi and KSA. Meet our trainers and see how we train.",
+    "Arbrit Safety Training & Consultancy delivers accredited HSE training and consultancy across Dubai, Abu Dhabi and KSA. See how we train.",
   path: "/about",
 });
 
@@ -220,76 +218,6 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      {/* Trainers. */}
-      <section aria-labelledby="trainers-heading" className="bg-white py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6">
-          <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
-            <div>
-              <h2 id="trainers-heading" className={`${displayHeading} text-navy-deep`}>
-                Meet your trainers
-              </h2>
-              <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-navy-deep/80 md:text-lg">
-                Certified experts who bring years of site experience into every course they lead.
-              </p>
-            </div>
-            <Link
-              href="/courses"
-              className="inline-flex h-12 items-center gap-2 rounded-full bg-[#0066b2] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#00589a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
-            >
-              Book a course <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
-            {trainers.map((trainer) => (
-              <li key={trainer.slug}>
-                <Link
-                  href={`/about/trainers/${trainer.slug}`}
-                  className="group flex h-full flex-col rounded-[20px] bg-[#f5f7fa] p-5 transition duration-300 ease-out hover:-translate-y-1 hover:bg-white hover:shadow-[0_26px_50px_-24px_rgba(18,59,109,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2] md:p-6"
-                >
-                  <span className="flex items-center gap-4">
-                    {/* Source portraits are 200px squares, so they stay small enough to render crisp. */}
-                    <span className="relative block h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-white md:h-24 md:w-24">
-                      <Image
-                        src={trainer.image}
-                        alt={`${trainer.name}, safety trainer at Arbrit Safety`}
-                        fill
-                        sizes="96px"
-                        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                      />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block font-heading text-lg font-bold leading-snug text-navy-deep">{trainer.name}</span>
-                      <span className="mt-2 flex flex-wrap gap-1.5">
-                        {trainer.credentials.split(",").map((credential) => (
-                          <span
-                            key={credential}
-                            className="rounded-full bg-[#0066b2]/10 px-2.5 py-1 text-[12px] font-semibold leading-none text-[#0066b2]"
-                          >
-                            {credential.trim()}
-                          </span>
-                        ))}
-                      </span>
-                    </span>
-                  </span>
-
-                  <span className="mt-5 block text-[15px] leading-relaxed text-navy-deep/80">{trainer.shortBio}</span>
-                  {trainer.quote && (
-                    <span className="mt-5 block border-l-2 border-[#0066b2] pl-4 text-[15px] font-medium italic leading-snug text-navy-deep">
-                      &ldquo;{trainer.quote}&rdquo;
-                    </span>
-                  )}
-                  <span className="mt-auto flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#0066b2]">
-                    View profile<span className="sr-only">: {trainer.name}</span>
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </>

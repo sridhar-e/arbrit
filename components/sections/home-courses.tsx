@@ -16,8 +16,68 @@ type CourseCardData = {
   certification?: string;
 };
 
-/** Photo card with a rising Arbrit-blue wash: the International course card, carried to the homepage. */
+/**
+ * General Safety card: simpler than the International photo card. A white card with the photo on top,
+ * a "General Safety" eyebrow over the blue title, a hairline, duration and location rows, and a
+ * full-width blue "View Course" button. Every General Safety course ends in the same Arbrit certificate
+ * (the section intro says so), so the card leaves it out.
+ */
+function GeneralCourseCard({ course }: { course: CourseCardData }) {
+  const meta = [
+    { icon: Clock, value: course.duration },
+    { icon: MapPin, value: course.location },
+  ].filter((item) => item.value);
+
+  return (
+    <Link
+      href={course.href}
+      className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white text-left ring-1 ring-[#0066b2]/15 shadow-[0_18px_40px_-28px_rgba(18,59,109,0.45)] transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_26px_50px_-24px_rgba(18,59,109,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
+    >
+      <span className="relative block aspect-[3/2] shrink-0 overflow-hidden bg-[#f5f7fa]">
+        <Image
+          src={course.image}
+          alt={courseImageAlt(course)}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 80vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      </span>
+
+      <span className="flex flex-1 flex-col p-5 sm:p-6">
+        <span className="text-[12px] font-semibold uppercase tracking-[0.06em] text-[#0066b2]">General Safety</span>
+        <span className="mt-2 font-heading text-lg font-bold leading-snug text-[#0066b2]">{course.title}</span>
+
+        <span className="mt-4 block space-y-2 border-t border-navy-deep/10 pt-4 text-[13px] text-navy-deep/75">
+          {meta.map(({ icon: MetaIcon, value }) => (
+            <span key={value} className="flex items-center gap-2">
+              <MetaIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              {value}
+            </span>
+          ))}
+        </span>
+
+        <span className="mt-auto pt-5">
+          <span className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-[#0066b2] text-sm font-semibold text-white transition-colors duration-300 group-hover:bg-[#00589a]">
+            View Course
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+          </span>
+        </span>
+      </span>
+    </Link>
+  );
+}
+
+/** Arbrit-certified courses get the simpler General Safety card; externally awarded ones keep the photo card. */
 function CourseCard({ course }: { course: CourseCardData }) {
+  return course.certification === "Arbrit Certificate" ? (
+    <GeneralCourseCard course={course} />
+  ) : (
+    <InternationalCourseCard course={course} />
+  );
+}
+
+/** International card: a full-bleed photo under a rising Arbrit-blue wash. */
+function InternationalCourseCard({ course }: { course: CourseCardData }) {
   const Icon = course.icon;
   const meta = [
     { icon: Clock, value: course.duration },

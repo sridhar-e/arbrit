@@ -4,9 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, MapPin, Play, ShieldCheck } from "lucide-react";
-import type { Trainer } from "@/lib/data";
-
-export type TrainerCard = Pick<Trainer, "slug" | "name" | "credentials" | "image">;
 
 const proof = [
   { icon: ShieldCheck, text: "First LEEA Licensed Training Partner in the UAE and KSA" },
@@ -63,7 +60,7 @@ function CompanyVideo() {
   );
 }
 
-export function AboutUs({ trainers }: { trainers: TrainerCard[] }) {
+export function AboutUs() {
   return (
     <section aria-labelledby="about-heading" className="relative isolate overflow-hidden bg-navy-deep text-white">
       {/* Blueprint grid and the Arbrit shield mark give the navy field structure without new colour. */}
@@ -167,47 +164,6 @@ export function AboutUs({ trainers }: { trainers: TrainerCard[] }) {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-6 md:py-20">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <h3 className="font-heading text-[28px] font-extrabold leading-tight tracking-[-0.02em] md:text-4xl">
-              Meet your trainers
-            </h3>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-1.5 rounded-md text-sm font-semibold text-white/85 underline-offset-4 hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              All trainers <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <ul className="mt-8 grid gap-4 sm:grid-cols-3 sm:gap-6">
-            {trainers.map((trainer) => (
-              <li key={trainer.slug}>
-                <Link
-                  href={`/about/trainers/${trainer.slug}`}
-                  className="group flex h-full items-center gap-4 rounded-[20px] bg-white/5 p-3 ring-1 ring-white/10 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  {/* Source portraits are 200px squares, so they stay small enough to render crisp. */}
-                  <span className="relative block h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-white/10 md:h-24 md:w-24">
-                    <Image
-                      src={trainer.image}
-                      alt={trainer.name}
-                      fill
-                      sizes="96px"
-                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block font-heading text-lg font-bold leading-snug">{trainer.name}</span>
-                    <span className="mt-1 block text-sm text-white/75">{trainer.credentials}</span>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
     </section>
   );
 }
