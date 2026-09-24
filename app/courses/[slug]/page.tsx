@@ -21,7 +21,8 @@ import { PageHeader } from "@/components/layout/page-header";
 import { courseHeaderImage } from "@/lib/page-images";
 import { JoinCourseDialog } from "@/components/sections/join-course-dialog";
 import { CourseClientsCarousel } from "@/components/sections/course-clients-carousel";
-import { CourseSection } from "@/components/sections/home-courses";
+import { CourseSection, generalCoursesIntro, internationalCoursesIntro } from "@/components/sections/home-courses";
+import { Faq } from "@/components/sections/faq";
 import { contactInfo, courseCategories, courseImageAlt, featuredCourses } from "@/lib/data";
 import { courseDetails } from "@/lib/content";
 import { siteUrl } from "@/lib/site";
@@ -69,7 +70,8 @@ const trainingProof = [
   { icon: Users, text: "Certified trainers who bring years of site experience into every course" },
 ];
 
-const internationalPattern = /LEEA|IOSH|\bSTI\b|IRCA|Highfield|Lead Auditor/i;
+/** Short items sit two to a row; any long one keeps the whole list in a single column. */
+const fitsTwoColumns = (items: string[]) => items.every((item) => item.length <= 70);
 
 export async function generateMetadata({
   params,
@@ -81,11 +83,11 @@ export async function generateMetadata({
   if (!course) return {};
   // Fuller course pages have no one-line aim, so fall back to their first paragraph or a summary.
   const summary =
-    course.aim ??
-    course.courseInfoParagraphs?.[0] ??
+    course.aim ||
+    course.courseInfoParagraphs?.[0] ||
     `${course.title} training in Dubai, Abu Dhabi and KSA with Arbrit Safety. Accredited trainers, hands-on practice and recognised certification.`;
   return pageMetadata({
-    title: `${course.title} Training in Dubai & Abu Dhabi`,
+    title: `${course.title} in Dubai, Abu Dhabi & KSA`,
     description: summary.length > 160 ? `${summary.slice(0, 157).trimEnd()}…` : summary,
     path: `/courses/${course.slug}`,
     ownImage: true,
@@ -107,8 +109,8 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
     "@type": "Course",
     name: course.title,
     description:
-      course.aim ??
-      course.courseInfoParagraphs?.[0] ??
+      course.aim ||
+      course.courseInfoParagraphs?.[0] ||
       `${course.title} training in Dubai, Abu Dhabi and KSA with Arbrit Safety Training & Consultancy.`,
     url: `${siteUrl}/courses/${course.slug}`,
     image: `${siteUrl}${course.image}`,
@@ -122,7 +124,10 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
 
   // Duration, location and certification also live on the course cards in lib/data.
   const href = `/courses/${course.slug}`;
-  const card = [...courseCategories, ...featuredCourses].find((c) => c.href === href);
+  const parent = course.parent ? courseDetails.find((c) => c.slug === course.parent) : undefined;
+  const parentHref = parent ? `/courses/${parent.slug}` : undefined;
+  const cards = [...courseCategories, ...featuredCourses];
+  const card = cards.find((c) => c.href === href) ?? cards.find((c) => c.href === parentHref);
   const duration = course.duration ?? card?.duration;
   const facts: { icon: LucideIcon; label: string; value: string }[] = [
     ...(duration ? [{ icon: Clock, label: "Duration", value: duration }] : []),
@@ -134,7 +139,10 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
 
   const [lead, ...moreParagraphs] = [...(course.aim ? [course.aim] : []), ...(course.courseInfoParagraphs ?? [])];
 
-  const details: { label: string; content: ReactNode }[] = [];
+  const details: { label: string; content: ReactNode }[] = (course.outline ?? []).map(({ label, value }) => ({
+    label,
+    content: value,
+  }));
   if (course.durationHeading) details.push({ label: "Duration", content: renderWithBoldLabels(course.durationHeading) });
   if (course.targetDelegates) details.push({ label: "Who it's for", content: course.targetDelegates });
   if (course.certificationIntro) {
@@ -161,28 +169,43 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
     });
   }
 
-  const isInternational = courseCategories.some((c) => c.href === href) || internationalPattern.test(course.title);
+  const isInternational = course.track !== "General Safety";
   const related = isInternational
     ? {
         title: "More international courses",
-        description:
-          "Certified by LEEA, IRCA, STI, Highfield and IOSH, and run at our centres in Dubai, Abu Dhabi and KSA.",
-        courses: courseCategories.filter((c) => c.href !== href).slice(0, 4),
+        description: internationalCoursesIntro,
+        courses: courseCategories.filter((c) => c.href !== href && c.href !== parentHref).slice(0, 4),
       }
     : {
-        title: "More safety courses",
-        description: "Practical one to three-day courses for everyday site safety, each completed with an Arbrit certificate.",
+        title: "More industry training",
+        description: generalCoursesIntro,
         courses: featuredCourses.filter((c) => c.href !== href).slice(0, 4),
       };
+
+  const faqJsonLd = course.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: course.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      }
+    : null;
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd).replace(/</g, "\\u003c") }} />
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }} />
+      )}
       <PageHeader
         title={course.title}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Courses", href: "/courses" },
+          ...(parent ? [{ label: parent.title, href: `/courses/${parent.slug}` }] : []),
           { label: course.title },
         ]}
         {...courseHeaderImage(course.title)}
@@ -193,7 +216,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
           <div className="min-w-0">
             {/* Group pages are only a table, so the table takes the section heading. */}
             <h2 id="course-overview-heading" className={`${displayHeading} text-navy-deep`}>
-              {!lead && course.courseTable ? "Courses in this group" : "About this course"}
+              {course.tagline || (!lead && course.courseTable ? "Courses in this group" : "About this course")}
             </h2>
             {lead && (
               <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-navy-deep/80 md:text-lg">
@@ -255,6 +278,35 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
                 </ol>
               </div>
             )}
+
+            {course.sections?.map((section) => (
+              <div key={section.heading} className="mt-12 md:mt-14">
+                <h3 className={subHeading}>{section.heading}</h3>
+                {section.intro && (
+                  <p className="mt-4 max-w-2xl text-base leading-relaxed text-navy-deep/80">{section.intro}</p>
+                )}
+                {section.items && (
+                  <ul
+                    className={`mt-5 grid border-t border-navy-deep/10 ${
+                      fitsTwoColumns(section.items) ? "sm:grid-cols-2 sm:gap-x-8" : "max-w-3xl"
+                    }`}
+                  >
+                    {section.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-3 border-b border-navy-deep/10 py-3.5 text-[15px] font-medium leading-snug text-navy-deep"
+                      >
+                        <CheckCircle2 className="mt-px h-5 w-5 shrink-0 text-[#0066b2]" strokeWidth={1.75} aria-hidden="true" />
+                        <span>{renderWithBoldLabels(item)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {section.outro && (
+                  <p className="mt-4 max-w-2xl text-base leading-relaxed text-navy-deep/80">{section.outro}</p>
+                )}
+              </div>
+            ))}
 
             {course.courseTable && (
               <div className={lead ? "mt-12 md:mt-14" : "mt-8 md:mt-10"}>
@@ -441,13 +493,18 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
         </section>
       )}
 
+      {course.faqs && course.faqs.length > 0 && (
+        <Faq items={course.faqs} description={`Common questions about ${course.title}.`} tone={course.clientLogos ? "white" : "mist"} />
+      )}
+
       <CourseSection
         id="related-courses-heading"
         title={related.title}
         description={related.description}
         courses={related.courses}
         viewAllHref="/courses"
-        tone={course.clientLogos ? "white" : "mist"}
+        tone={Boolean(course.clientLogos) === Boolean(course.faqs?.length) ? "mist" : "white"}
+        variant={isInternational ? "international" : "general"}
       />
     </>
   );

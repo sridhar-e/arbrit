@@ -22,7 +22,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { FormTrustSignals } from "@/components/ui/form-trust-signals";
-import { careerCourseOptions } from "@/lib/data";
+import { joinCourseOptions } from "@/lib/data";
 import { Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
 
@@ -43,9 +43,9 @@ export function JoinCourseDialog({
   trigger?: ReactNode;
 }) {
   const courseOptions =
-    preselectCourse && !careerCourseOptions.includes(preselectCourse)
-      ? [preselectCourse, ...careerCourseOptions]
-      : careerCourseOptions;
+    preselectCourse && !joinCourseOptions.includes(preselectCourse)
+      ? [preselectCourse, ...joinCourseOptions]
+      : joinCourseOptions;
 
   return (
     <Dialog>

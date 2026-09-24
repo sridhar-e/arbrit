@@ -36,7 +36,7 @@ export default function TermsPage() {
       </p>
       <p>
         Certification depends on meeting the attendance and assessment requirements of the relevant course and awarding or
-        accrediting body (such as LEEA, IOSH, STI or IRCA).
+        accrediting body (such as LEEA, IOSH, Highfield or STI).
       </p>
 
       <h2>Job applications</h2>

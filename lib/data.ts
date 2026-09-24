@@ -9,13 +9,15 @@ import {
   Flame,
   HeartPulse,
   Award,
-  BadgeCheck,
-  LifeBuoy,
-  Fuel,
   HardHat,
   Forklift,
-  ShieldAlert,
   Landmark,
+  Car,
+  Factory,
+  UtensilsCrossed,
+  Presentation,
+  Building2,
+  Fuel,
 } from "lucide-react";
 import {
   FacebookIcon,
@@ -53,7 +55,7 @@ export type Course = {
   slug: string;
   title: string;
   category: "International" | "General Safety";
-  duration: string;
+  duration?: string;
   level: string;
   icon: LucideIcon;
   image: string;
@@ -121,9 +123,27 @@ export type ClientLogo = {
   alt: string;
 };
 
+export type CourseSection = {
+  heading: string;
+  intro?: string;
+  items?: string[];
+  outro?: string;
+};
+
 export type CourseDetail = {
   slug: string;
   title: string;
+  /** International (externally accredited) or General Safety (Arbrit certificate). */
+  track?: "International" | "General Safety";
+  /** Slug of the course this one sits under (e.g. IOSH Managing Safely under IOSH), for breadcrumbs. */
+  parent?: string;
+  /** Short headline that opens the overview, in place of "About this course". */
+  tagline?: string;
+  /** Duration / accreditation / audience facts for single-course pages. */
+  outline?: { label: string; value: string }[];
+  /** Ordered content blocks: modules, who should attend, outcomes, duration, benefits… */
+  sections?: CourseSection[];
+  faqs?: Faq[];
   duration?: string;
   image: string;
   aim?: string;
@@ -192,113 +212,78 @@ export const navLinks: NavLink[] = [
 
 export const coursesMegaMenu: MegaMenuGroup[] = [
   {
-    title: "Lifting & Auditing Courses",
+    title: "LEEA Lifting Courses",
     links: [
-      { label: "LEEA – Foundation Course (FOUG)", href: "/course/leea-foundation-certificate" },
-      { label: "LEEA – Appointed Person for Lifting Operations (APLO)", href: "/courses/leea-course-dubai" },
-      { label: "Lead Auditor", href: "/courses/irca-lead-auditor" },
-      { label: "Rope Access Training", href: "/courses/rope-access" },
-      { label: "STI – Scaffold Inspector", href: "/courses/sti-scaffold-inspector" },
-      { label: "STI – Scaffold Erector", href: "/courses/sti-scaffold-erector" },
-      { label: "STI – Scaffold Competent Person", href: "/courses/sti-scaffold-competent-person" },
-      { label: "Basic First Aid CPR & AED", href: "/courses/basic-first-aid" },
-      { label: "Pedeatric First Aid", href: "/courses/pedeatric-first-aid" },
-      { label: "Tower Crane Rescue", href: "/courses/tower-crane-rescue" },
-      { label: "Confined Space Entry & Rescue", href: "/courses/confined-space-entry-rescue" },
-      { label: "Confined Space Entry", href: "/courses/confined-space-entry" },
-      { label: "Scaffolding Competent Person – STI", href: "/courses/scaffolding-competent-person-sti" },
-      { label: "Scaffolding Erector – STI", href: "/courses/scaffolding-erector-sti" },
-      { label: "Scaffolding Inspector – STI", href: "/courses/scaffolding-inspector-sti" },
-      { label: "Scaffolding Competent Person", href: "/courses/scaffolding-competent-person" },
-      { label: "Construction Hoist Operator", href: "/courses/construction-hoist-operator" },
+      { label: "LEEA Diploma", href: "/courses/leea-diploma" },
+      { label: "LEEA Foundation Certificate (FOU)", href: "/course/leea-foundation-certificate" },
+      { label: "LEEA Lifting Accessories Diploma (LAC)", href: "/course/leea-lifting-accessories-diploma" },
+      { label: "LEEA Courses", href: "/courses/leea" },
+      { label: "LEEA Appointed Person for Lifting Operations (APLO)", href: "/courses/leea-appointed-person" },
+      { label: "LEEA Crane Lift Supervisor", href: "/courses/leea-crane-lift-supervisor" },
+      { label: "LEEA Rigging and Lifting", href: "/courses/leea-rigging-and-lifting" },
     ],
   },
   {
-    title: "Equipment Operator Courses",
+    title: "IOSH & Highfield Courses",
     links: [
-      { label: "Concrete Gun Operator", href: "/courses/concrete-gun-operator" },
-      { label: "Power Hand Tools Operator", href: "/courses/power-hand-tools-operator" },
-      { label: "Block Cutting Machine Operator", href: "/courses/block-cutting-machine-operator" },
-      { label: "Scissor Lift Operator", href: "/courses/scissor-lift-operator" },
-      { label: "Roller Operator", href: "/courses/roller-operator" },
-      { label: "Manlift Operator", href: "/courses/manlift-operator" },
-      { label: "Cradle Operator", href: "/courses/cradle-operator" },
-      { label: "Dumber Operator", href: "/courses/dumber-operator" },
-      { label: "Excavator Operator", href: "/courses/excavator-operator" },
-      { label: "Shovel Operator", href: "/courses/shovel-operator" },
-      { label: "Forklift Operator", href: "/courses/forklift-operator" },
-      { label: "Mobile Crane Operator", href: "/courses/mobile-crane-operator" },
-      { label: "Lift Operator", href: "/courses/lift-operator" },
-      { label: "Tunnel Rescue", href: "/courses/tunnel-rescue" },
-      { label: "Flagman", href: "/courses/flagman" },
+      { label: "IOSH Courses", href: "/courses/iosh" },
       { label: "IOSH Managing Safely", href: "/courses/iosh-managing-safely" },
-      { label: "IOSH Supervising Safely", href: "/courses/iosh-supervising-safely" },
       { label: "IOSH Working Safely", href: "/courses/iosh-working-safely" },
+      { label: "Highfield Courses", href: "/courses/highfield" },
+      { label: "Highfield First Aid (Levels 1–4)", href: "/courses/highfield-first-aid" },
+      { label: "Highfield Fire Safety", href: "/courses/highfield-fire-safety" },
+      { label: "Highfield Food Safety & HACCP", href: "/courses/highfield-food-safety-haccp" },
+      { label: "Highfield Train the Trainer", href: "/courses/highfield-train-the-trainer" },
     ],
   },
   {
-    title: "Safety Management Courses",
+    title: "More International Courses",
     links: [
-      { label: "IOSH Managing Safely", href: "/courses/iosh-managing-safely" },
-      { label: "Train the Trainer", href: "/courses/train-the-trainer" },
-      { label: "Basic First Aid", href: "/courses/basic-first-aid" },
-      { label: "Risk Assesment", href: "/courses/risk-assesment" },
-      { label: "Food Safety", href: "/courses/food-safety" },
-      { label: "COSHH", href: "/courses/coshh" },
-      { label: "Confined Space", href: "/courses/confined-space" },
-      { label: "Defensive Driving", href: "/courses/defensive-driving" },
-      { label: "HAZOP", href: "/courses/hazop" },
-      { label: "H2S", href: "/courses/h2s" },
-      { label: "PTW", href: "/courses/ptw" },
-      { label: "TRA", href: "/courses/tra" },
-      { label: "Tunnel Rescue", href: "/courses/tunnel-rescue" },
-      { label: "Confined Space Exit & Rescue", href: "/courses/confined-space-exit-rescue" },
-      { label: "Electrical Safety", href: "/courses/electrical-safety" },
-      { label: "Confined Space", href: "/courses/confined-space" },
-      { label: "Hand Tools", href: "/courses/hand-tools" },
-      { label: "Basic Oil Spil", href: "/courses/basic-oil-spil" },
+      { label: "HSE Training", href: "/courses/hse-training" },
+      { label: "OHS Person In Charge (OHS PIC)", href: "/courses/ohs-pic" },
+      { label: "STI – Scaffold Training Institute", href: "/courses/sti" },
+      { label: "PASMA Mobile Access Towers", href: "/courses/pasma" },
+      { label: "ISO Lead Auditor Courses", href: "/courses/iso-lead-auditor" },
+      { label: "ISO 45001:2018 Lead Auditor", href: "/courses/iso-45001-lead-auditor" },
+      { label: "RoSPA Defensive Driving", href: "/courses/rospa" },
+      { label: "Qualifi Level 7 Diploma in OHSM", href: "/courses/qualifi-level-7-diploma-ohsm" },
+      { label: "NFPA Training", href: "/courses/nfpa-training" },
     ],
   },
   {
-    title: "Fire & Scaffolding Courses",
+    title: "Industry Safety Training",
     links: [
-      { label: "Basic Lifeline", href: "/courses/basic-lifeline" },
-      { label: "Lifting Supervisor Refresher Training", href: "/courses/lifting-supervisor-refresher-training" },
-      { label: "Basic Electrical Safety Awareness", href: "/courses/basic-electrical-safety-awareness" },
-      { label: "Gas Analyst Training & Certification", href: "/courses/gas-analyst-training-certification" },
-      { label: "Basic Scaffolding Erection & Dismantling", href: "/courses/basic-scaffolding-erection-dismantling" },
-      { label: "Basic Scaffolding Inspection", href: "/courses/basic-scaffolding-inspection" },
-      { label: "Scaffolding Supervisor Training", href: "/courses/scaffolding-supervisor-training" },
-      { label: "Fire Warden Level 1", href: "/courses/fire-warden-level-1" },
-      { label: "Fire Fighting", href: "/courses/fire-fighting" },
-      { label: "Fire Marshall", href: "/courses/fire-marshall" },
-      { label: "Fire Safety", href: "/courses/fire-safety" },
-      { label: "General Safety Awareness", href: "/courses/general-safety-awareness" },
-      { label: "Environmental Awareness", href: "/courses/environmental-awareness" },
-      { label: "Dangerous Goods Safety Awareness", href: "/courses/dangerous-goods-safety-awareness" },
+      { label: "Construction Industry", href: "/courses/construction-industry" },
+      { label: "Manufacturing Industry", href: "/courses/manufacturing-industry" },
+      { label: "Food Industry", href: "/courses/food-industry" },
+      { label: "Healthcare / Hospital Sector", href: "/courses/healthcare-sector" },
+      { label: "Oil & Gas Training", href: "/courses/oil-and-gas" },
+      { label: "Seminars and Workshops", href: "/courses/seminars-and-workshops" },
     ],
   },
 ];
 
 export const courseCategories: CourseCategory[] = [
-  { slug: "leea-foundation", title: "LEEA – Foundation Course (FOUG)", icon: BadgeCheck, image: "/international/LEEA-Courses-Dubai-UAE.webp", href: "/course/leea-foundation-certificate", duration: "5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "LEEA Certified" },
-  { slug: "leea-course", title: "LEEA – Appointed Person for Lifting Operations (APLO)", icon: Forklift, image: "/international/LEEA.webp", href: "/courses/leea-course-dubai", description: "Plan and supervise lifting operations, from risk assessments to method statements.", duration: "5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "LEEA Certified" },
-  { slug: "lead-auditor", title: "Lead Auditor", icon: ClipboardCheck, image: "/international/Lead-Auditor.webp", href: "/courses/irca-lead-auditor", description: "Audit ISO 9001, 45001, 14001 and 27001 management systems to ISO 19011.", duration: "5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "IRCA Certified" },
-  { slug: "rope-access", title: "Rope Access", icon: Anchor, image: "/international/rope-access.webp", href: "/courses/rope-access", description: "Work safely at height using ropes to reach difficult-access positions.", duration: "5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "Internationally Accredited" },
-  { slug: "sti", title: "STI", icon: Layers, image: "/international/STI-Scaffold-Training-Institute.webp", href: "/courses/sti", description: "Erect, inspect and dismantle scaffolding to Scaffold Training Institute standards.", duration: "2-5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "STI Certified" },
-  { slug: "highfield", title: "Highfield", icon: GraduationCap, image: "/international/HIghfield.webp", href: "/courses/highfield", description: "Ofqual-regulated qualifications in compliance and work-based workplace skills.", duration: "1-3 Days", location: "Dubai · Abu Dhabi · KSA", certification: "Highfield Accredited" },
-  { slug: "iosh", title: "IOSH", icon: ShieldCheck, image: "/international/IOSH.webp", href: "/courses/iosh", description: "Managing Safely and Working Safely — risk assessment and day-to-day safety management.", duration: "3-4 Days", location: "Dubai · Abu Dhabi · KSA", certification: "IOSH Certified" },
-  { slug: "leea-diploma", title: "LEEA Diploma", icon: Award, image: "/international/LEEA-diploma.webp", href: "/courses/leea-diploma", description: "Modular LEEA qualification covering lifting equipment inspection, rigging and supervision.", duration: "Modular", location: "Dubai · Abu Dhabi · KSA", certification: "LEEA Certified" },
+  { slug: "leea-diploma", title: "LEEA Diploma", icon: Award, image: "/course/ksa/leea-diploma.webp", href: "/courses/leea-diploma", description: "LEEA Foundation Certificate (FOU) and Lifting Accessories Diploma (LAC), from lifting basics to accessory inspection.", duration: "3–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "LEEA Certified" },
+  { slug: "leea", title: "LEEA", icon: Forklift, image: "/course/ksa/leea.webp", href: "/courses/leea", description: "Appointed Person for Lifting Operations, Crane Lift Supervisor, and Rigging and Lifting.", duration: "2–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "LEEA Certified" },
+  { slug: "hse-training", title: "HSE Training", icon: HardHat, image: "/course/ksa/hse-training.webp", href: "/courses/hse-training", description: "Practical HSE programmes, including the Dubai OHS Person In Charge (OHS PIC) certification.", location: "Dubai · Abu Dhabi · KSA", certification: "IOSH, Qualifi, TSI and more" },
+  { slug: "iosh", title: "IOSH", icon: ShieldCheck, image: "/course/ksa/iosh.webp", href: "/courses/iosh", description: "Working Safely for every employee and Managing Safely for supervisors and managers.", duration: "1–4 Days", location: "Dubai · Abu Dhabi · KSA", certification: "IOSH Certified" },
+  { slug: "highfield", title: "Highfield", icon: GraduationCap, image: "/course/ksa/highfield.webp", href: "/courses/highfield", description: "First aid, fire safety, food safety and HACCP, and Train the Trainer qualifications.", duration: "1–4 Days", location: "Dubai · Abu Dhabi · KSA", certification: "Highfield Accredited" },
+  { slug: "sti", title: "STI – Scaffold Training Institute", icon: Layers, image: "/course/ksa/sti.webp", href: "/courses/sti", description: "Scaffold Competent Person, Inspector and Erector courses to STI standards.", duration: "2–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "STI Certified" },
+  { slug: "pasma", title: "PASMA", icon: Building2, image: "/course/ksa/pasma-mobile-tower.webp", href: "/courses/pasma", description: "Mobile access tower training from a PASMA Approved Training Centre.", location: "Dubai · Abu Dhabi · KSA", certification: "PASMA Certified" },
+  { slug: "iso-lead-auditor", title: "ISO Lead Auditor", icon: ClipboardCheck, image: "/course/ksa/iso-lead-auditor.webp", href: "/courses/iso-lead-auditor", description: "Lead and internal auditor training for ISO 45001, 14001, 9001, 22000 and 27001.", duration: "2–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "Highfield Accredited" },
+  { slug: "rospa", title: "RoSPA", icon: Car, image: "/course/ksa/rospa.webp", href: "/courses/rospa", description: "Level 2 International Award in Defensive Driving, including the ADNOC-approved version.", duration: "1–2 Days", location: "Dubai · Abu Dhabi · KSA", certification: "RoSPA Accredited" },
+  { slug: "qualifi-level-7-diploma-ohsm", title: "Qualifi Level 7 Diploma in OHSM", icon: Landmark, image: "/course/ksa/qualifi-level-7-diploma-ohsm.webp", href: "/courses/qualifi-level-7-diploma-ohsm", description: "Postgraduate-level international diploma in occupational health and safety management.", duration: "Up to 18 Months", location: "Dubai · Abu Dhabi · KSA", certification: "Qualifi Level 7 (Ofqual)" },
+  { slug: "nfpa-training", title: "NFPA Training", icon: Flame, image: "/course/ksa/nfpa-training.webp", href: "/courses/nfpa-training", description: "NFPA 10, 13, 25, 70, 70E, 72, 101 and more, from an NFPA-approved training provider.", duration: "1–3 Days", location: "Dubai · Abu Dhabi · KSA", certification: "NFPA Training Certificate" },
 ];
 
 export const featuredCourses: Course[] = [
-  { slug: "fire-fighting", title: "Fire Fighting", category: "General Safety", duration: "2 Days", level: "All Levels", icon: Flame, image: "/general-safety/FIRE-FIGHTING.webp", href: "/courses/fire-fighting", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
-  { slug: "rescue-training", title: "Rescue Training", category: "General Safety", duration: "3 Days", level: "All Levels", icon: LifeBuoy, image: "/general-safety/Rescue-Training.webp", href: "/courses/rescue-training", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
-  { slug: "oil-and-gas", title: "Oil and Gas", category: "General Safety", duration: "2 Days", level: "All Levels", icon: Fuel, image: "/general-safety/Oil-and-gas.webp", href: "/courses/oil-and-gas", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
-  { slug: "construction-safety", title: "Construction Safety", category: "General Safety", duration: "2 Days", level: "All Levels", icon: HardHat, image: "/general-safety/constructions.webp", href: "/courses/construction-safety", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
-  { slug: "first-aid", title: "First Aid", category: "General Safety", duration: "1 Day", level: "All Levels", icon: HeartPulse, image: "/general-safety/first-aid.webp", href: "/courses/first-aid", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
-  { slug: "forklift-operator", title: "Forklift Operator", category: "General Safety", duration: "2 Days", level: "All Levels", icon: Forklift, image: "/general-safety/Forklift-Operator.webp", href: "/courses/forklift-operator", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
-  { slug: "safety-awareness", title: "Safety Awareness", category: "General Safety", duration: "1 Day", level: "All Levels", icon: ShieldAlert, image: "/general-safety/safety-awareness.webp", href: "/courses/general-safety-awareness", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
+  { slug: "construction-industry", title: "Construction Industry", category: "General Safety", duration: "1–3 Days", level: "All Levels", icon: HardHat, image: "/course/ksa/construction-industry.webp", href: "/courses/construction-industry", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
+  { slug: "manufacturing-industry", title: "Manufacturing Industry", category: "General Safety", duration: "1–4 Days", level: "All Levels", icon: Factory, image: "/course/ksa/manufacturing-industry.webp", href: "/courses/manufacturing-industry", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
+  { slug: "food-industry", title: "Food Industry", category: "General Safety", duration: "1–3 Days", level: "All Levels", icon: UtensilsCrossed, image: "/course/ksa/food-industry.webp", href: "/courses/food-industry", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
+  { slug: "healthcare-sector", title: "Healthcare / Hospital Sector", category: "General Safety", duration: "1–3 Days", level: "All Levels", icon: HeartPulse, image: "/course/ksa/healthcare-sector.webp", href: "/courses/healthcare-sector", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
+  { slug: "oil-and-gas", title: "Oil & Gas Training", category: "General Safety", level: "All Levels", icon: Fuel, image: "/course/ksa/oil-and-gas-offshore.webp", href: "/courses/oil-and-gas", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
+  { slug: "seminars-and-workshops", title: "Seminars and Workshops", category: "General Safety", duration: "Half-day to 2 Days", level: "All Levels", icon: Presentation, image: "/course/ksa/seminars-and-workshops.webp", href: "/courses/seminars-and-workshops", location: "Dubai · Abu Dhabi · KSA", certification: "Arbrit Certificate" },
 ];
 
 export const stats: Stat[] = [
@@ -541,36 +526,25 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const courseSelectOptions = [
-  "Rope Access",
-  "Lead Auditor",
-  "Highfield",
+  "LEEA",
   "IOSH",
+  "Highfield",
   "STI Scaffold Training",
-  "Fire Fighting",
-  "First Aid",
+  "ISO Lead Auditor",
+  "RoSPA Defensive Driving",
+  "Qualifi Level 7 Diploma",
+  "NFPA Training",
+  "PASMA",
+  "HSE Training / OHS PIC",
+  "Oil & Gas Training",
+  "Industry Safety Training",
   "Other",
 ];
 
 export const locationSelectOptions = ["Dubai", "Abu Dhabi", "Saudi Arabia", "Other"];
 
-export const careerCourseOptions = [
-  "IOSH",
-  "LEEA-Lifting Operations",
-  "Safety Awareness",
-  "First Aid",
-  "OTHM – Level 6",
-  "MEWP Training",
-  "STI",
-  "Construction Safety",
-  "Lead Auditor",
-  "Highfield",
-  "Oil and Gas",
-  "Rescue Training",
-  "Rope Access Training",
-  "General Safety",
-  "Fire Fighting",
-  "HSE Manpower Consultancy",
-];
+/** Course choices in the Join Course form: every course in the Courses menu, once each. */
+export const joinCourseOptions = [...new Set(coursesMegaMenu.flatMap((group) => group.links.map((link) => link.label)))];
 
 export const careerJobOpenings = [
   "HSE Manager",

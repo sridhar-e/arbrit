@@ -16,7 +16,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Arbrit Safety Training & Consultancy | HSE Courses in Dubai, Abu Dhabi & KSA",
   absoluteTitle: true,
   description:
-    "Accredited HSE training in Dubai, Abu Dhabi & KSA: LEEA lifting, IOSH, STI scaffolding, rope access, fire safety and first aid. First LEEA Licensed Training Partner.",
+    "Accredited HSE training in Dubai, Abu Dhabi & KSA: LEEA lifting, IOSH, Highfield, STI scaffolding, NFPA and industry safety courses. First LEEA Licensed Training Partner.",
   path: "/",
 });
 
@@ -27,7 +27,7 @@ const jsonLd = {
   url: siteUrl,
   logo: `${siteUrl}/arbritsafety-logo.png`,
   description:
-    "Accredited health & safety, lifting, scaffolding and fire safety training in Dubai, Abu Dhabi and KSA.",
+    "Accredited health & safety, lifting, scaffolding, fire safety and industry training in Dubai, Abu Dhabi and KSA.",
   areaServed: ["Dubai", "Abu Dhabi", "Saudi Arabia"],
   email: contactInfo.email,
   telephone: contactInfo.phones[0].number,

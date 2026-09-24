@@ -7,12 +7,12 @@ import { searchCourses, type SearchableCourse } from "@/lib/course-search";
 
 /** Shown when the field is focused but empty: the courses people ask about most. */
 const popularTitles = [
-  "LEEA – Appointed Person for Lifting Operations (APLO)",
+  "LEEA Diploma",
+  "LEEA Appointed Person for Lifting Operations (APLO)",
   "IOSH Managing Safely",
-  "Rope Access Training",
-  "STI – Scaffold Inspector",
-  "Basic First Aid CPR & AED",
-  "Fire Safety",
+  "Highfield First Aid (Levels 1–4)",
+  "STI – Scaffold Training Institute",
+  "NFPA Training",
 ];
 const MAX_RESULTS = 6;
 

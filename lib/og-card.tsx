@@ -39,7 +39,7 @@ export async function renderOgCard({ eyebrow, title, subtitle }: { eyebrow?: str
           <div style={{ marginTop: 18, fontSize: 30, opacity: 0.9 }}>{subtitle}</div>
         </div>
         <div style={{ display: "flex", gap: 16, fontSize: 24, fontWeight: 700 }}>
-          {["LEEA", "IOSH", "STI", "IRCA"].map((body) => (
+          {["LEEA", "IOSH", "Highfield", "STI"].map((body) => (
             <div key={body} style={{ padding: "8px 22px", borderRadius: 999, background: "rgba(255,255,255,0.14)" }}>
               {body}
             </div>

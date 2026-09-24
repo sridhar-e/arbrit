@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 const ALL = "All Categories";
 
 /**
- * Shortlist shown on phones in place of the full 67-course directory, which makes
+ * Shortlist shown on phones in place of the full course directory, which makes
  * the bottom of every page far too long on a small screen. Hrefs stay as "#", the
  * same as the rest of the directory, until the real course URLs are confirmed.
  */
@@ -31,8 +31,8 @@ const POPULAR_COURSES = [
   "Scaffold Training",
   "First Aid",
   "Fire Safety",
-  "Forklift",
-  "Confined Space",
+  "Food Safety",
+  "NFPA",
 ];
 
 export function CoursesDirectory({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {

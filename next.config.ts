@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { courseRedirects } from "./lib/course-redirects";
 
 const nextConfig: NextConfig = {
   // Lets phones on the LAN load dev-only assets (JS chunks, HMR). Without it the page
@@ -16,6 +17,10 @@ const nextConfig: NextConfig = {
     // Adds a 480px step so two-up mobile grids (~50vw at 2x DPR ≈ 390px) stop
     // rounding all the way up to the 640px device size. Must stay below deviceSizes[0].
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 480],
+  },
+  // Old course URLs from the previous catalogue go to the page that now covers them.
+  async redirects() {
+    return courseRedirects;
   },
   // Don't advertise the framework in every response.
   poweredByHeader: false,

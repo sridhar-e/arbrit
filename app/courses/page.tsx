@@ -6,7 +6,7 @@ import { pageHeaderImages } from "@/lib/page-images";
 import { CourseSearch, CourseSearchFromUrl } from "@/components/sections/course-search";
 import { searchableCourses } from "@/lib/course-links";
 import { CoursesProofStrip } from "@/components/sections/courses-proof-strip";
-import { CourseSection } from "@/components/sections/home-courses";
+import { CourseSection, generalCoursesIntro, internationalCoursesIntro } from "@/components/sections/home-courses";
 import { TrainingVenues } from "@/components/sections/training-venues";
 import { QuickEnquiry } from "@/components/sections/quick-enquiry";
 import { AdvisorPrompt } from "@/components/sections/advisor-prompt";
@@ -16,7 +16,7 @@ import { courseCategories, featuredCourses } from "@/lib/data";
 export const metadata: Metadata = pageMetadata({
   title: "HSE & Safety Training Courses in Dubai, Abu Dhabi & KSA",
   description:
-    "Browse accredited HSE courses: LEEA lifting, IOSH Managing Safely, STI scaffolding, rope access, confined space, fire safety, first aid and plant operator training.",
+    "Browse accredited HSE courses: LEEA lifting, IOSH, Highfield first aid and fire safety, STI scaffolding, ISO Lead Auditor, PASMA, RoSPA, NFPA, oil & gas and industry safety training.",
   path: "/courses",
 });
 
@@ -39,16 +39,18 @@ export default function CoursesPage() {
       <CourseSection
         id="international-courses-heading"
         title="International courses"
-        description="Certified by LEEA, IRCA, STI, Highfield and IOSH, and run at our centres in Dubai, Abu Dhabi and KSA."
+        description={internationalCoursesIntro}
         courses={courseCategories}
         tone="mist"
+        variant="international"
       />
       <CourseSection
         id="general-safety-courses-heading"
         title="General safety courses"
-        description="Practical one to three-day courses for everyday site safety, each completed with an Arbrit certificate."
+        description={generalCoursesIntro}
         courses={featuredCourses}
         tone="white"
+        variant="general"
       />
       <TrainingVenues />
       <QuickEnquiry />

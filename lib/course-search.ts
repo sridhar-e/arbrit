@@ -32,10 +32,19 @@ const topicKeywords: [RegExp, string][] = [
   [/iosh|risk|hazop|ptw|tra\b|coshh|highfield|safety awareness|general safety/i, "HSE health and safety management"],
   [/operator|forklift|excavator|roller|shovel|dumber|concrete|block cutting|flagman/i, "plant equipment machinery operator driver"],
   [/electrical/i, "electrical electricity electrician"],
-  [/auditor/i, "audit auditor ISO 45001 IRCA"],
+  [/auditor|\biso\b/i, "audit auditor ISO 45001 14001 9001 22000 27001 lead auditor internal auditor"],
   [/ptw/i, "permit to work"],
   [/tra\b/i, "task risk assessment"],
-  [/driving/i, "driver driving road safety vehicle"],
+  [/driving|rospa/i, "driver driving defensive driving road safety vehicle fleet RoSPA ADNOC"],
+  [/nfpa/i, "NFPA fire alarm sprinkler electrical safety NEC 70E arc flash"],
+  [/qualifi|diploma in ohsm/i, "diploma level 7 OHSM HSE manager CMIOSH GradIOSH European Safety Council"],
+  [/construction/i, "construction site safety work at height scaffolding excavation confined space"],
+  [/manufacturing/i, "manufacturing factory plant machine LOTO lockout process safety"],
+  [/healthcare|hospital/i, "healthcare hospital infection control patient safety clinic"],
+  [/pasma|tower/i, "PASMA mobile access tower work at height working at height"],
+  [/ohs pic|person in charge|hse training/i, "OHS PIC person in charge Dubai Municipality TSI HSE officer"],
+  [/oil (&|and) gas/i, "oil gas HAZOP HAZID PSM LOPA SIL SIMOPS H2S process safety ADNOC Aramco"],
+  [/seminar|workshop/i, "seminar workshop leadership safety culture"],
   [/oil|spil/i, "oil gas offshore spill"],
   [/food/i, "food hygiene HACCP catering"],
   [/train the trainer/i, "TTT trainer training instructor OSHAD"],
@@ -43,7 +52,7 @@ const topicKeywords: [RegExp, string][] = [
   [/environmental/i, "environment environmental ISO 14001"],
 ];
 
-const internationalPattern = /leea|iosh|\bsti\b|irca|lead auditor|highfield|rope access|othm|aplo|foug/i;
+const internationalPattern = /leea|iosh|\bsti\b|irca|\biso\b|lead auditor|highfield|rospa|nfpa|qualifi|pasma|ohs pic|hse training|aplo|foug/i;
 const trackFor = (title: string): SearchableCourse["track"] => (internationalPattern.test(title) ? "International" : "General Safety");
 
 const keywordsFor = (title: string) =>
@@ -76,12 +85,18 @@ export function buildSearchableCourses(courseMenu: MegaMenuGroup[]): SearchableC
       if (!byName.has(courseId(link.label))) add({ title: link.label, href: link.href, category: group.title });
     }
   }
+  // A card whose menu item has a different name ("RoSPA" / "RoSPA Defensive Driving") joins that item.
+  const menuItemFor = (href: string) => [...byName.values()].find((item) => item.href === href);
   for (const course of courseCategories) {
-    const known = byName.get(courseId(course.title));
+    const known = byName.get(courseId(course.title)) ?? menuItemFor(course.href);
+    if (known && known.title !== course.title) {
+      add({ ...known, duration: course.duration ?? known.duration });
+      continue;
+    }
     add({ title: course.title, href: known?.href ?? course.href, category: known?.category ?? "Accredited courses", duration: course.duration ?? known?.duration });
   }
   for (const course of featuredCourses) {
-    const known = byName.get(courseId(course.title));
+    const known = byName.get(courseId(course.title)) ?? menuItemFor(course.href);
     add({ title: course.title, href: known?.href ?? course.href, category: known?.category ?? "Safety courses", duration: course.duration });
   }
   return [...byName.values()];

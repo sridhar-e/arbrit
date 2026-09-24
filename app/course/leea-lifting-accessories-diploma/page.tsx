@@ -14,14 +14,14 @@ import { LeeaFaq } from "@/components/sections/leea-faq";
 import { LeeaEnrollToday } from "@/components/sections/leea-enroll-today";
 
 export const metadata: Metadata = pageMetadata({
-  title: "LEEA Lifting Accessories Diploma (LAC) in the UAE",
+  title: "LEEA Lifting Accessories Diploma (LAC) in the UAE & Saudi Arabia",
   description:
-    "LEEA Lifting Accessories Diploma (LAC) for inspectors and competent persons, delivered by the first LEEA Licensed Training Partner in the UAE.",
+    "LEEA Lifting Accessories Diploma (LAC) for inspectors and competent persons, delivered by the first LEEA Licensed Training Partner in the UAE and KSA.",
   path: "/course/leea-lifting-accessories-diploma",
 });
 
 const highlights = [
-  "LEEA Licensed Training Partner (LTP) in the UAE",
+  "LEEA Licensed Training Partner (LTP) in the UAE & Saudi Arabia",
   "Internationally recognised certification (valid for 5 years)",
   "Practical + theoretical training by industry experts",
   "Designed for high-risk industries: oil & gas, construction, offshore",
@@ -29,7 +29,7 @@ const highlights = [
 
 const announcements = [
   "Arbrit Safety signs official contract with LEEA",
-  "First LEEA Licensed Training Partner (LTP) in UAE",
+  "First LEEA Licensed Training Partner (LTP) in UAE & KSA",
   "Delivering LEEA Lifting Accessories Diploma (LAC)",
 ];
 
@@ -37,8 +37,8 @@ export default function LeeaLiftingAccessoriesDiplomaPage() {
   return (
     <>
       <LeeaHero
-        title="LEEA Lifting Accessories Diploma (LAC) Training in UAE"
-        lead="Train with a LEEA-approved provider in the UAE and earn a globally recognised certification in lifting accessories inspection."
+        title="LEEA Lifting Accessories Diploma (LAC) Training in the UAE & Saudi Arabia"
+        lead="Train with a LEEA-approved provider in the UAE and Saudi Arabia and earn a globally recognised certification in lifting accessories inspection."
         highlights={highlights}
       />
       <LeeaAnnouncementTicker items={announcements} />

@@ -14,6 +14,7 @@ const detailBySlug = new Map(courseDetails.map((detail) => [detail.slug, detail]
 function hasRichContent(detail: CourseDetail) {
   return Boolean(
     detail.topics?.length ||
+      detail.sections?.length ||
       detail.courseInfoParagraphs?.length ||
       detail.courseOfferings?.length ||
       detail.courseTable?.length ||

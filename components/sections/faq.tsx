@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
-import { contactInfo, faqs } from "@/lib/data";
+import { contactInfo, faqs as siteFaqs, type Faq as FaqItem } from "@/lib/data";
 import {
   Accordion,
   AccordionContent,
@@ -8,9 +8,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export function Faq() {
+/** Site FAQs by default; course pages pass their own questions, a lead line and the Mist tone. */
+export function Faq({
+  items = siteFaqs,
+  description = "Accreditation, certificate validity, group bookings and where we train.",
+  tone = "white",
+}: {
+  items?: FaqItem[];
+  description?: string;
+  tone?: "white" | "mist";
+} = {}) {
   return (
-    <section aria-labelledby="faq-heading" className="bg-white py-16 md:py-24">
+    <section aria-labelledby="faq-heading" className={`${tone === "mist" ? "bg-[#f5f7fa]" : "bg-white"} py-16 md:py-24`}>
       <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2
@@ -20,7 +29,7 @@ export function Faq() {
             Frequently asked questions
           </h2>
           <p className="mt-4 max-w-md text-base leading-relaxed text-navy-deep/80 md:text-lg">
-            Accreditation, certificate validity, group bookings and where we train.
+            {description}
           </p>
 
           <div className="mt-8 hidden rounded-[20px] bg-navy-deep p-6 text-white lg:block">
@@ -52,11 +61,11 @@ export function Faq() {
         </div>
 
         <Accordion type="single" collapsible className="space-y-3">
-          {faqs.map((faq, i) => (
+          {items.map((faq, i) => (
             <AccordionItem
               key={faq.question}
               value={`item-${i}`}
-              className="rounded-[20px] border-0 bg-[#f5f7fa] px-6"
+              className={`rounded-[20px] border-0 px-6 ${tone === "mist" ? "bg-white" : "bg-[#f5f7fa]"}`}
             >
               <AccordionTrigger className="py-5 text-left font-heading text-[17px] font-bold text-navy-deep hover:no-underline">
                 {faq.question}

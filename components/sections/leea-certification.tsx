@@ -58,14 +58,14 @@ export function LeeaCertification({ course }: { course: "fou" | "lac" }) {
           <div className="relative h-28 w-24">
             <Image
               src="/LEEA-Logo-1.webp"
-              alt="Lifting Equipment Engineers Association (LEEA) accreditation logo — Arbrit Safety is a LEEA Licensed Training Partner in the UAE"
+              alt="Lifting Equipment Engineers Association (LEEA) accreditation logo — Arbrit Safety is a LEEA Licensed Training Partner in the UAE and Saudi Arabia"
               fill
               sizes="96px"
               className="object-contain"
             />
           </div>
           <p className="max-w-xs font-heading text-lg font-bold leading-snug text-navy-deep">
-            Arbrit – Authorised Provider of LEEA-Accredited Training in the UAE
+            Arbrit – Authorised Provider of LEEA-Accredited Training in the UAE & Saudi Arabia
           </p>
         </div>
       </div>

@@ -14,14 +14,14 @@ import { LeeaFaq } from "@/components/sections/leea-faq";
 import { LeeaEnrollToday } from "@/components/sections/leea-enroll-today";
 
 export const metadata: Metadata = pageMetadata({
-  title: "LEEA Foundation Certificate (FOU) Training in the UAE",
+  title: "LEEA Foundation Certificate (FOU) Training in the UAE & Saudi Arabia",
   description:
-    "LEEA Foundation Certificate (FOU) from the first LEEA Licensed Training Partner in the UAE. Globally recognised lifting certification in Dubai and Abu Dhabi.",
+    "LEEA Foundation Certificate (FOU) from the first LEEA Licensed Training Partner in the UAE and KSA. Globally recognised lifting certification in Dubai, Abu Dhabi and Saudi Arabia.",
   path: "/course/leea-foundation-certificate",
 });
 
 const highlights = [
-  "Official Contract with LEEA for UAE",
+  "LEEA Licensed Training Partner (LTP) in the UAE & Saudi Arabia",
   "Internationally recognised certification",
   "Practical + theoretical training by industry experts",
   "Designed for high-risk industries: oil & gas, construction",
@@ -37,8 +37,8 @@ export default function LeeaFoundationCertificatePage() {
   return (
     <>
       <LeeaHero
-        title="LEEA Foundation Certificate (FOU) Training in the UAE"
-        lead="Arbrit Safety is the First LEEA Licensed Training Partner (LTP) in UAE. Get Certified with Globally Recognised LEEA Accreditation."
+        title="LEEA Foundation Certificate (FOU) Training in the UAE & Saudi Arabia"
+        lead="Arbrit Safety is the first LEEA Licensed Training Partner (LTP) in the UAE and KSA. Get certified with globally recognised LEEA accreditation."
         highlights={highlights}
       />
       <LeeaAnnouncementTicker items={announcements} />

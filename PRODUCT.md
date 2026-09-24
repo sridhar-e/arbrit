@@ -18,7 +18,7 @@ Arbrit Safety Training & Consultancy LLC delivers accredited health & safety tra
 
 ## Positioning
 
-First LEEA Licensed Training Partner in the UAE & KSA. Courses are delivered under international awarding bodies (LEEA, IOSH, IRCA, STI, Highfield) alongside Arbrit's own certificates, on Arbrit's premises or the client's site.
+First LEEA Licensed Training Partner in the UAE & KSA. Courses are delivered under international awarding bodies (LEEA, IOSH, Highfield, STI, PASMA, RoSPA, NFPA, Qualifi / European Safety Council) alongside Arbrit's own certificates, on Arbrit's premises or the client's site.
 
 ## Operating Context
 
@@ -29,7 +29,7 @@ First LEEA Licensed Training Partner in the UAE & KSA. Courses are delivered und
 ## Capabilities and Constraints
 
 - Next.js 16 (App Router, React 19), Tailwind CSS v4, shadcn/ui (radix-nova), framer-motion, lucide-react icons. Content lives in `lib/data.ts`.
-- Course catalogue: International courses (LEEA Foundation, LEEA APLO, LEEA Diploma, IRCA Lead Auditor, Rope Access, STI scaffolding, Highfield, IOSH) and General Safety courses (Fire Fighting, Rescue, Oil & Gas, Construction Safety, First Aid, Forklift, Safety Awareness), plus equipment-operator and safety-management courses in the mega menu.
+- Course catalogue (from arbritsafety.sa, September 2026, worded for the UAE and KSA): International courses (LEEA Diploma with FOU and LAC; LEEA with APLO, Crane Lift Supervisor, Rigging and Lifting; IOSH Managing and Working Safely; Highfield First Aid, Fire Safety, Food Safety & HACCP, Train the Trainer; STI; ISO Lead Auditor incl. ISO 45001; RoSPA Defensive Driving incl. the ADNOC-approved award; Qualifi Level 7 Diploma in OHSM; NFPA; HSE Training with the Dubai OHS PIC certification; PASMA) and General Safety industry training (Construction, Manufacturing, Food, Healthcare, Oil & Gas, Seminars and Workshops). New-Content.docx (client, September 2026) supplied HSE Training, OHS PIC, PASMA and Oil & Gas and overrides the .sa text where they differ; RTITB content is still to come. Course pages live in `lib/course-content.ts`; retired course URLs redirect via `lib/course-redirects.ts`.
 - Other routes: About, Trainers, Blog, Career, Consultancy, Contact, Courses, and dedicated LEEA course pages.
 
 ## Brand Commitments

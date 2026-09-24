@@ -10,7 +10,7 @@ import { NavyBandTexture } from "@/components/ui/navy-band-texture";
 import { historyGallery } from "@/lib/data";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About Arbrit Safety | LEEA Licensed Training Partner in the UAE",
+  title: "About Arbrit Safety | LEEA Licensed Training Partner in the UAE & KSA",
   description:
     "Arbrit Safety Training & Consultancy delivers accredited HSE training and consultancy across Dubai, Abu Dhabi and KSA. See how we train.",
   path: "/about",
@@ -19,7 +19,7 @@ export const metadata: Metadata = pageMetadata({
 const proof = [
   { icon: MapPin, text: "Training at our centres in Dubai, Abu Dhabi and KSA, or on your site" },
   { icon: HardHat, text: "Hands-on practice on the same equipment your teams use at work" },
-  { icon: BadgeCheck, text: "Accredited by LEEA, IOSH, IRCA, STI and Highfield" },
+  { icon: BadgeCheck, text: "Accredited by LEEA, IOSH, Highfield, STI, PASMA, RoSPA and NFPA" },
 ];
 
 const milestones = [
@@ -62,6 +62,29 @@ const approach = [
   },
 ];
 
+// From the client's company introduction (New-Content.docx, September 2026).
+const approvals = [
+  {
+    region: "United Arab Emirates",
+    intro: "In the UAE, Arbrit operates with key approvals and recognitions from:",
+    bodies: [
+      "Dubai Corporation for Ambulance Services (DCAS)",
+      "Knowledge and Human Development Authority (KHDA)",
+      "Abu Dhabi Centre for Technical and Vocational Education and Training (ACTVET)",
+      "ADNOC",
+    ],
+  },
+  {
+    region: "Kingdom of Saudi Arabia",
+    intro: "In Saudi Arabia, Arbrit operates through its Saudi establishment with:",
+    bodies: [
+      "Technical and Vocational Training Corporation (TVTC) approval",
+      "Registration with Saudi Aramco",
+      "Registration with SABIC",
+    ],
+  },
+];
+
 const displayHeading =
   "font-heading text-[clamp(2.125rem,8.5vw,3.75rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-balance";
 
@@ -71,7 +94,7 @@ export default function AboutPage() {
       <PageHeader
         title="About Us"
         eyebrow="Committed to Safer Workplaces Since 2006"
-        description="We are committed to delivering quality, practical HSE training and consultancy that build safer workplaces and stronger safety cultures across the UAE."
+        description="We are committed to delivering quality, practical HSE training and consultancy that build safer workplaces and stronger safety cultures across the UAE and Saudi Arabia."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
         {...pageHeaderImages.about}
       />
@@ -218,6 +241,60 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* Approvals: the UAE and KSA recognitions side by side. */}
+      <section aria-labelledby="approvals-heading" className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6">
+          <div className="max-w-3xl">
+            <h2 id="approvals-heading" className={`${displayHeading} text-navy-deep`}>
+              Approved in the UAE and Saudi Arabia
+            </h2>
+            <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-navy-deep/80 md:text-lg">
+              Arbrit Safety is a leading professional safety training and consultancy organisation serving clients
+              across the United Arab Emirates, the Kingdom of Saudi Arabia and the wider Middle East. We are committed
+              to enhancing workplace safety, developing professional competence and helping organisations achieve high
+              standards of health, safety and operational performance.
+            </p>
+          </div>
+
+          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
+            {approvals.map(({ region, intro, bodies }) => (
+              <li key={region} className="rounded-[20px] bg-[#f5f7fa] p-6 md:p-8">
+                <h3 className="flex items-center gap-3 font-heading text-xl font-extrabold tracking-[-0.01em] text-navy-deep md:text-2xl">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0066b2]/10 text-[#0066b2]">
+                    <MapPin className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                  </span>
+                  {region}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-navy-deep/80">{intro}</p>
+                <ul className="mt-3 divide-y divide-navy-deep/10 border-y border-navy-deep/10">
+                  {bodies.map((body) => (
+                    <li key={body} className="flex items-start gap-3 py-3 text-[15px] font-medium leading-snug text-navy-deep">
+                      <BadgeCheck className="mt-px h-5 w-5 shrink-0 text-[#0066b2]" strokeWidth={1.75} aria-hidden="true" />
+                      {body}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-10 max-w-3xl space-y-4 text-base leading-relaxed text-navy-deep/80 md:mt-12">
+            <p>
+              Supported by a strong portfolio of international accreditations, local approvals and industry
+              partnerships, Arbrit delivers specialised programmes in occupational health &amp; safety, lifting
+              operations, fire &amp; life safety, first aid, work at height, equipment operations and other technical
+              safety disciplines, together with professional safety consultancy services.
+            </p>
+            <p>
+              Our experienced trainers, technical specialists and consultants combine extensive industry expertise with
+              practical, workplace-focused learning. With established operations in both the UAE and Saudi Arabia,
+              Arbrit remains committed to quality, competence, integrity and continuous improvement: developing skilled
+              professionals and creating safer workplaces.
+            </p>
+          </div>
         </div>
       </section>
     </>

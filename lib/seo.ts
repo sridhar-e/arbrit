@@ -7,7 +7,7 @@ type PageMetaInput = {
   title: string;
   /** 120–160 characters works best in search results and link previews. */
   description: string;
-  /** Path of the page, e.g. "/courses/rope-access". Used for the canonical URL and og:url. */
+  /** Path of the page, e.g. "/courses/iosh". Used for the canonical URL and og:url. */
   path: string;
   /** Title shown in link previews, if it should differ from the page title. */
   shareTitle?: string;

@@ -8,7 +8,7 @@ import { ArrowRight, BadgeCheck, MapPin, Play, ShieldCheck } from "lucide-react"
 const proof = [
   { icon: ShieldCheck, text: "First LEEA Licensed Training Partner in the UAE and KSA" },
   { icon: MapPin, text: "Training across Dubai, Sharjah, RAK, Abu Dhabi and KSA" },
-  { icon: BadgeCheck, text: "IOSH, STI, Highfield, IRCA Lead Auditor and RAKEZ-approved courses" },
+  { icon: BadgeCheck, text: "IOSH, Highfield, STI, PASMA, RoSPA, NFPA and Qualifi Level 7 courses" },
 ];
 
 /** Poster first; the YouTube player only loads once the visitor presses play. */

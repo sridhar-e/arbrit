@@ -67,9 +67,9 @@ function GeneralCourseCard({ course }: { course: CourseCardData }) {
   );
 }
 
-/** Arbrit-certified courses get the simpler General Safety card; externally awarded ones keep the photo card. */
-function CourseCard({ course }: { course: CourseCardData }) {
-  return course.certification === "Arbrit Certificate" ? (
+/** General Safety courses get the simpler card; internationally accredited ones keep the photo card. */
+function CourseCard({ course, variant }: { course: CourseCardData; variant: "international" | "general" }) {
+  return variant === "general" ? (
     <GeneralCourseCard course={course} />
   ) : (
     <InternationalCourseCard course={course} />
@@ -136,6 +136,7 @@ export function CourseSection({
   courses,
   viewAllHref,
   tone,
+  variant,
 }: {
   id: string;
   title: string;
@@ -144,6 +145,7 @@ export function CourseSection({
   /** Omit on the Courses page itself, where every course is already listed. */
   viewAllHref?: string;
   tone: "mist" | "white";
+  variant: "international" | "general";
 }) {
   return (
     <section
@@ -178,7 +180,7 @@ export function CourseSection({
       <ul className="mt-8 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-6 pt-2 [scrollbar-width:none] sm:scroll-px-6 sm:px-6 md:mx-auto md:mt-10 md:grid md:max-w-7xl md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
         {courses.map((course) => (
           <li key={course.slug} className="w-[80%] shrink-0 snap-start sm:w-[46%] md:w-auto">
-            <CourseCard course={course} />
+            <CourseCard course={course} variant={variant} />
           </li>
         ))}
       </ul>
@@ -197,15 +199,21 @@ export function CourseSection({
   );
 }
 
+export const internationalCoursesIntro =
+  "Certified by LEEA, IOSH, Highfield, STI, PASMA, RoSPA, NFPA and Qualifi, and run at our centres in Dubai, Abu Dhabi and KSA.";
+export const generalCoursesIntro =
+  "Safety training built around your industry: construction, manufacturing, food, healthcare and oil & gas, plus leadership workshops. Each is completed with an Arbrit certificate.";
+
 export function InternationalCourses() {
   return (
     <CourseSection
       id="international-courses-heading"
       title="International courses"
-      description="Certified by LEEA, IRCA, STI, Highfield and IOSH, and run at our centres in Dubai, Abu Dhabi and KSA."
+      description={internationalCoursesIntro}
       courses={courseCategories}
       viewAllHref="/courses?category=International"
       tone="mist"
+      variant="international"
     />
   );
 }
@@ -215,10 +223,11 @@ export function GeneralSafetyCourses() {
     <CourseSection
       id="general-safety-courses-heading"
       title="General safety courses"
-      description="Practical one to three-day courses for everyday site safety, each completed with an Arbrit certificate."
+      description={generalCoursesIntro}
       courses={featuredCourses}
       viewAllHref="/courses?category=General%20Safety"
       tone="white"
+      variant="general"
     />
   );
 }
