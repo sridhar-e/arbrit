@@ -8,6 +8,8 @@ type CourseCardData = {
   slug: string;
   title: string;
   image: string;
+  /** Tailwind object-position class when the subject is off-centre, e.g. "object-[20%_center]". */
+  imagePosition?: string;
   href: string;
   icon: LucideIcon;
   description?: string;
@@ -39,7 +41,7 @@ function GeneralCourseCard({ course }: { course: CourseCardData }) {
           alt={courseImageAlt(course)}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 80vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${course.imagePosition ?? ""}`}
         />
       </span>
 
@@ -95,7 +97,7 @@ function InternationalCourseCard({ course }: { course: CourseCardData }) {
         alt={courseImageAlt(course)}
         fill
         sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 80vw"
-        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${course.imagePosition ?? ""}`}
       />
       <span
         aria-hidden="true"

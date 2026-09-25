@@ -43,6 +43,8 @@ export type CourseCategory = {
   title: string;
   icon: LucideIcon;
   image: string;
+  /** Tailwind object-position class when the subject is off-centre, e.g. "object-[20%_center]". */
+  imagePosition?: string;
   href: string;
   /** One-line summary of what the course covers, shown on the course card. */
   description?: string;
@@ -270,7 +272,7 @@ export const courseCategories: CourseCategory[] = [
   { slug: "iosh", title: "IOSH", icon: ShieldCheck, image: "/course/ksa/iosh.webp", href: "/courses/iosh", description: "Working Safely for every employee and Managing Safely for supervisors and managers.", duration: "1–4 Days", location: "Dubai · Abu Dhabi · KSA", certification: "IOSH Certified" },
   { slug: "highfield", title: "Highfield", icon: GraduationCap, image: "/course/ksa/highfield.webp", href: "/courses/highfield", description: "First aid, fire safety, food safety and HACCP, and Train the Trainer qualifications.", duration: "1–4 Days", location: "Dubai · Abu Dhabi · KSA", certification: "Highfield Accredited" },
   { slug: "sti", title: "STI – Scaffold Training Institute", icon: Layers, image: "/course/ksa/sti.webp", href: "/courses/sti", description: "Scaffold Competent Person, Inspector and Erector courses to STI standards.", duration: "2–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "STI Certified" },
-  { slug: "pasma", title: "PASMA", icon: Building2, image: "/course/ksa/pasma-mobile-tower.webp", href: "/courses/pasma", description: "Mobile access tower training from a PASMA Approved Training Centre.", location: "Dubai · Abu Dhabi · KSA", certification: "PASMA Certified" },
+  { slug: "pasma", title: "PASMA", icon: Building2, image: "/course/ksa/pasma-mobile-tower.webp", imagePosition: "object-[18%_center]", href: "/courses/pasma", description: "Mobile access tower training from a PASMA Approved Training Centre.", location: "Dubai · Abu Dhabi · KSA", certification: "PASMA Certified" },
   { slug: "iso-lead-auditor", title: "ISO Lead Auditor", icon: ClipboardCheck, image: "/course/ksa/iso-lead-auditor.webp", href: "/courses/iso-lead-auditor", description: "Lead and internal auditor training for ISO 45001, 14001, 9001, 22000 and 27001.", duration: "2–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "Highfield Accredited" },
   { slug: "rospa", title: "RoSPA", icon: Car, image: "/course/ksa/rospa.webp", href: "/courses/rospa", description: "Level 2 International Award in Defensive Driving, including the ADNOC-approved version.", duration: "1–2 Days", location: "Dubai · Abu Dhabi · KSA", certification: "RoSPA Accredited" },
   { slug: "qualifi-level-7-diploma-ohsm", title: "Qualifi Level 7 Diploma in OHSM", icon: Landmark, image: "/course/ksa/qualifi-level-7-diploma-ohsm.webp", href: "/courses/qualifi-level-7-diploma-ohsm", description: "Postgraduate-level international diploma in occupational health and safety management.", duration: "Up to 18 Months", location: "Dubai · Abu Dhabi · KSA", certification: "Qualifi Level 7 (Ofqual)" },

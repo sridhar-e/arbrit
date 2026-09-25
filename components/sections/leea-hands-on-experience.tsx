@@ -2,10 +2,11 @@ import Image from "next/image";
 import { leeaDisplayHeading, leeaLead } from "@/components/sections/leea-styles";
 
 const gallery = [
-  { image: "/Hands-on-Experience/constructions.webp", title: "Practical Lifting Area" },
-  { image: "/hero/slide-2-training-classroom.jpg", title: "Modern Classrooms" },
-  { image: "/Hands-on-Experience/IOSH-Managing-Safely.webp", title: "Safety Inspection Lab" },
-  { image: "/Hands-on-Experience/LEEA-Courses-Dubai-UAE-1-1.webp", title: "Certification Ceremony" },
+  // Portrait sources, so the 4:5 panels keep the whole scene instead of a sliver of a wide photo.
+  { image: "/home/step-practise.webp", title: "Practical Lifting Area" },
+  { image: "/home/step-learn.webp", title: "Modern Classrooms" },
+  { image: "/home/step-assess.webp", title: "Safety Inspection Lab" },
+  { image: "/home/step-certified.webp", title: "Certification Ceremony" },
 ];
 
 /** Learning environment: four photo panels with the navy scrim under each caption. */

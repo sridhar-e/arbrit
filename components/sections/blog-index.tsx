@@ -31,21 +31,24 @@ export function BlogIndex() {
           {featured && (
             <Link
               href={featured.href}
-              className="group relative flex flex-col justify-end overflow-hidden rounded-[24px] p-6 pt-60 text-white shadow-[0_24px_48px_-24px_rgba(18,59,109,0.45)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0066b2] sm:pt-80 md:p-8 md:pt-80 lg:min-h-[36rem]"
+              className="group relative flex flex-col overflow-hidden rounded-[24px] bg-navy-deep text-white shadow-[0_24px_48px_-24px_rgba(18,59,109,0.45)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0066b2] lg:sticky lg:top-28 lg:self-start"
             >
-              <Image
-                src={featured.imageWide}
-                alt={coverAlt(featured)}
-                fill
-                preload
-                sizes="(min-width: 1024px) 58vw, 100vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 bg-[linear-gradient(0deg,#123b6d_0%,rgba(18,59,109,0.9)_50%,rgba(18,59,109,0.35)_75%,rgba(18,59,109,0)_92%)]"
-              />
-              <span className="relative block max-w-2xl">
+              {/* The cover keeps its own 16:9 and fades into navy under the text, so it is never cropped or stretched. */}
+              <span className="relative block aspect-[16/9] overflow-hidden">
+                <Image
+                  src={featured.imageWide}
+                  alt={coverAlt(featured)}
+                  fill
+                  preload
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-[linear-gradient(0deg,#123b6d_0%,rgba(18,59,109,0.6)_25%,rgba(18,59,109,0)_55%)]"
+                />
+              </span>
+              <span className="relative -mt-16 block max-w-2xl px-6 pb-6 md:-mt-24 md:px-8 md:pb-8">
                 <span className="inline-flex h-7 items-center rounded-full bg-white/15 px-3 text-[13px] font-semibold ring-1 ring-white/25">
                   {featured.category}
                 </span>
