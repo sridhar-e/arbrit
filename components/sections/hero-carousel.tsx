@@ -42,7 +42,7 @@ const categories: { label: string; href: string; icon: CategoryIcon }[] = [
 export function HeroCarousel({
   slides,
   courses,
-  interval = 6500,
+  interval = 5000,
 }: {
   slides: HeroSlide[];
   /** Course search index, built on the server (lib/course-links). */
@@ -135,21 +135,21 @@ export function HeroCarousel({
       </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col px-5 pb-2 pt-[max(96px,69vw)] sm:px-6 md:min-h-[min(84svh,780px)] md:justify-center md:pb-6 md:pt-[calc(var(--site-header-height,80px)+2rem)]">
+      <div className="mx-auto flex max-w-7xl flex-col px-5 pb-2 pt-[max(96px,60vw)] sm:px-6 md:min-h-[min(calc(100svh-21rem),640px)] md:justify-center md:pb-4 md:pt-[calc(var(--site-header-height,80px)+1.25rem)] [@media(min-width:768px)_and_(max-height:820px)]:pt-[calc(var(--site-header-height,80px)+0.75rem)]">
         <div className="max-w-xl [text-shadow:0_2px_18px_rgba(18,59,109,0.55)] md:[text-shadow:none]">
           <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/90 sm:text-sm">
             Accredited Health &amp; Safety Training
           </p>
-          <h1 className="mt-3 font-heading text-[clamp(2.5rem,11vw,4.75rem)] font-extrabold leading-[1.02] tracking-[-0.03em] text-balance">
+          <h1 className="mt-3 font-heading text-[clamp(2.5rem,11vw,4.75rem)] font-extrabold leading-[1.02] tracking-[-0.03em] text-balance md:mt-2 md:text-[clamp(2.75rem,4.4vw,4rem)] [@media(min-width:768px)_and_(max-height:820px)]:text-[2.75rem]">
             Skills for a Safer Tomorrow
           </h1>
-          <p className="mt-4 max-w-[30ch] text-[17px] leading-snug text-white/90 sm:text-lg md:max-w-md md:text-xl">
+          <p className="mt-4 max-w-[30ch] text-[17px] leading-snug text-white/90 sm:text-lg md:mt-3 md:max-w-md md:text-lg">
             Build safer workplaces. Develop competent professionals.
           </p>
 
           <HeroCourseSearch courses={courses} />
 
-          <nav aria-label="Course categories" className="mt-7 md:mt-10 md:max-w-lg">
+          <nav aria-label="Course categories" className="mt-6 md:mt-7 md:max-w-lg [@media(min-width:768px)_and_(max-height:820px)]:mt-5">
             <ul className="grid grid-cols-4 divide-x divide-white/25">
               {categories.map(({ label, href, icon: Icon }) => (
                 <li key={href}>
@@ -172,7 +172,7 @@ export function HeroCarousel({
       </div>
 
       {slides.length > 1 && (
-        <div className="mx-auto flex max-w-7xl px-5 pb-4 sm:px-6 md:pb-8">
+        <div className="mx-auto flex max-w-7xl px-5 pb-3 sm:px-6 md:pb-4">
           <div role="group" aria-label="Choose a slide" className="-ml-1 flex items-center">
             {slides.map((slide, index) => (
               <button
@@ -195,7 +195,7 @@ export function HeroCarousel({
       )}
 
       <div className="bg-[#0066b2]">
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-4 sm:px-6 md:py-5">
+        <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-3 sm:px-6 md:py-3.5">
           <Users className="h-7 w-7 shrink-0" strokeWidth={1.75} aria-hidden="true" />
           <p className="text-[15px] leading-snug sm:text-base">
             Trusted by <strong className="font-semibold">15,000+ professionals</strong> across the UAE and

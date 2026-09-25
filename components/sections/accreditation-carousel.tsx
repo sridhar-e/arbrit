@@ -30,7 +30,7 @@ const edgeFade = {
 
 function LogoCard({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="flex h-20 w-36 shrink-0 items-center justify-center rounded-2xl bg-white p-4 shadow-[0_10px_24px_-18px_rgba(18,59,109,0.45)] sm:h-24 sm:w-40">
+    <div className="flex h-16 w-32 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-[0_10px_24px_-18px_rgba(18,59,109,0.45)] sm:h-24 sm:w-40 sm:p-4">
       <div className="relative h-full w-full">
         <Image
           src={src}
@@ -48,7 +48,7 @@ export function AccreditationCarousel() {
   const shouldReduceMotion = usePrefersReducedMotion();
 
   return (
-    <section aria-labelledby="accreditation-heading" className="overflow-hidden bg-[#f5f7fa] py-12 md:py-16">
+    <section aria-labelledby="accreditation-heading" className="overflow-hidden bg-[#f5f7fa] py-8 md:py-10">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:flex lg:items-center lg:gap-12">
         <div className="shrink-0 lg:w-64">
           <h2
@@ -60,13 +60,13 @@ export function AccreditationCarousel() {
         </div>
 
         {shouldReduceMotion ? (
-          <div className="mt-6 flex flex-wrap gap-3 sm:gap-4 lg:mt-0 lg:flex-1">
+          <div className="mt-4 flex flex-wrap gap-3 sm:gap-4 lg:mt-0 lg:flex-1">
             {logos.map((logo) => (
               <LogoCard key={logo.src} src={logo.src} alt={logo.alt} />
             ))}
           </div>
         ) : (
-          <div className="relative mt-6 overflow-hidden py-3 lg:mt-0 lg:min-w-0 lg:flex-1" style={edgeFade}>
+          <div className="relative mt-3 overflow-hidden py-3 lg:mt-0 lg:min-w-0 lg:flex-1" style={edgeFade}>
             <div
               className="flex w-max gap-4 animate-marquee"
               style={{ animationDuration: "36s" }}>

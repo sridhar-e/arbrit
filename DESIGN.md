@@ -236,7 +236,7 @@ International and General Safety courses use two different cards, chosen per cou
 - **States:** hover lifts the card 4px, deepens the shadow (Card Hover), eases the photo to 105% and darkens the button to #00589a.
 
 ### Hero Slider
-- **Behaviour:** full-bleed photos cross-fade (1.2s) every 6.5s behind fixed copy, search and shortcuts; each slide has a portrait crop for phones and a landscape crop from 768px, and settles from 108% scale while active.
+- **Behaviour:** full-bleed photos cross-fade (1.2s) every 5s behind fixed copy, search and shortcuts; each slide has a portrait crop for phones and a landscape crop from 768px, and settles from 108% scale while active.
 - **Dots:** bottom-left inside the content column; 8px white dots at 45%, the active dot stretches to a 28px white pill. Each dot is a 44px-tall button.
 - **Rules:** pauses on hover and keyboard focus, skips hidden tabs, restarts its timer whenever the slide changes, and never auto-advances for reduced-motion visitors. Every slide keeps the navy scrim so white text stays legible.
 - **Phones:** the portrait photo keeps its own aspect ratio pinned to the top of the hero (never cover-scaled to the viewport height), so the subject's face lands in the same place on every phone. Copy starts below the face (about 69vw from the top), over a scrim that is clear across the face and solid navy by the headline. A slide whose face sits low shifts up rather than letting copy cross it.

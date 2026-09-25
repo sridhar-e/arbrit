@@ -82,13 +82,13 @@ export function HeroCourseSearch({ courses }: { courses: SearchableCourse[] }) {
       method="get"
       role="search"
       onSubmit={onSubmit}
-      className="relative hidden md:mt-8 md:block md:max-w-lg"
+      className="relative hidden md:mt-6 md:block md:max-w-lg [@media(min-width:768px)_and_(max-height:820px)]:mt-4"
       onBlur={(event) => {
         // Close when focus leaves the whole search (input and list), not when moving between them.
         if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false);
       }}
     >
-      <div className="flex h-14 items-center rounded-full bg-white pl-5 pr-1.5 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.6)] focus-within:ring-4 focus-within:ring-white/35 md:h-16 md:pr-2">
+      <div className="flex h-14 items-center rounded-full bg-white pl-5 pr-1.5 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.6)] focus-within:ring-4 focus-within:ring-white/35 md:pr-2">
         <Search className="h-5 w-5 shrink-0 text-navy-deep" aria-hidden="true" />
         <label htmlFor="hero-course-search" className="sr-only">
           Search for a course
