@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import { CountryFlag } from "@/components/ui/country-flag";
 import { footerQuickLinks, contactInfo, socialLinks } from "@/lib/data";
 
 export function Footer() {
@@ -42,23 +43,23 @@ export function Footer() {
             <p className="text-sm font-semibold uppercase tracking-wide text-white/85">Official Info</p>
             <div className="mt-4 space-y-2 text-sm text-white/85">
               {contactInfo.phones.map((phone) => (
-                <p key={phone.label} className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
+                <p key={phone.label} className="flex items-center gap-2.5">
+                  <CountryFlag country={phone.country} />
                   <a href={`tel:${phone.number.replace(/\s+/g, "")}`} className="hover:text-white">
                     {phone.number}
                   </a>
                   <span className="text-white/85">— {phone.label}</span>
                 </p>
               ))}
-              <p className="pl-6 text-white/85">{contactInfo.ksaEntity}</p>
-              <p className="flex items-center gap-2">
-                <Mail className="h-4 w-4 shrink-0 text-white" aria-hidden="true" />
+              {/* Icons sit in a 24px slot, the width of the flags, so every line's text starts in one column. */}
+              <p className="flex items-center gap-2.5">
+                <Mail className="h-4 w-6 shrink-0 text-white" aria-hidden="true" />
                 <a href={`mailto:${contactInfo.email}`} className="hover:text-white">
                   {contactInfo.email}
                 </a>
               </p>
-              <p className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 shrink-0 text-white" aria-hidden="true" /> {contactInfo.address}
+              <p className="flex items-center gap-2.5">
+                <MapPin className="h-4 w-6 shrink-0 text-white" aria-hidden="true" /> {contactInfo.address}
               </p>
             </div>
           </div>

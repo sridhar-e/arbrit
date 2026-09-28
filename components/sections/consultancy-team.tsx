@@ -10,7 +10,7 @@ import { trainers } from "@/lib/content";
  */
 export function ConsultancyTeam() {
   return (
-    <section aria-labelledby="consultancy-team-heading" className="bg-white py-16 md:py-24">
+    <section aria-labelledby="consultancy-team-heading" className="bg-white py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <h2
           id="consultancy-team-heading"

@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
+import { PhoneInput } from "@/components/forms/phone-input";
 import { contactInfo } from "@/lib/data";
 import { CV_ACCEPT } from "@/lib/cv-file";
 import {
@@ -60,18 +61,22 @@ export function CareerForm() {
     return (
       <div className="group space-y-1.5">
         {label(field, labelText, props.hint)}
-        <div className="relative">
-          <FieldIcon className={iconClass} aria-hidden="true" />
-          <Input
-            id={`career-${field}`}
-            {...lead.field(field)}
-            name={field}
-            type={props.type ?? "text"}
-            placeholder={props.placeholder}
-            autoComplete={props.autoComplete}
-            className={controlClass}
-          />
-        </div>
+        {field === "phone" ? (
+          <PhoneInput id="career-phone" {...lead.field(field)} placeholder={props.placeholder} className={controlClass} />
+        ) : (
+          <div className="relative">
+            <FieldIcon className={iconClass} aria-hidden="true" />
+            <Input
+              id={`career-${field}`}
+              {...lead.field(field)}
+              name={field}
+              type={props.type ?? "text"}
+              placeholder={props.placeholder}
+              autoComplete={props.autoComplete}
+              className={controlClass}
+            />
+          </div>
+        )}
         {lead.error(field)}
       </div>
     );
@@ -126,7 +131,7 @@ export function CareerForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">{text("name", "Full Name", User, { placeholder: "Full Name", autoComplete: "name" })}</div>
         {text("email", "Email", Mail, { type: "email", placeholder: "name@example.com", autoComplete: "email" })}
-        {text("phone", "Phone / WhatsApp", Phone, { type: "tel", placeholder: "+971 50 123 4567", autoComplete: "tel" })}
+        {text("phone", "Phone / WhatsApp", Phone, { placeholder: "50 123 4567" })}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">

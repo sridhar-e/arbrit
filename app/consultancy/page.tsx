@@ -64,7 +64,7 @@ export default function ConsultancyPage() {
       <ConsultancySectors />
       <ConsultancyEnquiry />
 
-      <section aria-labelledby="consultancy-contact-heading" className="bg-white py-16 md:py-24">
+      <section aria-labelledby="consultancy-contact-heading" className="bg-white py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div>

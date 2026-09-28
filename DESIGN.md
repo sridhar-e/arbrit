@@ -224,11 +224,12 @@ Friendly and rounded, never sharp. Cards use 20px corners, photo panels 24px, an
 ### Course Card
 International and General Safety courses use two different cards, chosen per course: anything awarded by an outside body gets the International card, Arbrit-certified courses get the simpler General Safety card.
 
-**International (photo card)**
-- **Character:** a full-bleed course photo washed with Arbrit Blue rising from the bottom (solid blue at the base to near-clear at the top), so the card reads as the brand colour with the subject showing through.
-- **Corner Style:** 20px, at least 23rem tall.
-- **Content (bottom-anchored, white):** course icon and title, optional two-line description, a hairline, then duration / location / certification rows with 14px icons, and a full-width white pill "View course" button in Arbrit Blue.
-- **States:** hover lifts the card 4px, deepens the shadow (Card Hover) and eases the photo to 105%; the button fill shifts to Mist.
+**International (solid card)**
+- **Character:** readable first. A 3:2 course photo on top with no overlay, then a solid Arbrit Blue body with white text (5.7:1 contrast).
+- **Corner Style:** 20px, Card Rest shadow.
+- **Content:** a 48px white icon disc sitting on the seam between photo and body; the Card Title in a fixed two-line slot and the description in a fixed three-line slot (both clamp), so every card's details and button line up across a row; duration / where / certificate rows between white 20% hairlines with 16px icons; a full-width white pill "View course" button pinned to the bottom.
+- **States:** hover lifts the card 4px, deepens the shadow (Card Hover), eases the photo to 105%, shifts the button to Mist and nudges its arrow.
+- **Off-centre photos:** a card can set its own object position (the PASMA card focuses on the tower).
 
 **General Safety (simple card)**
 - **Character:** quieter than the International card. A white card (20px, 1px Arbrit Blue 15% ring, Card Rest shadow) with a 3:2 photo on top and content on white below.
@@ -237,7 +238,7 @@ International and General Safety courses use two different cards, chosen per cou
 
 ### Hero Slider
 - **Behaviour:** full-bleed photos cross-fade (1.2s) every 5s behind fixed copy, search and shortcuts; each slide has a portrait crop for phones and a landscape crop from 768px, and settles from 108% scale while active.
-- **Dots:** bottom-left inside the content column; 8px white dots at 45%, the active dot stretches to a 28px white pill. Each dot is a 44px-tall button.
+- **No slide controls:** the photos rotate on their own (pausing on hover and focus); there are no dots, by client request (September 2026).
 - **Rules:** pauses on hover and keyboard focus, skips hidden tabs, restarts its timer whenever the slide changes, and never auto-advances for reduced-motion visitors. Every slide keeps the navy scrim so white text stays legible.
 - **Phones:** the portrait photo keeps its own aspect ratio pinned to the top of the hero (never cover-scaled to the viewport height), so the subject's face lands in the same place on every phone. Copy starts below the face (about 69vw from the top), over a scrim that is clear across the face and solid navy by the headline. A slide whose face sits low shifts up rather than letting copy cross it.
 
@@ -253,6 +254,7 @@ International and General Safety courses use two different cards, chosen per cou
 ### Enquiry Flow
 - **Course links:** Courses menu and directory items open the course's own page only when it has real content (topics, offerings, certification details); otherwise they go to `/courses?enquire=<course-id>`, where a popup enquiry form opens with that course ticked. Closing it clears the parameter.
 - **Course enquiry popup:** 24px white dialog (92dvh max, scrolls inside) with a Mist icon disc, title, one-line intro and the shared required-field rules; Full Name, Email, Phone / WhatsApp, Courses of Interest (the multi-select) and Preferred Location as single-choice pills (selected pill Arbrit Blue).
+- **Phone fields (every form):** a country-code button sits inside the left of the field, showing only the dial code (default +971) with a small chevron and a hairline divider before the number. Open, a 20rem white panel (20px, Floating Card shadow) has a Mist pill search box and a list of every country as flag · dial code · name, with the UAE, Saudi Arabia and India pinned above a hairline; typing a code ranks the main country first (+44 → United Kingdom). The list and flags load on first open. The form submits "+971 50 123 4567"; a number typed with its own "+" is kept as typed.
 - **After submit:** `/courses/thank-you` shows a Mist page with a centred white card (check disc, "Thank you!", a Back pill) and a visible 5-second countdown with a "Stay on this page" link; it returns to Courses, or Home for the corporate form.
 
 ### Testimonial Card

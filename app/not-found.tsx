@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Home, Info, Phone } from "lucide-react";
-import { contactInfo } from "@/lib/data";
+import { contactInfo, coursesHref } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const routes = [
-  { icon: BookOpen, label: "International courses", href: "/courses?category=International" },
+  { icon: BookOpen, label: "International courses", href: coursesHref },
   { icon: Info, label: "About Arbrit Safety", href: "/about" },
   { icon: Home, label: "Back to the home page", href: "/" },
 ];
@@ -20,7 +20,7 @@ export default function NotFound() {
   const phone = contactInfo.phones[0];
 
   return (
-    <section aria-labelledby="not-found-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+    <section aria-labelledby="not-found-heading" className="bg-[#f5f7fa] py-8 md:py-12">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div>
           <p aria-hidden="true" className="font-heading text-[64px] font-extrabold leading-none tracking-[-0.04em] text-[#0066b2] md:text-[88px]">
@@ -39,7 +39,7 @@ export default function NotFound() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/courses"
+              href={coursesHref}
               className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0066b2] px-7 text-sm font-semibold text-white transition-colors hover:bg-[#00589a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
             >
               Browse courses <ArrowRight className="h-4 w-4" aria-hidden="true" />

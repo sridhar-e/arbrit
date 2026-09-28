@@ -26,6 +26,9 @@ type Service = {
   output: string;
 };
 
+/** Anchor for a service, e.g. "HSE Manpower & Competency" -> "hse-manpower-competency" (the hero links to it). */
+const serviceId = (title: string) => title.toLowerCase().replace(/&/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 const services: Service[] = [
   {
     title: "Project HSE Support",
@@ -164,7 +167,7 @@ export function ConsultancyServices() {
     <section
       id="consultancy-services"
       aria-labelledby="consultancy-services-heading"
-      className="scroll-mt-24 bg-white py-16 md:py-24"
+      className="scroll-mt-24 bg-white py-8 md:py-12"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <div className="max-w-3xl">
@@ -184,7 +187,7 @@ export function ConsultancyServices() {
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <li key={service.title} className="border-t border-navy-deep/10 py-7 md:py-8">
+              <li key={service.title} id={serviceId(service.title)} className="scroll-mt-28 border-t border-navy-deep/10 py-7 md:py-8">
                 <div className="flex gap-4 md:gap-5">
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0066b2]/10 text-[#0066b2]">
                     <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />

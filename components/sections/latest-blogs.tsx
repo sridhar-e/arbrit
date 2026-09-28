@@ -6,7 +6,7 @@ import { BlogCardGrid } from "@/components/sections/blog-card-grid";
 
 export function LatestBlogs() {
   return (
-    <section className="bg-muted py-20 md:py-28">
+    <section className="bg-muted py-10 md:py-14">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading variant="home" title="Latest From Arbrit" />
         <div className="mt-12">

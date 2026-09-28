@@ -15,7 +15,7 @@ const displayHeading =
 /** What we do: copy and credentials beside a site photo, with a second photo layered behind on desktop. */
 export function ConsultancyOverview() {
   return (
-    <section aria-labelledby="consultancy-overview-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+    <section aria-labelledby="consultancy-overview-heading" className="bg-[#f5f7fa] py-8 md:py-12">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-16">
         <div>
           <h2 id="consultancy-overview-heading" className={`${displayHeading} text-navy-deep`}>

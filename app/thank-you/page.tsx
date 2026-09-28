@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 
 const pageNames: Record<string, string> = {
   "/": "Home",
-  "/courses": "Courses",
   "/contact": "Contact",
   "/career": "Careers",
   "/consultancy": "Consultancy",
@@ -34,7 +33,7 @@ export default async function ThankYouPage({
   const label = returnLabel(href);
 
   return (
-    <section aria-labelledby="thank-you-heading" className="bg-[#f5f7fa] px-5 py-16 sm:px-6 md:py-24">
+    <section aria-labelledby="thank-you-heading" className="bg-[#f5f7fa] px-5 py-8 sm:px-6 md:py-12">
       <div className="mx-auto max-w-2xl rounded-[24px] bg-white px-6 py-10 text-center shadow-[0_24px_48px_-24px_rgba(18,59,109,0.45)] sm:px-12 sm:py-14">
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#0066b2]/10 text-[#0066b2]">
           <CheckCircle2 className="h-8 w-8" strokeWidth={1.75} aria-hidden="true" />

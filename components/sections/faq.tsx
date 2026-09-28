@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { CountryFlag } from "@/components/ui/country-flag";
 import { contactInfo, faqs as siteFaqs, type Faq as FaqItem } from "@/lib/data";
 import {
   Accordion,
@@ -19,7 +20,7 @@ export function Faq({
   tone?: "white" | "mist";
 } = {}) {
   return (
-    <section aria-labelledby="faq-heading" className={`${tone === "mist" ? "bg-[#f5f7fa]" : "bg-white"} py-16 md:py-24`}>
+    <section aria-labelledby="faq-heading" className={`${tone === "mist" ? "bg-[#f5f7fa]" : "bg-white"} py-8 md:py-12`}>
       <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2
@@ -42,8 +43,8 @@ export function Faq({
                     href={`tel:${phone.number.replace(/\s+/g, "")}`}
                     className="flex items-center justify-between gap-3 rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >
-                    <span className="flex items-center gap-2 text-sm text-white/75">
-                      <Phone className="h-4 w-4" aria-hidden="true" />
+                    <span className="flex items-center gap-2.5 text-sm text-white/75">
+                      <CountryFlag country={phone.country} />
                       {phone.label}
                     </span>
                     <span className="font-semibold">{phone.number}</span>

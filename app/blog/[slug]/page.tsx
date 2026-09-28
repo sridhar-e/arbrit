@@ -7,6 +7,7 @@ import { ArrowRight, ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-reac
 import { PageHeader } from "@/components/layout/page-header";
 import { blogPosts } from "@/lib/content";
 import { siteUrl } from "@/lib/site";
+import { coursesHref } from "@/lib/data";
 
 const toSlug = (href: string) => href.replace("/blog/", "");
 
@@ -74,7 +75,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         imageAlt={post.imageAlt ?? post.title}
       />
 
-      <article aria-label={post.title} className="bg-white py-16 md:py-24">
+      <article aria-label={post.title} className="bg-white py-8 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-[minmax(0,42rem)_minmax(0,18rem)] lg:justify-between lg:gap-16">
           <div className="min-w-0">
             <span className="inline-flex h-7 items-center rounded-full bg-[#0066b2]/10 px-3 text-[13px] font-semibold text-[#0066b2]">
@@ -138,7 +139,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </article>
 
-      <section aria-labelledby="keep-reading-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+      <section aria-labelledby="keep-reading-heading" className="bg-[#f5f7fa] py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
           <h2
             id="keep-reading-heading"
@@ -187,7 +188,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/courses"
+                  href={coursesHref}
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0066b2] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#00589a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
                 >
                   Browse courses <ArrowRight className="h-4 w-4" aria-hidden="true" />

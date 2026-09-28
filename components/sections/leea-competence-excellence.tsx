@@ -15,7 +15,7 @@ const outcomes = [
 /** Learning outcomes: a photo panel beside numbered hairline rows. */
 export function LeeaCompetenceExcellence() {
   return (
-    <section aria-labelledby="leea-outcomes-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+    <section aria-labelledby="leea-outcomes-heading" className="bg-[#f5f7fa] py-8 md:py-12">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2 id="leea-outcomes-heading" className={`${leeaDisplayHeading} text-navy-deep`}>

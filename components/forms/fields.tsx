@@ -4,6 +4,7 @@ import type { ChangeEvent, ComponentType, ReactNode } from "react";
 import { AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PhoneInput } from "@/components/forms/phone-input";
 
 /** Red asterisk after a required label. Decorative: the "All fields are required" note carries the meaning. */
 export function RequiredMark({ className = "text-[#d92d20]" }: { className?: string }) {
@@ -106,6 +107,40 @@ export function TextField({
           }`}
         />
       </div>
+    </FieldShell>
+  );
+}
+
+/** TextField's phone twin: country-code picker plus number; `onChange` gets "+971 50 123 4567". */
+export function PhoneField({
+  id,
+  label,
+  placeholder = "50 123 4567",
+  error,
+  onChange,
+  onBlur,
+}: {
+  id: string;
+  label: string;
+  placeholder?: string;
+  error?: string;
+  onChange: (value: string) => void;
+  onBlur: () => void;
+}) {
+  return (
+    <FieldShell id={id} label={label} error={error}>
+      <PhoneInput
+        id={id}
+        placeholder={placeholder}
+        onValueChange={onChange}
+        onBlur={onBlur}
+        required
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className={`h-12 rounded-xl bg-[#f5f7fa] ${
+          error ? "border-[#d92d20] aria-invalid:ring-[#d92d20]/20" : "border-transparent"
+        }`}
+      />
     </FieldShell>
   );
 }

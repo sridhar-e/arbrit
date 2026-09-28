@@ -2,18 +2,18 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { BookOpen, Loader2, Mail, Phone, Send, User } from "lucide-react";
+import { BookOpen, Loader2, Mail, Send, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ChoicePills, FieldShell, Honeypot, RequiredNote, TextField } from "@/components/forms/fields";
+import { ChoicePills, FieldShell, Honeypot, RequiredNote, PhoneField, TextField } from "@/components/forms/fields";
 import { CoursePicker } from "@/components/forms/course-picker";
 import { courseNameFromId } from "@/lib/course-catalog";
 import { OTHER_OPTION, trainingLocations, validateCourseEnquiry, type EnquiryErrors } from "@/lib/enquiry";
 import { submitEnquiry } from "@/lib/submit-enquiry";
 
 /**
- * Course enquiry popup for the Courses page. It opens when the URL carries `?enquire=<course-id>`
- * (set by the Courses menu) with that course already ticked. `?enquire=other&other=<text>` (from a
+ * Site-wide course enquiry popup (mounted in the root layout). It opens on any page whose URL carries
+ * `?enquire=<course-id>` with that course already ticked; `?enquire=` (Join Course) opens it empty. `?enquire=other&other=<text>` (from a
  * search with no results) ticks "Other" and fills in the text. Closing it strips the parameters, so
  * a refresh or Back does not reopen it. Must be rendered inside a <Suspense> boundary.
  */
@@ -62,6 +62,7 @@ const fieldOrder: FieldName[] = ["name", "email", "phone", "courses", "otherCour
 
 function EnquiryForm({ clickedCourse, otherText = "" }: { clickedCourse?: string; otherText?: string }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [values, setValues] = useState<Values>({
     name: "",
     email: "",
@@ -103,7 +104,7 @@ function EnquiryForm({ clickedCourse, otherText = "" }: { clickedCourse?: string
     setSending(true);
     const result = await submitEnquiry({ type: "course", ...values, clickedCourse, website: honeypot });
     if (result.ok) {
-      router.push("/thank-you?back=%2Fcourses");
+      router.push(`/thank-you?back=${encodeURIComponent(pathname)}`);
       return;
     }
     setSending(false);
@@ -163,15 +164,9 @@ function EnquiryForm({ clickedCourse, otherText = "" }: { clickedCourse?: string
             onChange={(value) => set("email", value)}
             onBlur={() => touch("email")}
           />
-          <TextField
+          <PhoneField
             id={ids.phone}
-            name="phone"
             label="Phone / WhatsApp"
-            icon={Phone}
-            type="tel"
-            placeholder="+971 50 123 4567"
-            autoComplete="tel"
-            value={values.phone}
             error={visibleError("phone")}
             onChange={(value) => set("phone", value)}
             onBlur={() => touch("phone")}

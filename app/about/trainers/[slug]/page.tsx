@@ -8,6 +8,7 @@ import { LinkedinIcon } from "@/components/icons/social-icons";
 import { PageHeader } from "@/components/layout/page-header";
 import { pageHeaderImages } from "@/lib/page-images";
 import { trainers } from "@/lib/content";
+import { coursesHref } from "@/lib/data";
 
 export function generateStaticParams() {
   return trainers.map((trainer) => ({ slug: trainer.slug }));
@@ -64,7 +65,7 @@ export default async function TrainerPage({ params }: { params: Promise<{ slug: 
         {...pageHeaderImages.trainers}
       />
 
-      <section aria-labelledby="trainer-profile-heading" className="bg-white py-16 md:py-24">
+      <section aria-labelledby="trainer-profile-heading" className="bg-white py-8 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-16">
           {/* Profile card: sticks beside the biography from 1024px. */}
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -93,7 +94,7 @@ export default async function TrainerPage({ params }: { params: Promise<{ slug: 
 
               <div className="mt-6 flex flex-col gap-3">
                 <Link
-                  href="/courses"
+                  href={coursesHref}
                   className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#0066b2] text-sm font-semibold text-white transition-colors hover:bg-[#00589a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
                 >
                   Book a course <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -136,7 +137,7 @@ export default async function TrainerPage({ params }: { params: Promise<{ slug: 
       </section>
 
       {others.length > 0 && (
-        <section aria-labelledby="other-trainers-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+        <section aria-labelledby="other-trainers-heading" className="bg-[#f5f7fa] py-8 md:py-12">
           <div className="mx-auto max-w-7xl px-5 sm:px-6">
             <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
               <div>
@@ -155,7 +156,7 @@ export default async function TrainerPage({ params }: { params: Promise<{ slug: 
                   <ArrowLeft className="h-4 w-4" aria-hidden="true" /> About Arbrit
                 </Link>
                 <Link
-                  href="/courses"
+                  href={coursesHref}
                   className="inline-flex h-12 items-center gap-2 rounded-full bg-[#0066b2] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#00589a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
                 >
                   Browse courses <ArrowRight className="h-4 w-4" aria-hidden="true" />

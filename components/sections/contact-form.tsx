@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, Loader2, Mail, Phone, Send, User } from "lucide-react";
+import { BookOpen, Loader2, Mail, Send, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,6 +16,7 @@ import { FormTrustSignals } from "@/components/ui/form-trust-signals";
 import { courseSelectOptions } from "@/lib/data";
 import { Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
+import { PhoneInput } from "@/components/forms/phone-input";
 
 export function ContactForm() {
   const lead = useLeadForm("contact", "contact");
@@ -93,16 +94,10 @@ export function ContactForm() {
             </span>
           </Label>
           <div className="relative">
-            <Phone
-              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy/40 transition-colors group-focus-within:text-orange"
-              aria-hidden="true"
-            />
-            <Input
+            <PhoneInput
               id="contact-phone"
               {...lead.field("phone")}
-              type="tel"
-              name="phone"
-              placeholder="Phone / WhatsApp"
+              placeholder="50 123 4567"
               required
               className="h-12 rounded-xl border-navy/15 bg-white pl-10 shadow-sm"
             />

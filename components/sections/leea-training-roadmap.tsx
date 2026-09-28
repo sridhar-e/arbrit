@@ -73,7 +73,7 @@ const numeral =
 /** Course modules as numbered rows: the FOU day-by-day timetable, or the two LAC modules. */
 export function LeeaTrainingRoadmap({ course }: { course: "fou" | "lac" }) {
   return (
-    <section aria-labelledby="leea-modules-heading" className="bg-white py-16 md:py-24">
+    <section aria-labelledby="leea-modules-heading" className="bg-white py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <h2 id="leea-modules-heading" className={`${leeaDisplayHeading} text-navy-deep`}>
           Course modules

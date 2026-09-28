@@ -1,14 +1,15 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ContactForm } from "@/components/sections/contact-form";
-import { contactInfo } from "@/lib/data";
+import { contactInfo, offices } from "@/lib/data";
+import { CountryFlag } from "@/components/ui/country-flag";
 
 const MAP_EMBED =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.005021211739!2d55.369079374853165!3d25.27041652873225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f4359aaf3fcb3%3A0xd79a9fbb46a30a3d!2sArbrit%20Safety%20Training%20and%20Consultancy!5e0!3m2!1sen!2sin!4v1785752871035!5m2!1sen!2sin";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-muted py-14 sm:py-20 md:py-28">
+    <section id="contact" className="relative overflow-hidden bg-muted py-8 sm:py-10 md:py-14">
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.06]"
@@ -37,26 +38,31 @@ export function Contact() {
         */}
         <div className="mt-10 grid gap-6 sm:mt-12 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-x-10 lg:gap-y-6">
           <div className="rounded-3xl border border-navy/10 bg-white p-5 shadow-sm sm:p-8 lg:col-start-2 lg:row-start-1">
+            {/* One card per office with its landlines and mobile (lib/data `offices`), each number tap-to-call. */}
             <div className="grid gap-3 sm:grid-cols-3">
-              {contactInfo.phones.map((phone) => (
-                <a
-                  key={phone.label}
-                  href={`tel:${phone.number.replace(/\s+/g, "")}`}
-                  className="group flex items-center gap-3 rounded-2xl border border-navy/10 bg-muted p-4 transition duration-300 hover:-translate-y-1 hover:border-orange/30 hover:shadow-md sm:flex-col sm:items-start sm:gap-2"
-                >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0066b2]/10 text-[#0066b2] transition duration-300 group-hover:bg-[#0066b2] group-hover:text-white">
-                    <Phone className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  {/* `sm:contents` unwraps this on wider screens so the stacked card layout is unchanged. */}
-                  <span className="min-w-0 sm:contents">
-                    <span className="block text-xs font-semibold uppercase tracking-wide text-navy-deep/75">
-                      {phone.label}
-                    </span>
-                    <span className="block text-sm font-semibold text-[#000] group-hover:text-orange">
-                      {phone.number}
-                    </span>
-                  </span>
-                </a>
+              {offices.map((office) => (
+                <div key={office.label} className="rounded-2xl border border-navy/10 bg-muted p-4">
+                  <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-navy-deep/75">
+                    <CountryFlag country={office.country} className="ring-navy-deep/10" />
+                    {office.label === "Kingdom of Saudi Arabia" ? "KSA" : office.label}
+                  </p>
+                  <ul className="mt-3 space-y-2">
+                    {office.phones.map((phone) => (
+                      <li key={phone.number}>
+                        <a
+                          href={`tel:${phone.number.replace(/\s+/g, "")}`}
+                          aria-label={`Call ${office.label} ${phone.kind.toLowerCase()} on ${phone.number}`}
+                          className="block rounded-md text-sm font-semibold tabular-nums text-[#000] hover:text-[#0066b2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
+                        >
+                          <span className="block text-[11px] font-medium uppercase tracking-wide text-navy-deep/60">
+                            {phone.kind}
+                          </span>
+                          {phone.number}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
 

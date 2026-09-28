@@ -62,7 +62,12 @@ export function useLeadForm(form: LeadFormKey, idPrefix: string, tones: Partial<
 
   const read = (): LeadValues => {
     const data = formRef.current ? new FormData(formRef.current) : new FormData();
-    return Object.fromEntries(fields.map((field) => [field, String(data.get(field) ?? "")]));
+    const values: LeadValues = Object.fromEntries(fields.map((field) => [field, String(data.get(field) ?? "")]));
+    // PhoneInput sends the country code separately; join it on unless the number already has one.
+    const code = String(data.get("phoneCode") ?? "");
+    const phone = values.phone?.trim();
+    if (code && phone && !phone.startsWith("+")) values.phone = `${code} ${phone}`;
+    return values;
   };
   const revalidate = () => setErrors(validate());
 

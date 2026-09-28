@@ -1,5 +1,6 @@
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { offices, contactInfo, socialLinks } from "@/lib/data";
+import { CountryFlag } from "@/components/ui/country-flag";
 
 /**
  * Address-search embed, used for offices with no verified listing on file.
@@ -15,7 +16,7 @@ function directionsHref(address: string) {
 }
 
 /**
- * The three offices as Mist cards (map, tap-to-call phone rows, address, directions), then the
+ * The three offices as Mist cards (map, flagged tap-to-call rows, address, directions), then the
  * shared email and social links between hairlines. Sits on a white band (Contact, Consultancy).
  */
 export function OfficesContactBlock({
@@ -48,19 +49,21 @@ export function OfficesContactBlock({
               <h3 className="font-heading text-2xl font-extrabold leading-tight tracking-[-0.02em] text-navy-deep">
                 {office.label}
               </h3>
+              <p className="mt-1 text-[13px] font-medium leading-snug text-navy-deep/70">{office.company}</p>
 
               <ul className="mt-4 grid gap-2">
                 {office.phones.map((phone) => (
-                  <li key={phone}>
+                  <li key={phone.number}>
                     <a
-                      href={`tel:${phone.replace(/\s+/g, "")}`}
-                      aria-label={`Call ${office.label} on ${phone}`}
-                      className="flex min-h-12 items-center gap-3 rounded-full bg-white py-1.5 pl-1.5 pr-4 font-semibold tracking-wide text-navy-deep shadow-[0_10px_24px_-20px_rgba(18,59,109,0.5)] transition-colors hover:text-[#0066b2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
+                      href={`tel:${phone.number.replace(/\s+/g, "")}`}
+                      aria-label={`Call ${office.label} ${phone.kind.toLowerCase()} on ${phone.number}`}
+                      className="flex min-h-12 items-center gap-3 rounded-full bg-white py-1.5 pl-3.5 pr-4 font-semibold tracking-wide text-navy-deep shadow-[0_10px_24px_-20px_rgba(18,59,109,0.5)] transition-colors hover:text-[#0066b2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
                     >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0066b2]/10 text-[#0066b2]">
-                        <Phone className="h-4 w-4" strokeWidth={1.9} aria-hidden="true" />
+                      <CountryFlag country={office.country} className="ring-navy-deep/10" />
+                      <span className="tabular-nums">{phone.number}</span>
+                      <span className="ml-auto text-[11px] font-semibold uppercase tracking-[0.08em] text-navy-deep/55">
+                        {phone.kind}
                       </span>
-                      {phone}
                     </a>
                   </li>
                 ))}

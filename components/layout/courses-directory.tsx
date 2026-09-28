@@ -3,8 +3,8 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, ChevronRight, MessageSquare, Search, SlidersHorizontal, X } from "lucide-react";
-import type { MegaMenuGroup } from "@/lib/data";
 import { courseId } from "@/lib/course-catalog";
+import { coursesHref, type MegaMenuGroup } from "@/lib/data";
 import { buildSearchableCourses, enquireAboutHref, searchCourses } from "@/lib/course-search";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Input } from "@/components/ui/input";
@@ -22,8 +22,7 @@ const ALL = "All Categories";
 
 /**
  * Shortlist shown on phones in place of the full course directory, which makes
- * the bottom of every page far too long on a small screen. Hrefs stay as "#", the
- * same as the rest of the directory, until the real course URLs are confirmed.
+ * the bottom of every page far too long on a small screen. Each opens the best-matching course.
  */
 const POPULAR_COURSES = [
   "IOSH",
@@ -45,7 +44,7 @@ export function CoursesDirectory({ courseMenu }: { courseMenu: MegaMenuGroup[] }
   const isFiltering = trimmed.length > 0 || category !== ALL;
 
   const groups = useMemo(() => {
-    // Same matching as the Courses page search: names plus common search words.
+    // Same matching as the hero search: names plus common search words.
     const matched = trimmed.length > 0 ? new Set(searchCourses(trimmed, courses).map((course) => courseId(course.title))) : null;
     return courseMenu
       .map((group) => ({
@@ -62,7 +61,7 @@ export function CoursesDirectory({ courseMenu }: { courseMenu: MegaMenuGroup[] }
   const total = groups.reduce((count, group) => count + group.links.length, 0);
 
   return (
-    <section id="all-courses" className="scroll-mt-28 bg-white py-12 sm:py-16 md:py-20">
+    <section id="all-courses" className="scroll-mt-28 bg-white py-6 sm:py-8 md:py-10">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
           title={
@@ -80,7 +79,7 @@ export function CoursesDirectory({ courseMenu }: { courseMenu: MegaMenuGroup[] }
             {POPULAR_COURSES.map((label) => (
               <li key={label}>
                 <Link
-                  href={`/courses?q=${encodeURIComponent(label)}`}
+                  href={searchCourses(label, courses)[0]?.href ?? enquireAboutHref(label)}
                   className="flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-[#000] transition-colors hover:bg-orange/5 hover:text-orange focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
                 >
                   {label}
@@ -91,7 +90,7 @@ export function CoursesDirectory({ courseMenu }: { courseMenu: MegaMenuGroup[] }
           </ul>
 
           <Link
-            href="/courses"
+            href={coursesHref}
             className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0066b2] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
           >
             View All Courses

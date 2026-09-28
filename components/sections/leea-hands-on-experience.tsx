@@ -12,7 +12,7 @@ const gallery = [
 /** Learning environment: four photo panels with the navy scrim under each caption. */
 export function LeeaHandsOnExperience() {
   return (
-    <section aria-labelledby="leea-environment-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+    <section aria-labelledby="leea-environment-heading" className="bg-[#f5f7fa] py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <h2 id="leea-environment-heading" className={`${leeaDisplayHeading} text-navy-deep`}>
           Our learning environment

@@ -3,9 +3,9 @@
 import { useRef, useState, type FormEvent } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ArrowRight, CheckCircle2, Loader2, Mail, Phone, User, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2, Mail, User, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FieldShell, Honeypot, RequiredNote, TextField } from "@/components/forms/fields";
+import { FieldShell, Honeypot, RequiredNote, PhoneField, TextField } from "@/components/forms/fields";
 import { CoursePicker } from "@/components/forms/course-picker";
 import { OTHER_OPTION, validateCorporateEnquiry, type EnquiryErrors } from "@/lib/enquiry";
 import { submitEnquiry } from "@/lib/submit-enquiry";
@@ -92,8 +92,8 @@ export function CorporateTraining() {
   const hasErrors = fieldOrder.some((field) => errors[field]);
 
   return (
-    <section id="corporate-training" className="scroll-mt-24 bg-white py-16 md:py-24">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:items-start lg:gap-14">
+    <section id="corporate-training" className="scroll-mt-24 bg-white py-8 md:py-12">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-14">
         <div>
           <h2 className="font-heading text-[clamp(1.75rem,6.5vw,2.75rem)] font-extrabold leading-[1.1] tracking-[-0.025em] text-navy-deep text-balance">
             These courses will raise the profile of health and safety in your organization, which
@@ -136,7 +136,7 @@ export function CorporateTraining() {
           <Honeypot value={honeypot} onChange={setHoneypot} />
 
           <div className="mt-5 space-y-4">
-            <div className="grid gap-4 sm:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+            <div className="grid gap-4">
               <TextField
                 id={ids.name}
                 name="name"
@@ -162,7 +162,7 @@ export function CorporateTraining() {
                 onBlur={() => touch("teamSize")}
               />
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4">
               <TextField
                 id={ids.email}
                 name="email"
@@ -176,15 +176,9 @@ export function CorporateTraining() {
                 onChange={(value) => set("email", value)}
                 onBlur={() => touch("email")}
               />
-              <TextField
+              <PhoneField
                 id={ids.phone}
-                name="phone"
                 label="Phone"
-                icon={Phone}
-                type="tel"
-                placeholder="+971 50 123 4567"
-                autoComplete="tel"
-                value={values.phone}
                 error={visibleError("phone")}
                 onChange={(value) => set("phone", value)}
                 onBlur={() => touch("phone")}

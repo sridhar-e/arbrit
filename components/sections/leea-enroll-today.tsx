@@ -8,7 +8,7 @@ export function LeeaEnrollToday() {
   return (
     <section
       aria-labelledby="leea-enroll-heading"
-      className="relative isolate overflow-hidden bg-navy-deep py-16 text-white md:py-24"
+      className="relative isolate overflow-hidden bg-navy-deep py-8 text-white md:py-12"
     >
       <NavyBandTexture gridAt="20% 40%" />
       {/* Phones read heading, form, then office details; from 1024px the form sits beside both. */}

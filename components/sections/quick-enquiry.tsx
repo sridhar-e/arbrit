@@ -15,6 +15,7 @@ import { NavyBandTexture } from "@/components/ui/navy-band-texture";
 import { contactInfo, courseSelectOptions } from "@/lib/data";
 import { Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
+import { PhoneInput } from "@/components/forms/phone-input";
 
 const fieldClass =
   "h-12 rounded-xl border-transparent bg-[#f5f7fa] pl-10 shadow-none focus-visible:border-[#0066b2] focus-visible:bg-white";
@@ -35,7 +36,7 @@ export function QuickEnquiry() {
     <section
       id="quick-enquiry"
       aria-labelledby="quick-enquiry-heading"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-navy-deep py-16 text-white md:py-24"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-navy-deep py-8 text-white md:py-12"
     >
       <NavyBandTexture gridAt="20% 40%" />
       {/* Phones read heading, form, then phone lines; from 1024px the form sits beside both. */}
@@ -109,14 +110,10 @@ export function QuickEnquiry() {
                   <span>Phone / WhatsApp{lead.mark("phone")}</span>
                 </Label>
                 <div className="relative">
-                  <Phone className={iconClass} aria-hidden="true" />
-                  <Input
+                  <PhoneInput
                     id="enquiry-phone"
                     {...lead.field("phone")}
-                    type="tel"
-                    name="phone"
-                    autoComplete="tel"
-                    placeholder="+971 5X XXX XXXX"
+                    placeholder="50 123 4567"
                     required
                     className={fieldClass}
                   />

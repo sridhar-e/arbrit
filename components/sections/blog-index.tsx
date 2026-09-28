@@ -14,7 +14,7 @@ export function BlogIndex() {
   const [featured, ...rest] = blogPosts;
 
   return (
-    <section aria-labelledby="blog-index-heading" className="bg-white py-16 md:py-24">
+    <section aria-labelledby="blog-index-heading" className="bg-white py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <h2
           id="blog-index-heading"

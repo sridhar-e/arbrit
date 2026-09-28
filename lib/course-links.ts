@@ -24,7 +24,7 @@ function hasRichContent(detail: CourseDetail) {
 
 /**
  * Where a Courses menu item should go: its own detail page when that page has real content,
- * otherwise the Courses page with the enquiry popup open and this course ticked.
+ * otherwise the enquiry popup over the current page, with this course ticked.
  */
 export function menuCourseHref(link: { label: string; href: string }) {
   // Hand-built pages under /course/ are always full pages.
@@ -33,7 +33,7 @@ export function menuCourseHref(link: { label: string; href: string }) {
     const detail = detailBySlug.get(link.href.slice("/courses/".length));
     if (detail && hasRichContent(detail)) return link.href;
   }
-  return `/courses?enquire=${courseId(link.label)}`;
+  return `?enquire=${courseId(link.label)}`;
 }
 
 /** The Courses menu with every link already pointing where it should. */

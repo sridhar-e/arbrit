@@ -57,7 +57,7 @@ const faqs: Record<"fou" | "lac", Faq[]> = {
 /** FAQ: heading beside an accessible accordion (Radix: buttons with aria-expanded, keyboard support). */
 export function LeeaFaq({ course }: { course: "fou" | "lac" }) {
   return (
-    <section aria-labelledby="leea-faq-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+    <section aria-labelledby="leea-faq-heading" className="bg-[#f5f7fa] py-8 md:py-12">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2 id="leea-faq-heading" className={`${leeaDisplayHeading} text-navy-deep`}>

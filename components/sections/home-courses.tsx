@@ -78,52 +78,58 @@ function CourseCard({ course, variant }: { course: CourseCardData; variant: "int
   );
 }
 
-/** International card: a full-bleed photo under a rising Arbrit-blue wash. */
+/**
+ * International card: the photo on top, then a solid Arbrit Blue body with white text. The title and
+ * description sit in fixed two- and three-line slots, so details and the button line up across a row.
+ */
 function InternationalCourseCard({ course }: { course: CourseCardData }) {
   const Icon = course.icon;
   const meta = [
-    { icon: Clock, value: course.duration },
-    { icon: MapPin, value: course.location },
-    { icon: BadgeCheck, value: course.certification },
+    { icon: Clock, label: "Duration", value: course.duration },
+    { icon: MapPin, label: "Where", value: course.location },
+    { icon: BadgeCheck, label: "Certificate", value: course.certification },
   ].filter((item) => item.value);
 
   return (
     <Link
       href={course.href}
-      className="group relative flex h-full min-h-[23rem] flex-col justify-end overflow-hidden rounded-[20px] p-5 text-left shadow-[0_18px_40px_-28px_rgba(18,59,109,0.55)] transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_26px_50px_-24px_rgba(18,59,109,0.6)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2] sm:p-6"
+      className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-[#0066b2] text-left text-white shadow-[0_18px_40px_-28px_rgba(18,59,109,0.55)] transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_26px_50px_-24px_rgba(18,59,109,0.6)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
     >
-      <Image
-        src={course.image}
-        alt={courseImageAlt(course)}
-        fill
-        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 80vw"
-        className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${course.imagePosition ?? ""}`}
-      />
-      <span
-        aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(0deg,#0066b2_0%,rgba(0,102,178,0.9)_38%,rgba(0,102,178,0.45)_68%,rgba(0,102,178,0.08)_100%)]"
-      />
+      <span className="relative block aspect-[3/2] shrink-0 overflow-hidden bg-navy-deep">
+        <Image
+          src={course.image}
+          alt={courseImageAlt(course)}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 80vw"
+          className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${course.imagePosition ?? ""}`}
+        />
+      </span>
 
-      <span className="relative block">
-        <span className="flex items-start gap-2.5">
-          <Icon className="mt-0.5 h-5 w-5 shrink-0 text-white" aria-hidden="true" />
-          <span className="font-heading text-lg font-bold leading-snug text-white">{course.title}</span>
+      <span className="relative flex flex-1 flex-col px-5 pb-5 pt-8 sm:px-6 sm:pb-6">
+        {/* The course icon sits on the seam between photo and body. */}
+        <span className="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#0066b2] shadow-[0_10px_24px_-10px_rgba(18,59,109,0.6)] sm:left-6">
+          <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
         </span>
-        {course.description && (
-          <span className="mt-2 block line-clamp-2 text-[13px] leading-snug text-white/90">
-            {course.description}
-          </span>
-        )}
-        <span className="mt-3 block space-y-1.5 border-t border-white/30 pt-3 text-[13px] font-medium text-white">
-          {meta.map(({ icon: MetaIcon, value }) => (
-            <span key={value} className="flex items-center gap-2">
-              <MetaIcon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              {value}
+
+        <span className="min-h-[3.1rem] font-heading text-lg font-bold leading-snug line-clamp-2">{course.title}</span>
+        <span className="mt-2 min-h-[3.75rem] text-sm leading-snug text-white/90 line-clamp-3">
+          {course.description}
+        </span>
+
+        <span className="mt-4 block divide-y divide-white/20 border-y border-white/20 text-[13px]">
+          {meta.map(({ icon: MetaIcon, label, value }) => (
+            <span key={label} className="flex items-center gap-2.5 py-2">
+              <MetaIcon className="h-4 w-4 shrink-0 text-white/80" aria-hidden="true" />
+              <span className="sr-only">{label}: </span>
+              <span className="font-semibold">{value}</span>
             </span>
           ))}
         </span>
-        <span className="mt-4 flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-white text-sm font-semibold text-[#0066b2] transition-colors duration-300 group-hover:bg-[#f5f7fa]">
-          View course <ArrowRight className="h-4 w-4" aria-hidden="true" />
+
+        <span className="mt-auto pt-5">
+          <span className="flex h-11 w-full items-center justify-center gap-1.5 rounded-full bg-white text-sm font-semibold text-[#0066b2] transition-colors duration-300 group-hover:bg-[#f5f7fa]">
+            View course <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+          </span>
         </span>
       </span>
     </Link>
@@ -139,6 +145,7 @@ export function CourseSection({
   viewAllHref,
   tone,
   variant,
+  continuesBand = false,
 }: {
   id: string;
   title: string;
@@ -148,18 +155,20 @@ export function CourseSection({
   viewAllHref?: string;
   tone: "mist" | "white";
   variant: "international" | "general";
+  /** Follows a band of the same colour (the homepage Accreditations strip), so it needs less space above. */
+  continuesBand?: boolean;
 }) {
   return (
     <section
       aria-labelledby={id}
-      className={`${tone === "mist" ? "bg-[#f5f7fa]" : "bg-white"} py-16 md:py-24`}
+      className={`${tone === "mist" ? "bg-[#f5f7fa]" : "bg-white"} pb-8 md:pb-12 ${continuesBand ? "pt-4 md:pt-6" : "pt-8 md:pt-12"}`}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div>
             <h2
               id={id}
-              className="font-heading text-[clamp(2.125rem,8.5vw,3.75rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-navy-deep text-balance"
+              className="scroll-mt-28 font-heading text-[clamp(2.125rem,8.5vw,3.75rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-navy-deep text-balance"
             >
               {title}
             </h2>
@@ -213,9 +222,9 @@ export function InternationalCourses() {
       title="International courses"
       description={internationalCoursesIntro}
       courses={courseCategories}
-      viewAllHref="/courses?category=International"
       tone="mist"
       variant="international"
+      continuesBand
     />
   );
 }
@@ -227,7 +236,6 @@ export function GeneralSafetyCourses() {
       title="General safety courses"
       description={generalCoursesIntro}
       courses={featuredCourses}
-      viewAllHref="/courses?category=General%20Safety"
       tone="white"
       variant="general"
     />

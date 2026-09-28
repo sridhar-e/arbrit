@@ -1,6 +1,6 @@
 "use client";
 
-import { Building2, ClipboardList, Mail, MapPin, Phone, Send, ShieldCheck, User } from "lucide-react";
+import { Building2, ClipboardList, Mail, MapPin, Send, ShieldCheck, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -15,6 +15,7 @@ import { NavyBandTexture } from "@/components/ui/navy-band-texture";
 import { locationSelectOptions } from "@/lib/data";
 import { Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
+import { PhoneInput } from "@/components/forms/phone-input";
 
 const serviceOptions = [
   "Project HSE support",
@@ -46,7 +47,7 @@ export function ConsultancyEnquiry() {
     <section
       id="consultancy-enquiry"
       aria-labelledby="consultancy-enquiry-heading"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-navy-deep py-16 text-white md:py-24"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-navy-deep py-8 text-white md:py-12"
     >
       <NavyBandTexture gridAt="20% 40%" />
       {/* Phones read heading, form, then assurances; from 1024px the form sits beside both. */}
@@ -139,13 +140,10 @@ export function ConsultancyEnquiry() {
                   <span>Phone{lead.mark("phone")}</span>
                 </Label>
                 <div className="relative">
-                  <Phone className={iconClass} aria-hidden="true" />
-                  <Input
+                  <PhoneInput
                     id="consultancy-phone"
                     {...lead.field("phone")}
-                    name="phone"
-                    type="tel"
-                    placeholder="+971 ..."
+                    placeholder="50 123 4567"
                     required
                     className={fieldClass}
                   />

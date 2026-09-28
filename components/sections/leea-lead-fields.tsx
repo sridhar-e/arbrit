@@ -1,6 +1,6 @@
 "use client";
 
-import { Building2, BookOpen, Mail, Phone, Send, User } from "lucide-react";
+import { Building2, BookOpen, Mail, Send, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -18,6 +18,7 @@ import {
   leeaLabelClass,
   leeaSubmitClass,
 } from "@/components/sections/leea-styles";
+import { PhoneInput } from "@/components/forms/phone-input";
 
 const leeaCourseOptions = ["LEEA Foundation Certificate (FOU)", "LEEA Lifting Accessories Diploma (LAC)"];
 
@@ -82,14 +83,10 @@ export function LeeaLeadFields({
             <span>Phone{lead.mark("phone")}</span>
           </Label>
           <div className="relative">
-            <Phone className={leeaFieldIconClass} aria-hidden="true" />
-            <Input
+            <PhoneInput
               id={`${idPrefix}-phone`}
               {...lead.field("phone")}
-              type="tel"
-              name="phone"
-              autoComplete="tel"
-              placeholder="+971 5X XXX XXXX"
+              placeholder="50 123 4567"
               required
               className={leeaFieldClass}
             />

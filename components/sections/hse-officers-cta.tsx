@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function HseOfficersCta() {
   return (
-    <section className="bg-muted py-16 md:py-20">
+    <section className="bg-muted py-8 md:py-10">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center gap-8 rounded-3xl bg-[#0066b2] px-8 py-10 text-center shadow-lg md:flex-row md:items-center md:justify-between md:px-12 md:text-left">
           <div className="flex flex-col items-center gap-4 md:flex-row md:items-center">

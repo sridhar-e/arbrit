@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import type { ComponentType } from "react";
 import Link from "next/link";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
-import { Flame, HardHat, Users } from "lucide-react";
+import { BriefcaseBusiness, HardHat, UserCheck, Users } from "lucide-react";
 import { HeroCourseSearch } from "@/components/sections/hero-course-search";
 import type { SearchableCourse } from "@/lib/course-search";
-import { LiftingHookIcon, ScaffoldIcon } from "@/components/icons/safety-icons";
+import { LiftingHookIcon } from "@/components/icons/safety-icons";
 
 export type HeroSlide = {
   id: string;
@@ -26,12 +26,12 @@ export type HeroSlide = {
 
 type CategoryIcon = ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>;
 
-// Shortcuts land on the course directory, which reads ?q= / ?category= on mount.
+// The four service shortcuts under the hero search.
 const categories: { label: string; href: string; icon: CategoryIcon }[] = [
-  { label: "Workplace Safety", href: "/courses?category=General%20Safety", icon: HardHat },
-  { label: "Lifting & Rigging", href: "/courses?q=LEEA", icon: LiftingHookIcon },
-  { label: "Fire Safety", href: "/courses?q=Fire", icon: Flame },
-  { label: "Scaffolding", href: "/courses?q=STI", icon: ScaffoldIcon },
+  { label: "HSE Training", href: "/courses/hse-training", icon: HardHat },
+  { label: "Crane / Lifting Services", href: "/courses/leea", icon: LiftingHookIcon },
+  { label: "Consultancy", href: "/consultancy", icon: BriefcaseBusiness },
+  { label: "Manpower Solutions", href: "/consultancy#hse-manpower-competency", icon: UserCheck },
 ];
 
 /**
@@ -78,13 +78,11 @@ export function HeroCarousel({
       if (!document.hidden) setActive((index) => (index + 1) % slides.length);
     }, interval);
     return () => window.clearInterval(id);
-    // `active` restarts the timer on every change, so a tapped dot always gets a full interval.
-  }, [shouldReduceMotion, paused, slides.length, interval, active]);
+  }, [shouldReduceMotion, paused, slides.length, interval]);
 
   return (
     <section
       data-reveal-mobile-cta
-      aria-roledescription="carousel"
       aria-label="Arbrit training highlights"
       className="relative isolate z-10 bg-navy-deep text-white"
       onMouseEnter={() => setPaused(true)}
@@ -135,7 +133,7 @@ export function HeroCarousel({
       </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col px-5 pb-2 pt-[max(96px,60vw)] sm:px-6 md:min-h-[min(calc(100svh-21rem),640px)] md:justify-center md:pb-4 md:pt-[calc(var(--site-header-height,80px)+1.25rem)] [@media(min-width:768px)_and_(max-height:820px)]:pt-[calc(var(--site-header-height,80px)+0.75rem)]">
+      <div className="mx-auto flex max-w-7xl flex-col px-5 pb-6 pt-[max(96px,60vw)] sm:px-6 md:min-h-[min(calc(100svh-21rem),640px)] md:justify-center md:pb-8 md:pt-[calc(var(--site-header-height,80px)+1.25rem)] [@media(min-width:768px)_and_(max-height:820px)]:pt-[calc(var(--site-header-height,80px)+0.75rem)]">
         <div className="max-w-xl [text-shadow:0_2px_18px_rgba(18,59,109,0.55)] md:[text-shadow:none]">
           <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/90 sm:text-sm">
             Accredited Health &amp; Safety Training
@@ -149,20 +147,20 @@ export function HeroCarousel({
 
           <HeroCourseSearch courses={courses} />
 
-          <nav aria-label="Course categories" className="mt-6 md:mt-7 md:max-w-lg [@media(min-width:768px)_and_(max-height:820px)]:mt-5">
+          <nav aria-label="Our services" className="mt-6 md:mt-7 md:max-w-lg [@media(min-width:768px)_and_(max-height:820px)]:mt-5">
             <ul className="grid grid-cols-4 divide-x divide-white/25">
               {categories.map(({ label, href, icon: Icon }) => (
                 <li key={href}>
                   <Link
                     href={href}
-                    className="group flex h-full min-h-11 flex-col items-center gap-2 rounded-md px-1 py-1 text-center text-[13px] font-medium leading-tight text-white/95 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-sm"
+                    className="group flex h-full min-h-11 flex-col items-center gap-1.5 rounded-md px-1 py-1 text-center text-[13px] md:gap-2 font-medium leading-tight text-white/95 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-sm"
                   >
                     <Icon
                       strokeWidth={1.5}
                       aria-hidden
-                      className="h-8 w-8 transition-transform duration-300 ease-out group-hover:-translate-y-0.5"
+                      className="h-7 w-7 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 md:h-8 md:w-8"
                     />
-                    <span>{label}</span>
+                    <span className="text-balance">{label}</span>
                   </Link>
                 </li>
               ))}
@@ -170,29 +168,6 @@ export function HeroCarousel({
           </nav>
         </div>
       </div>
-
-      {slides.length > 1 && (
-        <div className="mx-auto flex max-w-7xl px-5 pb-3 sm:px-6 md:pb-4">
-          <div role="group" aria-label="Choose a slide" className="-ml-1 flex items-center">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.id}
-                type="button"
-                onClick={() => setActive(index)}
-                aria-label={`Show photo ${index + 1} of ${slides.length}`}
-                aria-current={index === active ? "true" : undefined}
-                className="group flex h-11 items-center rounded-full px-1.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                <span
-                  className={`block h-2 rounded-full transition-all duration-500 ease-out ${
-                    index === active ? "w-7 bg-white" : "w-2 bg-white/45 group-hover:bg-white/80"
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
 
       <div className="bg-[#0066b2]">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-3 sm:px-6 md:py-3.5">

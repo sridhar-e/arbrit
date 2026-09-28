@@ -5,11 +5,11 @@ import { CoursesDirectory } from "@/components/layout/courses-directory";
 import type { MegaMenuGroup } from "@/lib/data";
 
 /**
- * Renders the global courses directory on every page except /consultancy, where
- * a full course listing pulls against the page's consultancy enquiry CTA.
+ * Renders the courses directory on the homepage only (client request, September 2026): on every
+ * other page it repeated what the Courses menu already offers.
  */
 export function CoursesDirectorySlot({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
   const pathname = usePathname();
-  if (pathname === "/consultancy") return null;
+  if (pathname !== "/") return null;
   return <CoursesDirectory courseMenu={courseMenu} />;
 }

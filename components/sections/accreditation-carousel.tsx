@@ -3,24 +3,25 @@
 import Image from "next/image";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
-const logos = [
-  { src: "/accreditation/adnoc.png", alt: "ADNOC" },
-  { src: "/accreditation/HABCLogo.jpg", alt: "HABC" },
-  { src: "/accreditation/ICV.webp", alt: "ICV" },
-  { src: "/accreditation/iemalogo.jpg", alt: "IEMA" },
-  { src: "/accreditation/iosh.png", alt: "IOSH" },
-  { src: "/accreditation/LEEA-Logo.png", alt: "LEEA" },
-  { src: "/accreditation/medic-first-aid.jpg", alt: "Medic First Aid" },
-  { src: "/accreditation/nfpa-authorized.webp", alt: "NFPA Authorized Training Provider" },
-  { src: "/accreditation/permit.png", alt: "Permit" },
-  { src: "/accreditation/PSMA.webp", alt: "PSMA" },
-  { src: "/accreditation/Rakez-Logo.jpg", alt: "RAKEZ" },
-  { src: "/accreditation/rospa.webp", alt: "RoSPA" },
-  { src: "/accreditation/european-safety-council.webp", alt: "European Safety Council" },
-  { src: "/accreditation/STI-LOGO.jpg", alt: "STI" },
-  { src: "/accreditation/taqa.webp", alt: "TAQA" },
-  { src: "/accreditation/trakhees.jpg", alt: "Trakhees" },
-  { src: "/accreditation/tsi-logo.webp", alt: "TSI" },
+// Trimmed copies in /accreditation/tiles: the blank margin in the original files made some marks tiny.
+// `scale` evens out visual weight: wide or solid marks fill a tile with more ink than tall ones.
+const logos: { src: string; alt: string; scale?: number }[] = [
+  { src: "/accreditation/tiles/adnoc.webp", alt: "ADNOC" },
+  { src: "/accreditation/tiles/highfield.webp", alt: "Highfield", scale: 0.9 },
+  { src: "/accreditation/tiles/icv.webp", alt: "ICV" },
+  { src: "/accreditation/tiles/iosh.webp", alt: "IOSH" },
+  { src: "/accreditation/tiles/leea.webp", alt: "LEEA" },
+  { src: "/accreditation/tiles/medic-first-aid.webp", alt: "Medic First Aid", scale: 0.8 },
+  { src: "/accreditation/tiles/nfpa.webp", alt: "NFPA Authorized Training Provider" },
+  { src: "/accreditation/tiles/dcas-permit.webp", alt: "DCAS permit", scale: 0.72 },
+  { src: "/accreditation/tiles/pasma.webp", alt: "PASMA", scale: 0.88 },
+  { src: "/accreditation/tiles/rakez.webp", alt: "RAKEZ" },
+  { src: "/accreditation/tiles/rospa.webp", alt: "RoSPA", scale: 0.8 },
+  { src: "/accreditation/tiles/european-safety-council.webp", alt: "European Safety Council" },
+  { src: "/accreditation/tiles/sti.webp", alt: "STI" },
+  { src: "/accreditation/tiles/taqa.webp", alt: "TAQA", scale: 0.82 },
+  { src: "/accreditation/tiles/trakhees-mark.webp", alt: "Trakhees", scale: 0.9 },
+  { src: "/accreditation/tiles/tsi.webp", alt: "TSI" },
 ];
 
 const edgeFade = {
@@ -28,15 +29,15 @@ const edgeFade = {
   WebkitMaskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
 };
 
-function LogoCard({ src, alt }: { src: string; alt: string }) {
+function LogoCard({ src, alt, scale = 1 }: { src: string; alt: string; scale?: number }) {
   return (
-    <div className="flex h-16 w-32 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-[0_10px_24px_-18px_rgba(18,59,109,0.45)] sm:h-24 sm:w-40 sm:p-4">
-      <div className="relative h-full w-full">
+    <div className="flex h-20 w-36 shrink-0 items-center justify-center rounded-2xl bg-white px-3 py-2.5 shadow-[0_10px_24px_-18px_rgba(18,59,109,0.45)] sm:h-28 sm:w-48 sm:px-4 sm:py-3">
+      <div className="relative" style={{ width: `${scale * 100}%`, height: `${scale * 100}%` }}>
         <Image
           src={src}
           alt={`${alt} accredited training partner logo`}
           fill
-          sizes="160px"
+          sizes="(min-width: 640px) 160px, 120px"
           className="object-contain"
         />
       </div>
@@ -48,7 +49,7 @@ export function AccreditationCarousel() {
   const shouldReduceMotion = usePrefersReducedMotion();
 
   return (
-    <section aria-labelledby="accreditation-heading" className="overflow-hidden bg-[#f5f7fa] py-8 md:py-10">
+    <section aria-labelledby="accreditation-heading" className="overflow-hidden bg-[#f5f7fa] pb-6 pt-7 md:py-10">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:flex lg:items-center lg:gap-12">
         <div className="shrink-0 lg:w-64">
           <h2
@@ -62,7 +63,7 @@ export function AccreditationCarousel() {
         {shouldReduceMotion ? (
           <div className="mt-4 flex flex-wrap gap-3 sm:gap-4 lg:mt-0 lg:flex-1">
             {logos.map((logo) => (
-              <LogoCard key={logo.src} src={logo.src} alt={logo.alt} />
+              <LogoCard key={logo.src} {...logo} />
             ))}
           </div>
         ) : (
@@ -71,7 +72,7 @@ export function AccreditationCarousel() {
               className="flex w-max gap-4 animate-marquee"
               style={{ animationDuration: "36s" }}>
               {[...logos, ...logos].map((logo, i) => (
-                <LogoCard key={`${logo.src}-${i}`} src={logo.src} alt={logo.alt} />
+                <LogoCard key={`${logo.src}-${i}`} {...logo} />
               ))}
             </div>
           </div>

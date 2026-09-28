@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown, Menu } from "lucide-react";
 import {
   NavigationMenu,
@@ -19,7 +19,6 @@ import { navLinks, type MegaMenuGroup } from "@/lib/data";
 
 /** `courseMenu` comes from the server (lib/course-links) with every link already resolved. */
 export function Header({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
-  const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
@@ -27,7 +26,9 @@ export function Header({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
   const headerRef = useRef<HTMLElement>(null);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
-  const isCoursesActive = pathname.startsWith("/courses") || pathname.startsWith("/course/");
+  const isCoursesActive = pathname.startsWith("/courses/") || pathname.startsWith("/course/");
+  // Opens the course enquiry popup (mounted in the root layout) over the current page.
+  const joinCourseHref = `${pathname}?enquire=`;
   const contactLink = navLinks.find((link) => link.label === "Contact Us");
 
   // Close the phone menu whenever the page changes (adjusting state during render, not in an effect).
@@ -102,8 +103,6 @@ export function Header({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
 
             <NavigationMenuItem>
               <NavigationMenuTrigger
-                onClick={() => router.push("/courses")}
-                aria-current={isCoursesActive ? "page" : undefined}
                 className={`rounded-full text-[15px] font-semibold transition-colors ${
                   isCoursesActive
                     ? "bg-white text-[#000] hover:bg-white"
@@ -174,7 +173,7 @@ export function Header({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
 
         <div className="hidden items-center gap-4 lg:flex">
           <Button asChild className="bg-[#0066b2] text-white hover:bg-[#0066b2]/90">
-            <Link href="/courses">
+            <Link href={joinCourseHref} scroll={false}>
               Join Course <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
             </Link>
           </Button>
@@ -217,21 +216,14 @@ export function Header({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
                     isCoursesActive ? "bg-muted text-[#000]" : "text-[#000]"
                   }`}
                 >
-                  <Link
-                    href="/courses"
-                    onClick={() => setMobileMenuOpen(false)}
-                    aria-current={isCoursesActive ? "page" : undefined}
-                    className="flex-1 rounded-lg px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
-                  >
-                    Courses
-                  </Link>
+                  {/* Courses has no page of its own: the whole row opens and closes the list. */}
                   <button
                     type="button"
                     onClick={() => setMobileCoursesOpen((open) => !open)}
                     aria-expanded={mobileCoursesOpen}
-                    aria-label={mobileCoursesOpen ? "Collapse courses list" : "Expand courses list"}
-                    className="mr-1 rounded-lg p-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
+                    className="flex flex-1 items-center justify-between rounded-lg px-3 py-2 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
                   >
+                    Courses
                     <ChevronDown
                       className={`h-4 w-4 transition-transform duration-200 ${
                         mobileCoursesOpen ? "rotate-180" : ""
@@ -284,7 +276,7 @@ export function Header({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
                 </Link>
               ))}
               <Button asChild className="mt-4 bg-[#0066b2] text-white hover:bg-[#0066b2]/90">
-                <Link href="/courses" onClick={() => setMobileMenuOpen(false)}>
+                <Link href={joinCourseHref} scroll={false} onClick={() => setMobileMenuOpen(false)}>
                   Join Course <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Link>
               </Button>

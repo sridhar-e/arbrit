@@ -41,7 +41,7 @@ export function LeeaCourseOverview({ course }: { course: "fou" | "lac" }) {
   const { aim, details } = overviews[course];
 
   return (
-    <section aria-labelledby="leea-overview-heading" className="bg-white py-16 md:py-24">
+    <section aria-labelledby="leea-overview-heading" className="bg-white py-8 md:py-12">
       {/* Phones read heading, facts, then the button; from 1024px the facts sit beside both. */}
       <div className="mx-auto grid max-w-7xl gap-8 px-5 sm:px-6 lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8">
         <div className="lg:self-end">

@@ -45,7 +45,7 @@ export function LeeaWhyArbrit() {
   return (
     <section
       aria-labelledby="leea-why-heading"
-      className="relative isolate overflow-hidden bg-navy-deep py-16 text-white md:py-24"
+      className="relative isolate overflow-hidden bg-navy-deep py-8 text-white md:py-12"
     >
       <NavyBandTexture />
       {/* Phones read heading, the six rows, then the buttons; from 1024px the rows sit beside both. */}

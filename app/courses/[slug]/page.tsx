@@ -23,7 +23,7 @@ import { JoinCourseDialog } from "@/components/sections/join-course-dialog";
 import { CourseClientsCarousel } from "@/components/sections/course-clients-carousel";
 import { CourseSection, generalCoursesIntro, internationalCoursesIntro } from "@/components/sections/home-courses";
 import { Faq } from "@/components/sections/faq";
-import { contactInfo, courseCategories, courseImageAlt, featuredCourses } from "@/lib/data";
+import { contactInfo, courseCategories, courseImageAlt, coursesHref, featuredCourses, generalCoursesHref } from "@/lib/data";
 import { courseDetails } from "@/lib/content";
 import { siteUrl } from "@/lib/site";
 
@@ -204,14 +204,14 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
         title={course.title}
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Courses", href: "/courses" },
+          { label: "Courses", href: isInternational ? coursesHref : generalCoursesHref },
           ...(parent ? [{ label: parent.title, href: `/courses/${parent.slug}` }] : []),
           { label: course.title },
         ]}
         {...courseHeaderImage(course.title)}
       />
 
-      <section aria-labelledby="course-overview-heading" className="bg-white py-16 md:py-24">
+      <section aria-labelledby="course-overview-heading" className="bg-white py-8 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-[minmax(0,1fr)_23rem] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_25rem]">
           <div className="min-w-0">
             {/* Group pages are only a table, so the table takes the section heading. */}
@@ -481,7 +481,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
       </section>
 
       {course.clientLogos && (
-        <section aria-labelledby="course-clients-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+        <section aria-labelledby="course-clients-heading" className="bg-[#f5f7fa] py-8 md:py-12">
           <div className="mx-auto max-w-7xl px-5 sm:px-6">
             <h2 id="course-clients-heading" className={`${displayHeading} text-navy-deep`}>
               Our clients
@@ -502,7 +502,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
         title={related.title}
         description={related.description}
         courses={related.courses}
-        viewAllHref="/courses"
+        viewAllHref={isInternational ? coursesHref : generalCoursesHref}
         tone={Boolean(course.clientLogos) === Boolean(course.faqs?.length) ? "mist" : "white"}
         variant={isInternational ? "international" : "general"}
       />

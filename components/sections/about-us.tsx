@@ -84,7 +84,7 @@ export function AboutUs() {
           <path d="M60.28,92.47c6.53,1.82,11.63,6.920,13.45,13.450l9.41,33.77,9.41-33.77c1.82-6.53,6.92-11.63,13.45-13.450l33.77-9.410-33.77-9.41c-6.53-1.82-11.63-6.92-13.45-13.45l-.3-1.08c-3.53-12.69-5.33-25.8-5.33-38.97V7.57h-7.56v12.59c0,13.17-1.790,26.28-5.33,38.97l-.3,1.08c-1.82,6.53-6.92,11.63-13.45,13.45l-33.77,9.41,33.77,9.41Z" />
         </svg>
       </div>
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 md:py-24 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-8 sm:px-6 md:py-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16">
         <div>
           <h2
             id="about-heading"

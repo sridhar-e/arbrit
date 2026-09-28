@@ -57,7 +57,7 @@ const initials = (name: string) =>
 /** Student reviews as Testimonial Cards (Mist, blue stars), with a link out to Google reviews. */
 export function LeeaGlobalTrust({ course }: { course: "fou" | "lac" }) {
   return (
-    <section aria-labelledby="leea-reviews-heading" className="bg-white py-16 md:py-24">
+    <section aria-labelledby="leea-reviews-heading" className="bg-white py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
           <div>

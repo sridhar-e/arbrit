@@ -13,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     page("/", 1, "weekly"),
-    page("/courses", 0.9, "weekly"),
     page("/course/leea-foundation-certificate", 0.8),
     page("/course/leea-lifting-accessories-diploma", 0.8),
     ...courseDetails.map((course) => page(`/courses/${course.slug}`, 0.7)),

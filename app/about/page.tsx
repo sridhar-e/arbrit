@@ -26,7 +26,7 @@ const milestones = [
   {
     icon: Flag,
     year: "2006",
-    title: "Founded in Dubai",
+    title: "Founded in India",
     description: "Arbrit Safety Training & Consultancy opens with a single focus: practical, accredited HSE training.",
   },
   {
@@ -100,7 +100,7 @@ export default function AboutPage() {
       />
 
       {/* Mission: copy and proof beside the company video. */}
-      <section aria-labelledby="mission-heading" className="bg-white py-16 md:py-24">
+      <section aria-labelledby="mission-heading" className="bg-white py-8 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16">
           <div>
             <h2 id="mission-heading" className={`${displayHeading} text-navy-deep`}>
@@ -164,7 +164,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our story: milestones on a rail, then photos from the years since. */}
-      <section aria-labelledby="story-heading" className="relative isolate overflow-hidden bg-navy-deep py-16 text-white md:py-24">
+      <section aria-labelledby="story-heading" className="relative isolate overflow-hidden bg-navy-deep py-8 text-white md:py-12">
         <NavyBandTexture />
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
           <div className="max-w-3xl">
@@ -203,10 +203,10 @@ export default function AboutPage() {
       </section>
 
       {/* Training approach: a hands-on photo beside four numbered commitments. */}
-      <section aria-labelledby="approach-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+      <section aria-labelledby="approach-heading" className="bg-[#f5f7fa] py-8 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <h2 id="approach-heading" className={`${displayHeading} text-navy-deep`}>
+            <h2 id="approach-heading" className={`${displayHeading} uppercase text-navy-deep`}>
               How we train
             </h2>
             <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-navy-deep/80 md:text-lg">
@@ -245,18 +245,35 @@ export default function AboutPage() {
       </section>
 
       {/* Approvals: the UAE and KSA recognitions side by side. */}
-      <section aria-labelledby="approvals-heading" className="bg-white py-16 md:py-24">
+      <section aria-labelledby="approvals-heading" className="bg-white py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
-          <div className="max-w-3xl">
-            <h2 id="approvals-heading" className={`${displayHeading} text-navy-deep`}>
-              Approved in the UAE and Saudi Arabia
-            </h2>
-            <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-navy-deep/80 md:text-lg">
-              Arbrit Safety is a leading professional safety training and consultancy organisation serving clients
-              across the United Arab Emirates, the Kingdom of Saudi Arabia and the wider Middle East. We are committed
-              to enhancing workplace safety, developing professional competence and helping organisations achieve high
-              standards of health, safety and operational performance.
-            </p>
+          {/* Heading and lead on the left, the supporting paragraphs beside them, then the two approval cards. */}
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+            <div>
+              <h2 id="approvals-heading" className={`${displayHeading} text-navy-deep`}>
+                Approved in the UAE and Saudi Arabia
+              </h2>
+              <p className="mt-5 text-[17px] leading-relaxed text-navy-deep/80 md:text-lg">
+                Arbrit Safety is a leading professional safety training and consultancy organisation serving clients
+                across the United Arab Emirates, the Kingdom of Saudi Arabia and the wider Middle East. We are
+                committed to enhancing workplace safety, developing professional competence and helping organisations
+                achieve high standards of health, safety and operational performance.
+              </p>
+            </div>
+            <div className="space-y-4 text-base leading-relaxed text-navy-deep/80 lg:border-l lg:border-navy-deep/10 lg:pl-10">
+              <p>
+                Supported by a strong portfolio of international accreditations, local approvals and industry
+                partnerships, Arbrit delivers specialised programmes in occupational health &amp; safety, lifting
+                operations, fire &amp; life safety, first aid, work at height, equipment operations and other
+                technical safety disciplines, together with professional safety consultancy services.
+              </p>
+              <p>
+                Our experienced trainers, technical specialists and consultants combine extensive industry expertise
+                with practical, workplace-focused learning. With established operations in both the UAE and Saudi
+                Arabia, Arbrit remains committed to quality, competence, integrity and continuous improvement:
+                developing skilled professionals and creating safer workplaces.
+              </p>
+            </div>
           </div>
 
           <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
@@ -281,20 +298,6 @@ export default function AboutPage() {
             ))}
           </ul>
 
-          <div className="mt-10 max-w-3xl space-y-4 text-base leading-relaxed text-navy-deep/80 md:mt-12">
-            <p>
-              Supported by a strong portfolio of international accreditations, local approvals and industry
-              partnerships, Arbrit delivers specialised programmes in occupational health &amp; safety, lifting
-              operations, fire &amp; life safety, first aid, work at height, equipment operations and other technical
-              safety disciplines, together with professional safety consultancy services.
-            </p>
-            <p>
-              Our experienced trainers, technical specialists and consultants combine extensive industry expertise with
-              practical, workplace-focused learning. With established operations in both the UAE and Saudi Arabia,
-              Arbrit remains committed to quality, competence, integrity and continuous improvement: developing skilled
-              professionals and creating safer workplaces.
-            </p>
-          </div>
         </div>
       </section>
     </>

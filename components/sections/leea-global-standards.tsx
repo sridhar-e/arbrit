@@ -1,18 +1,17 @@
 import Image from "next/image";
 
+// Same trimmed logo files as the homepage strip (components/sections/accreditation-carousel).
 const logos = [
-  { src: "/accreditation/adnoc.png", alt: "ADNOC" },
-  { src: "/accreditation/ICV.webp", alt: "ICV" },
-  { src: "/accreditation/iemalogo.jpg", alt: "IEMA" },
-  { src: "/accreditation/iosh.png", alt: "IOSH" },
-  { src: "/accreditation/LEEA-Logo.png", alt: "LEEA" },
-  { src: "/accreditation/LEEA-Logo.webp", alt: "LEEA" },
-  { src: "/accreditation/medic-first-aid.jpg", alt: "Medic First Aid" },
-  { src: "/accreditation/permit.png", alt: "Permit" },
-  { src: "/accreditation/PSMA.webp", alt: "PSMA" },
-  { src: "/accreditation/STI-LOGO.jpg", alt: "STI" },
-  { src: "/accreditation/taqa.webp", alt: "TAQA" },
-  { src: "/accreditation/tsi-logo.webp", alt: "TSI" },
+  { src: "/accreditation/tiles/adnoc.webp", alt: "ADNOC" },
+  { src: "/accreditation/tiles/icv.webp", alt: "ICV" },
+  { src: "/accreditation/tiles/iosh.webp", alt: "IOSH" },
+  { src: "/accreditation/tiles/leea.webp", alt: "LEEA" },
+  { src: "/accreditation/tiles/medic-first-aid.webp", alt: "Medic First Aid" },
+  { src: "/accreditation/tiles/dcas-permit.webp", alt: "DCAS permit" },
+  { src: "/accreditation/tiles/pasma.webp", alt: "PASMA" },
+  { src: "/accreditation/tiles/sti.webp", alt: "STI" },
+  { src: "/accreditation/tiles/taqa.webp", alt: "TAQA" },
+  { src: "/accreditation/tiles/tsi.webp", alt: "TSI" },
 ];
 
 const edgeFade = {
@@ -27,7 +26,7 @@ const edgeFade = {
  */
 export function LeeaGlobalStandards() {
   return (
-    <section aria-labelledby="leea-accreditations-heading" className="bg-white py-12 md:py-16">
+    <section aria-labelledby="leea-accreditations-heading" className="bg-white py-6 md:py-8">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:flex lg:items-center lg:gap-12">
         <div className="shrink-0 lg:w-72">
           <h2

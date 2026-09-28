@@ -75,7 +75,7 @@ export default function CareerPage() {
       />
 
       {/* Intro: who the page is for, beside a photo from 1024px. */}
-      <section aria-labelledby="career-intro-heading" className="bg-white py-16 md:py-24">
+      <section aria-labelledby="career-intro-heading" className="bg-white py-8 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div>
             <h2 id="career-intro-heading" className={`${displayHeading} text-navy-deep`}>
@@ -114,7 +114,7 @@ export default function CareerPage() {
       </section>
 
       {/* What we offer: two hairline lists, side by side from 1024px. */}
-      <section aria-labelledby="career-offer-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+      <section aria-labelledby="career-offer-heading" className="bg-[#f5f7fa] py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
           <h2 id="career-offer-heading" className={`${displayHeading} text-navy-deep`}>
             What we offer
@@ -130,7 +130,7 @@ export default function CareerPage() {
       </section>
 
       {/* Openings: numbered rows, each with an Apply link that pre-selects the role in the form. */}
-      <section aria-labelledby="career-openings-heading" className="bg-white py-16 md:py-24">
+      <section aria-labelledby="career-openings-heading" className="bg-white py-8 md:py-12">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <h2 id="career-openings-heading" className={`${displayHeading} text-navy-deep`}>
@@ -185,7 +185,7 @@ export default function CareerPage() {
       <section
         id="apply"
         aria-labelledby="career-apply-heading"
-        className="relative isolate scroll-mt-24 overflow-hidden bg-navy-deep py-16 text-white md:py-24"
+        className="relative isolate scroll-mt-24 overflow-hidden bg-navy-deep py-8 text-white md:py-12"
       >
         <NavyBandTexture gridAt="20% 40%" />
         {/* Phones read heading, form, then the email option; from 1024px the form sits beside both. */}

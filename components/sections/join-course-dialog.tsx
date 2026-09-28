@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { BookOpen, GraduationCap, Mail, Phone, Send, User } from "lucide-react";
+import { BookOpen, GraduationCap, Mail, Send, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -25,6 +25,7 @@ import { FormTrustSignals } from "@/components/ui/form-trust-signals";
 import { joinCourseOptions } from "@/lib/data";
 import { Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
+import { PhoneInput } from "@/components/forms/phone-input";
 
 const fieldClass =
   "h-12 rounded-xl border-transparent bg-[#f5f7fa] pl-10 shadow-none focus-visible:border-[#0066b2] focus-visible:bg-white";
@@ -119,16 +120,10 @@ function JoinCourseForm({ courseOptions, preselectCourse }: { courseOptions: str
         <div className="group space-y-1.5">
           <Label className={labelClass} htmlFor="join-phone"><span>Phone / WhatsApp{lead.mark("phone")}</span></Label>
           <div className="relative">
-            <Phone
-              className={iconClass}
-              aria-hidden="true"
-            />
-            <Input
+            <PhoneInput
               id="join-phone"
               {...lead.field("phone")}
-              type="tel"
-              name="phone"
-              placeholder="Phone / WhatsApp"
+              placeholder="50 123 4567"
               required
               className={fieldClass}
             />

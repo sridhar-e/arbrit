@@ -147,5 +147,5 @@ export function searchCourses(query: string, courses: SearchableCourse[]) {
     .map((match) => match.course);
 }
 
-/** Link that opens the Courses enquiry popup with "Other" ticked and the search text filled in. */
-export const enquireAboutHref = (query: string) => `/courses?enquire=other&other=${encodeURIComponent(query.trim().slice(0, 120))}`;
+/** Opens the enquiry popup over the current page with "Other" ticked and the search text filled in. */
+export const enquireAboutHref = (query: string) => `?enquire=other&other=${encodeURIComponent(query.trim().slice(0, 120))}`;

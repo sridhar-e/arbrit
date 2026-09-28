@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Star } from "lucide-react";
 import { testimonials } from "@/lib/data";
 import { TestimonialRail } from "@/components/sections/testimonial-rail";
@@ -12,7 +13,7 @@ const initials = (name: string) =>
 
 export function Testimonials() {
   return (
-    <section aria-labelledby="testimonials-heading" className="bg-white py-16 md:py-24">
+    <section aria-labelledby="testimonials-heading" className="bg-white py-8 md:py-12">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2
@@ -24,22 +25,16 @@ export function Testimonials() {
           <p className="mt-4 max-w-md text-base leading-relaxed text-navy-deep/80 md:text-lg">
             Feedback from individuals and companies who trained with Arbrit.
           </p>
-          <div className="mt-8 overflow-hidden rounded-[24px] bg-navy-deep shadow-[0_24px_48px_-24px_rgba(18,59,109,0.45)]">
-            {/* Poster frame instead of preloading: nothing downloads until play is pressed. WebM for
-                modern browsers, H.264 MP4 for older iPhones (iOS before 17.4 cannot play WebM). */}
-            <video
-              controls
-              preload="none"
-              playsInline
-              poster="/videos/testimonials-poster.webp"
-              width={1280}
-              height={720}
-              aria-label="Arbrit trainee stories video"
-              className="aspect-video w-full object-cover"
-            >
-              <source src="/Testimonials.webm" type="video/webm" />
-              <source src="/videos/testimonials.mp4" type="video/mp4" />
-            </video>
+          {/* Stock photo until the trainee stories video is ready. The video files stay in public/
+              (Testimonials.webm, videos/testimonials.mp4 and videos/testimonials-poster.webp) to swap back. */}
+          <div className="relative mt-8 aspect-video overflow-hidden rounded-[24px] bg-navy-deep shadow-[0_24px_48px_-24px_rgba(18,59,109,0.45)]">
+            <Image
+              src="/home/trainees-testimonials.webp"
+              alt="Smiling safety-trained worker in a hard hat with two colleagues in hi-vis vests"
+              fill
+              sizes="(min-width: 1024px) 34rem, 100vw"
+              className="object-cover object-[center_30%]"
+            />
           </div>
         </div>
 

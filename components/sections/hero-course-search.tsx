@@ -3,7 +3,7 @@
 import { useId, useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Search } from "lucide-react";
-import { searchCourses, type SearchableCourse } from "@/lib/course-search";
+import { enquireAboutHref, searchCourses, type SearchableCourse } from "@/lib/course-search";
 
 /** Shown when the field is focused but empty: the courses people ask about most. */
 const popularTitles = [
@@ -52,7 +52,13 @@ export function HeroCourseSearch({ courses }: { courses: SearchableCourse[] }) {
     setOpen(false);
     router.push(href);
   };
-  const searchAll = () => go(trimmed ? `/courses?q=${encodeURIComponent(trimmed)}` : "/courses");
+  // No results page any more: Enter opens the best match, or the enquiry popup with the search filled in.
+  const searchAll = () => {
+    const best = trimmed ? searchCourses(trimmed, courses)[0] : undefined;
+    if (best) go(best.href);
+    else if (trimmed) go(enquireAboutHref(trimmed));
+    else inputRef.current?.focus();
+  };
   const choose = (index: number) => (index < matches.length ? go(matches[index].href) : searchAll());
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -78,7 +84,6 @@ export function HeroCourseSearch({ courses }: { courses: SearchableCourse[] }) {
 
   return (
     <form
-      action="/courses"
       method="get"
       role="search"
       onSubmit={onSubmit}

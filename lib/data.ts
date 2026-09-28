@@ -183,6 +183,8 @@ export type Trainer = {
 export type PhoneNumber = {
   label: string;
   number: string;
+  /** ISO country code; picks the flag shown beside the number (public/flags). */
+  country: "AE" | "SA";
 };
 
 export type SocialLink = {
@@ -193,7 +195,11 @@ export type SocialLink = {
 
 export type Office = {
   label: string;
-  phones: string[];
+  /** Registered company name for this office. */
+  company: string;
+  /** ISO country code; picks the flag beside each number (public/flags). */
+  country: "AE" | "SA";
+  phones: { number: string; kind: "Landline" | "Mobile" }[];
   address: string;
   /**
    * Google Maps embed URL pinned to the verified business listing. Omit when we
@@ -203,6 +209,10 @@ export type Office = {
    */
   mapEmbed?: string;
 };
+
+/** Where "all courses" links go now that there is no Courses page: the homepage course sections. */
+export const coursesHref = "/#international-courses-heading";
+export const generalCoursesHref = "/#general-safety-courses-heading";
 
 export const navLinks: NavLink[] = [
   { label: "About Us", href: "/about" },
@@ -266,7 +276,7 @@ export const coursesMegaMenu: MegaMenuGroup[] = [
 ];
 
 export const courseCategories: CourseCategory[] = [
-  { slug: "leea-diploma", title: "LEEA Diploma", icon: Award, image: "/course/ksa/leea-diploma.webp", href: "/courses/leea-diploma", description: "LEEA Foundation Certificate (FOU) and Lifting Accessories Diploma (LAC), from lifting basics to accessory inspection.", duration: "3–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "LEEA Certified" },
+  { slug: "leea-diploma", title: "LEEA Diploma", icon: Award, image: "/course/ksa/leea-diploma.webp", href: "/courses/leea-diploma", description: "LEEA Foundation Certificate (FOU) and Lifting Accessories Diploma (LAC).", duration: "3–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "LEEA Certified" },
   { slug: "leea", title: "LEEA", icon: Forklift, image: "/course/ksa/leea.webp", href: "/courses/leea", description: "Appointed Person for Lifting Operations, Crane Lift Supervisor, and Rigging and Lifting.", duration: "2–5 Days", location: "Dubai · Abu Dhabi · KSA", certification: "LEEA Certified" },
   { slug: "hse-training", title: "HSE Training", icon: HardHat, image: "/course/ksa/hse-training.webp", href: "/courses/hse-training", description: "Practical HSE programmes, including the Dubai OHS Person In Charge (OHS PIC) certification.", location: "Dubai · Abu Dhabi · KSA", certification: "IOSH, Qualifi, TSI and more" },
   { slug: "iosh", title: "IOSH", icon: ShieldCheck, image: "/course/ksa/iosh.webp", href: "/courses/iosh", description: "Working Safely for every employee and Managing Safely for supervisors and managers.", duration: "1–4 Days", location: "Dubai · Abu Dhabi · KSA", certification: "IOSH Certified" },
@@ -480,7 +490,7 @@ export const faqs: Faq[] = [
 export const footerQuickLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Courses", href: "/courses" },
+  { label: "Courses", href: coursesHref },
   { label: "Consultancy", href: "/consultancy" },
   { label: "Career", href: "/career" },
   { label: "Blog", href: "/blog" },
@@ -489,9 +499,9 @@ export const footerQuickLinks: NavLink[] = [
 
 export const contactInfo = {
   phones: [
-    { label: "Dubai", number: "+971 58 669 5300" },
-    { label: "Abu Dhabi", number: "+971 50 242 5436" },
-    { label: "KSA", number: "+966 59 334 1476" },
+    { label: "Dubai", number: "+971 58 669 5300", country: "AE" },
+    { label: "Abu Dhabi", number: "+971 50 242 5436", country: "AE" },
+    { label: "KSA", number: "+966 59 334 1476", country: "SA" },
   ] as PhoneNumber[],
   email: "info@arbritsafety.com",
   address: "F-12, 1st Floor, Union Coop Al Twar, Al Nahda St, Dubai",
@@ -501,20 +511,37 @@ export const contactInfo = {
 export const offices: Office[] = [
   {
     label: "Dubai",
-    phones: ["+971 4 881 8742", "+971 58 669 5300"],
+    company: "Arbrit Safety Training and Consultancy L.L.C",
+    country: "AE",
+    phones: [
+      { number: "+971 4 881 8742", kind: "Landline" },
+      // Arbrit Safety Training and Consultancy L.L.P's landline, listed under Dubai by client request.
+      { number: "+971 4 338 2275", kind: "Landline" },
+      { number: "+971 58 669 5300", kind: "Mobile" },
+    ],
     address: "F-12, 1st Floor, Union Coop Al Twar, Al Nahda St, Dubai",
     mapEmbed:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.005021211739!2d55.369079374853165!3d25.27041652873225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f4359aaf3fcb3%3A0xd79a9fbb46a30a3d!2sArbrit%20Safety%20Training%20and%20Consultancy!5e0!3m2!1sen!2sin!4v1785752871035!5m2!1sen!2sin",
   },
   {
     label: "Abu Dhabi",
-    phones: ["+971 2 621 1715", "+971 50 242 5436"],
-    address: "202, Al Silaymiyah St, Al Danah 4, Abu Dhabi 2215",
+    company: "Arbrit Consultancy and Safety Training L.L.C – S.P.C",
+    country: "AE",
+    phones: [
+      { number: "+971 2 621 1715", kind: "Landline" },
+      { number: "+971 50 242 5436", kind: "Mobile" },
+    ],
+    address: "11, Al Maqtaa Commercial Complex, MW 4, Musaffah, Abu Dhabi",
   },
   {
     label: "Kingdom of Saudi Arabia",
-    phones: ["+966 11 516 0114", "+966 59 334 1476"],
-    address: "Zayd ibn Thabt, 7406, Office No. 2, Al Malaz, Riyadh, KSA",
+    company: "Arbrit Safety Training Company",
+    country: "SA",
+    phones: [
+      { number: "+966 11 516 0114", kind: "Landline" },
+      { number: "+966 59 334 1476", kind: "Mobile" },
+    ],
+    address: "Office No. 2, 7406, Zaid Ibn Thabit, Al Malaz Dist, Riyadh, KSA",
   },
 ];
 

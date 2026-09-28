@@ -26,7 +26,7 @@ export function LeeaCertification({ course }: { course: "fou" | "lac" }) {
   const isLac = course === "lac";
 
   return (
-    <section aria-labelledby="leea-certification-heading" className="bg-[#f5f7fa] py-16 md:py-24">
+    <section aria-labelledby="leea-certification-heading" className="bg-[#f5f7fa] py-8 md:py-12">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-center lg:gap-16">
         <div>
           <h2 id="leea-certification-heading" className={`${leeaDisplayHeading} text-navy-deep`}>

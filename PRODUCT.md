@@ -30,14 +30,14 @@ First LEEA Licensed Training Partner in the UAE & KSA. Courses are delivered und
 
 - Next.js 16 (App Router, React 19), Tailwind CSS v4, shadcn/ui (radix-nova), framer-motion, lucide-react icons. Content lives in `lib/data.ts`.
 - Course catalogue (from arbritsafety.sa, September 2026, worded for the UAE and KSA): International courses (LEEA Diploma with FOU and LAC; LEEA with APLO, Crane Lift Supervisor, Rigging and Lifting; IOSH Managing and Working Safely; Highfield First Aid, Fire Safety, Food Safety & HACCP, Train the Trainer; STI; ISO Lead Auditor incl. ISO 45001; RoSPA Defensive Driving incl. the ADNOC-approved award; Qualifi Level 7 Diploma in OHSM; NFPA; HSE Training with the Dubai OHS PIC certification; PASMA) and General Safety industry training (Construction, Manufacturing, Food, Healthcare, Oil & Gas, Seminars and Workshops). New-Content.docx (client, September 2026) supplied HSE Training, OHS PIC, PASMA and Oil & Gas and overrides the .sa text where they differ; RTITB content is still to come. Course pages live in `lib/course-content.ts`; retired course URLs redirect via `lib/course-redirects.ts`.
-- Other routes: About, Trainers, Blog, Career, Consultancy, Contact, Courses, and dedicated LEEA course pages.
+- Other routes: About, Trainers, Blog, Career, Consultancy, Contact, course detail pages and dedicated LEEA course pages. There is no Courses listing page (removed September 2026): the Courses menu is a dropdown only, /courses redirects to the homepage course sections, and the course enquiry popup (?enquire=) opens over any page.
 
 ## Brand Commitments
 
 - Client likes the current UI and colours and wants them kept: Arbrit blue `#0066b2` (logo colour) and navy `#123b6d` on white.
 - Use the existing logo files (`public/header-logo.svg`, `public/footer-logo.svg`) as-is, without the "Guarding you every day" tagline shown in the client mockup, until the client supplies a tagline logo.
 - Homepage revamp is mobile-first, then scaled up to desktop; the client wants a "wow factor" the current site lacks.
-- The client's mobile hero mockup is binding: full-bleed worker/crane photo, eyebrow "Accredited Health & Safety Training", headline "Skills for a Safer Tomorrow", subline "Build safer workplaces. Develop competent professionals.", rounded course search with blue arrow button, four category shortcuts (Workplace Safety, Lifting & Rigging, Fire Safety, Scaffolding), and a blue "Trusted by 15,000+ professionals across the UAE and KSA" band.
+- The client's mobile hero mockup is binding: full-bleed worker/crane photo, eyebrow "Accredited Health & Safety Training", headline "Skills for a Safer Tomorrow", subline "Build safer workplaces. Develop competent professionals.", rounded course search with blue arrow button, four shortcuts (originally Workplace Safety, Lifting & Rigging, Fire Safety, Scaffolding; since September 2026 HSE Training, Crane / Lifting Services, Consultancy, Manpower Solutions), and a blue "Trusted by 15,000+ professionals across the UAE and KSA" band.
 
 ## Evidence on Hand
 

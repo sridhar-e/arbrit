@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, Mail, Phone, Send, User } from "lucide-react";
+import { BookOpen, Mail, Send, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { courseSelectOptions } from "@/lib/data";
 import { Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
+import { PhoneInput } from "@/components/forms/phone-input";
 
 const fieldClass =
   "h-12 rounded-xl border-transparent bg-[#f5f7fa] pl-10 shadow-none focus-visible:border-[#0066b2] focus-visible:bg-white";
@@ -86,14 +87,10 @@ export function ContactPageForm() {
               <span>Phone / WhatsApp{lead.mark("phone")}</span>
             </Label>
             <div className="relative">
-              <Phone className={iconClass} aria-hidden="true" />
-              <Input
+              <PhoneInput
                 id="contact-phone"
                 {...lead.field("phone")}
-                type="tel"
-                name="phone"
-                autoComplete="tel"
-                placeholder="+971 5X XXX XXXX"
+                placeholder="50 123 4567"
                 required
                 className={fieldClass}
               />

@@ -8,7 +8,7 @@ export function LegalPage({ title, updated, children }: { title: string; updated
   return (
     <>
       <PageHeader title={title} breadcrumbs={[{ label: "Home", href: "/" }, { label: title }]} {...pageHeaderImages.legal} />
-      <section aria-label={title} className="bg-white py-16 md:py-24">
+      <section aria-label={title} className="bg-white py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
           {/* One comfortable reading column (~40rem), left-aligned with the rest of the site. */}
           <div className="max-w-[42rem]">

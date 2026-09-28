@@ -9,6 +9,8 @@ import { HseOfficersCta } from "@/components/sections/hse-officers-cta";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { WhatsappFloatButton } from "@/components/ui/whatsapp-float-button";
 import { MobileCtaBar } from "@/components/ui/mobile-cta-bar";
+import { CourseEnquiryDialog } from "@/components/sections/course-enquiry-dialog";
+import { Suspense } from "react";
 import { allowIndexing, siteUrl } from "@/lib/site";
 
 const inter = Inter({
@@ -85,6 +87,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <BackToTop />
         <WhatsappFloatButton />
         <MobileCtaBar />
+        {/* Opens over any page with ?enquire=<course>. Reads the URL, so it needs Suspense. */}
+        <Suspense fallback={null}>
+          <CourseEnquiryDialog />
+        </Suspense>
       </body>
     </html>
   );

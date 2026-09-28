@@ -80,5 +80,7 @@ export const courseRedirects = [
     destination: `/courses/${to}`,
     permanent: true,
   })),
-  ...toCoursesPage.map((from) => ({ source: `/courses/${from}`, destination: "/courses", permanent: true })),
+  ...toCoursesPage.map((from) => ({ source: `/courses/${from}`, destination: "/#international-courses-heading", permanent: true })),
+  // The Courses page was removed (September 2026); the homepage lists every course.
+  { source: "/courses", destination: "/#international-courses-heading", permanent: true },
 ];

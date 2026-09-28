@@ -46,7 +46,7 @@ export default function ContactPage() {
         {...pageHeaderImages.contact}
       />
 
-      <section aria-labelledby="contact-offices-heading" className="bg-white py-16 md:py-24">
+      <section aria-labelledby="contact-offices-heading" className="bg-white py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <div>
@@ -89,7 +89,7 @@ export default function ContactPage() {
       <section
         id="contact-enquiry"
         aria-labelledby="contact-enquiry-heading"
-        className="relative isolate scroll-mt-24 overflow-hidden bg-navy-deep py-16 text-white md:py-24"
+        className="relative isolate scroll-mt-24 overflow-hidden bg-navy-deep py-8 text-white md:py-12"
       >
         <NavyBandTexture gridAt="20% 40%" />
         {/* Phones read heading, form, then the quick links; from 1024px the form sits beside both. */}
