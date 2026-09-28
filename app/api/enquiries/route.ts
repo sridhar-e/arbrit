@@ -13,6 +13,9 @@ import {
 import { isLeadFormKey, leadForms, validateLead, type LeadField, type LeadFormKey, type LeadValues } from "@/lib/lead-forms";
 import { siteUrl } from "@/lib/site";
 
+/** How a ticked consent box is recorded in the admin email and the Sheet. */
+const CONSENT_RECORD = "Yes: agreed to be contacted via phone, email and WhatsApp";
+
 // Best-effort abuse limit: 5 enquiries per visitor address per 10 minutes. It lives in this server
 // instance's memory, so on serverless hosting it only limits bursts that hit the same instance.
 const WINDOW_MS = 10 * 60 * 1000;
@@ -50,6 +53,7 @@ function parse(body: Record<string, unknown>): Submission | null {
     phone: str(body.phone),
     courses: [...new Set(strList(body.courses))].slice(0, 80),
     otherCourse: str(body.otherCourse),
+    consent: body.consent === true || body.consent === "yes",
   };
   if (body.type === "course") return { type: "course", ...base, location: str(body.location), clickedCourse: str(body.clickedCourse) || undefined };
   if (body.type === "corporate") return { type: "corporate", ...base, teamSize: str(body.teamSize) };
@@ -106,6 +110,7 @@ function prepareEnquiry(enquiry: Enquiry, page: string) {
       isCourse ? ["Preferred location", course.location] : ["Team size", corporate.teamSize.trim()],
       [isCourse ? "Courses of interest" : "Required certifications", courses.join("\n")],
       ["Clicked from menu", isCourse ? (course.clickedCourse ?? "") : ""],
+      ["Consent", enquiry.consent ? CONSENT_RECORD : ""],
       ["Page", page],
     ],
   );
@@ -120,6 +125,7 @@ function prepareEnquiry(enquiry: Enquiry, page: string) {
     "Phone / WhatsApp": enquiry.phone.trim(),
     "Courses / Certifications": enquiry.courses.filter((item) => item !== OTHER_OPTION).join(", "),
     "Other (typed)": enquiry.courses.includes(OTHER_OPTION) ? enquiry.otherCourse.trim() : "",
+    Consent: enquiry.consent ? CONSENT_RECORD : "",
     ...(isCourse
       ? { "Preferred Location": course.location, "Clicked From Menu": course.clickedCourse }
       : { "Team Size": corporate.teamSize.trim() }),
@@ -143,6 +149,7 @@ const leadLabels: Record<LeadField, string> = {
   noticePeriod: "Notice period",
   certifications: "Certifications held",
   cvLink: "CV link",
+  consent: "Consent",
 };
 
 const leadColumns: Record<LeadField, keyof SheetRow> = {
@@ -160,6 +167,7 @@ const leadColumns: Record<LeadField, keyof SheetRow> = {
   noticePeriod: "Notice Period",
   certifications: "Certifications Held",
   cvLink: "CV Link",
+  consent: "Consent",
 };
 
 type StoredCv = { fileName: string; link?: string; note?: string; bytes: Buffer };
@@ -170,15 +178,17 @@ function prepareLead(lead: Lead, page: string, cv?: StoredCv) {
   const fields: LeadField[] = spec.fields;
   const value = (field: LeadField) => (lead.values[field] ?? "").trim();
   const topic = value("position") || value("course") || value("service");
+  // The checkbox sends "yes"; the email and Sheet spell out what was agreed to.
+  const shown = (field: LeadField) => (field === "consent" ? (value(field) === "yes" ? CONSENT_RECORD : "") : value(field));
 
   const email = renderEmail(
     `New enquiry: ${spec.label}`,
     `${spec.label}: ${value("name")}${topic ? `, ${topic}` : ""}`,
-    [...fields.map((field) => [leadLabels[field], value(field)] as [string, string]), ["Page", page]],
+    [...fields.map((field) => [leadLabels[field], shown(field)] as [string, string]), ["Page", page]],
   );
 
   const row: SheetRow = { "Submitted (Dubai time)": sheetTime(), Form: spec.label, Page: page };
-  for (const field of fields) row[leadColumns[field]] = value(field);
+  for (const field of fields) row[leadColumns[field]] = shown(field);
 
   const links: SheetLinks = {};
   if (cv) {

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, Loader2, Mail, User, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FieldShell, Honeypot, RequiredNote, PhoneField, TextField } from "@/components/forms/fields";
+import { ConsentCheckbox, FieldShell, Honeypot, PhoneField, RequiredNote, TextField } from "@/components/forms/fields";
 import { CoursePicker } from "@/components/forms/course-picker";
 import { OTHER_OPTION, validateCorporateEnquiry, type EnquiryErrors } from "@/lib/enquiry";
 import { submitEnquiry } from "@/lib/submit-enquiry";
@@ -23,10 +23,11 @@ type Values = {
   teamSize: string;
   courses: string[];
   otherCourse: string;
+  consent: boolean;
 };
 type FieldName = keyof EnquiryErrors;
 
-const initialValues: Values = { name: "", email: "", phone: "", teamSize: "", courses: [], otherCourse: "" };
+const initialValues: Values = { name: "", email: "", phone: "", teamSize: "", courses: [], otherCourse: "", consent: false };
 
 const ids = {
   name: "corporate-name",
@@ -36,10 +37,11 @@ const ids = {
   courses: "corporate-certifications",
   otherCourse: "corporate-other-certification",
   location: "corporate-location",
+  consent: "corporate-consent",
 } satisfies Record<FieldName, string>;
 
 // On submit, focus moves to the first field in this order that has an error.
-const fieldOrder: FieldName[] = ["name", "teamSize", "email", "phone", "courses", "otherCourse"];
+const fieldOrder: FieldName[] = ["name", "teamSize", "email", "phone", "courses", "otherCourse", "consent"];
 
 export function CorporateTraining() {
   const router = useRouter();
@@ -214,6 +216,16 @@ export function CorporateTraining() {
               />
             )}
           </div>
+
+          <ConsentCheckbox
+            id={ids.consent}
+            checked={values.consent}
+            error={visibleError("consent")}
+            onChange={(checked) => {
+              set("consent", checked);
+              touch("consent");
+            }}
+          />
 
           <Button
             type="submit"

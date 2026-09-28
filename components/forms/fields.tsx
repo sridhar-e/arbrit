@@ -5,6 +5,7 @@ import { AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PhoneInput } from "@/components/forms/phone-input";
+import { CONSENT_TEXT } from "@/lib/enquiry";
 
 /** Red asterisk after a required label. Decorative: the "All fields are required" note carries the meaning. */
 export function RequiredMark({ className = "text-[#d92d20]" }: { className?: string }) {
@@ -142,6 +143,61 @@ export function PhoneField({
         }`}
       />
     </FieldShell>
+  );
+}
+
+/**
+ * The consent checkbox every form ends with: unticked by default, required to send. It sends
+ * `consent=yes` when ticked, so uncontrolled forms (useLeadForm) read it straight from FormData;
+ * controlled forms pass `checked` and `onChange`. `tone="dark"` for forms that sit on navy.
+ */
+export function ConsentCheckbox({
+  id,
+  error,
+  errorLine,
+  inputProps,
+  checked,
+  onChange,
+  onBlur,
+  tone = "light",
+}: {
+  id: string;
+  /** Controlled forms: the message to show; the error line and aria wiring are added here. */
+  error?: string;
+  /** useLeadForm forms: their own error line (`lead.error("consent")`)… */
+  errorLine?: ReactNode;
+  /** …and aria wiring (`lead.field("consent")`). */
+  inputProps?: { "aria-invalid"?: true; "aria-describedby"?: string };
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
+  onBlur?: () => void;
+  tone?: "light" | "dark";
+}) {
+  const aria = inputProps ?? {
+    "aria-invalid": error ? (true as const) : undefined,
+    "aria-describedby": error ? `${id}-error` : undefined,
+  };
+  return (
+    <div className="space-y-1.5 pt-3">
+      <label htmlFor={id} className="flex cursor-pointer items-start gap-3">
+        <input
+          id={id}
+          name="consent"
+          type="checkbox"
+          value="yes"
+          {...(checked === undefined ? {} : { checked })}
+          onChange={onChange ? (event: ChangeEvent<HTMLInputElement>) => onChange(event.target.checked) : undefined}
+          onBlur={onBlur}
+          {...aria}
+          className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer accent-[#0066b2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
+        />
+        <span className={`text-[13px] leading-snug ${tone === "dark" ? "text-white/85" : "text-navy-deep/80"}`}>
+          {CONSENT_TEXT}
+          <RequiredMark className={tone === "dark" ? "text-[#ffb4ab]" : undefined} />
+        </span>
+      </label>
+      {errorLine ?? <FieldError id={id} error={error} />}
+    </div>
   );
 }
 

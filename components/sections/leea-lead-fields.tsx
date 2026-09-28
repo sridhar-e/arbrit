@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { Honeypot } from "@/components/forms/fields";
+import { ConsentCheckbox, Honeypot } from "@/components/forms/fields";
 import type { useLeadForm } from "@/components/forms/use-lead-form";
 import {
   leeaFieldClass,
@@ -136,6 +136,10 @@ export function LeeaLeadFields({
             </Select>
           </div>
           {lead.error("course")}
+        </div>
+
+        <div className="sm:col-span-2">
+          <ConsentCheckbox id={`${idPrefix}-consent`} inputProps={lead.field("consent")} errorLine={lead.error("consent")} />
         </div>
 
         <button type="submit" disabled={lead.sending} className={`${leeaSubmitClass} sm:col-span-2`}>

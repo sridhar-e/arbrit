@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { FormTrustSignals } from "@/components/ui/form-trust-signals";
 import { courseSelectOptions } from "@/lib/data";
-import { Honeypot } from "@/components/forms/fields";
+import { ConsentCheckbox, Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
 import { PhoneInput } from "@/components/forms/phone-input";
 
@@ -150,6 +150,8 @@ export function ContactForm() {
         />
         {lead.error("message")}
       </div>
+      <ConsentCheckbox id="contact-consent" inputProps={lead.field("consent")} errorLine={lead.error("consent")} />
+
       <Button
         type="submit"
         size="lg"

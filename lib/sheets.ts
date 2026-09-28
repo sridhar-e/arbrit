@@ -36,6 +36,7 @@ export const SHEET_COLUMNS = [
   "Form",
   "Page",
   "Clicked From Menu",
+  "Consent",
 ] as const;
 
 export type SheetColumn = (typeof SHEET_COLUMNS)[number];

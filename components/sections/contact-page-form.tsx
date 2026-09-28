@@ -12,7 +12,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { courseSelectOptions } from "@/lib/data";
-import { Honeypot } from "@/components/forms/fields";
+import { ConsentCheckbox, Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
 import { PhoneInput } from "@/components/forms/phone-input";
 
@@ -138,6 +138,8 @@ export function ContactPageForm() {
             />
             {lead.error("message")}
           </div>
+
+          <ConsentCheckbox id="contact-consent" inputProps={lead.field("consent")} errorLine={lead.error("consent")} />
 
           <button
             type="submit"

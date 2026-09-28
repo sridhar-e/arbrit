@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BookOpen, Loader2, Mail, Send, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ChoicePills, FieldShell, Honeypot, RequiredNote, PhoneField, TextField } from "@/components/forms/fields";
+import { ChoicePills, ConsentCheckbox, FieldShell, Honeypot, PhoneField, RequiredNote, TextField } from "@/components/forms/fields";
 import { CoursePicker } from "@/components/forms/course-picker";
 import { courseNameFromId } from "@/lib/course-catalog";
 import { OTHER_OPTION, trainingLocations, validateCourseEnquiry, type EnquiryErrors } from "@/lib/enquiry";
@@ -45,6 +45,7 @@ type Values = {
   courses: string[];
   otherCourse: string;
   location: string;
+  consent: boolean;
 };
 type FieldName = keyof EnquiryErrors;
 
@@ -56,9 +57,10 @@ const ids = {
   otherCourse: "enquiry-popup-other-course",
   location: "enquiry-popup-location",
   teamSize: "enquiry-popup-team-size",
+  consent: "enquiry-popup-consent",
 } satisfies Record<FieldName, string>;
 
-const fieldOrder: FieldName[] = ["name", "email", "phone", "courses", "otherCourse", "location"];
+const fieldOrder: FieldName[] = ["name", "email", "phone", "courses", "otherCourse", "location", "consent"];
 
 function EnquiryForm({ clickedCourse, otherText = "" }: { clickedCourse?: string; otherText?: string }) {
   const router = useRouter();
@@ -70,6 +72,7 @@ function EnquiryForm({ clickedCourse, otherText = "" }: { clickedCourse?: string
     courses: clickedCourse ? [clickedCourse] : otherText ? [OTHER_OPTION] : [],
     otherCourse: otherText,
     location: "",
+    consent: false,
   });
   const [honeypot, setHoneypot] = useState("");
   const [touched, setTouched] = useState<Partial<Record<FieldName, boolean>>>({});
@@ -215,6 +218,16 @@ function EnquiryForm({ clickedCourse, otherText = "" }: { clickedCourse?: string
           }}
         />
       </div>
+
+      <ConsentCheckbox
+        id={ids.consent}
+        checked={values.consent}
+        error={visibleError("consent")}
+        onChange={(checked) => {
+          set("consent", checked);
+          touch("consent");
+        }}
+      />
 
       <Button
         type="submit"

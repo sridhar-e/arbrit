@@ -6,6 +6,10 @@ import { allCourseNames } from "@/lib/course-catalog";
 
 export const OTHER_OPTION = "Other";
 
+/** Every form's consent checkbox: unticked by default and required to send. */
+export const CONSENT_TEXT = "I consent to be contacted via Phone, Email, and WhatsApp for counseling and updates.";
+export const CONSENT_ERROR = "Please tick the box to agree to be contacted.";
+
 export const trainingLocations = ["Dubai", "Abu Dhabi", "KSA", "On-site at our company"] as const;
 export type TrainingLocation = (typeof trainingLocations)[number];
 
@@ -17,6 +21,7 @@ export type CourseEnquiry = {
   courses: string[];
   otherCourse: string;
   location: string;
+  consent: boolean;
   /** The course the visitor clicked in the menu, if any. Informational only. */
   clickedCourse?: string;
 };
@@ -29,11 +34,12 @@ export type CorporateEnquiry = {
   teamSize: string;
   courses: string[];
   otherCourse: string;
+  consent: boolean;
 };
 
 export type Enquiry = CourseEnquiry | CorporateEnquiry;
 
-export type EnquiryErrors = Partial<Record<"name" | "email" | "phone" | "teamSize" | "courses" | "otherCourse" | "location", string>>;
+export type EnquiryErrors = Partial<Record<"name" | "email" | "phone" | "teamSize" | "courses" | "otherCourse" | "location" | "consent", string>>;
 
 const LIMITS = { name: 100, email: 254, phone: 30, otherCourse: 200, teamSize: 6 };
 const allowedCourses = new Set([...allCourseNames, OTHER_OPTION]);
@@ -74,6 +80,7 @@ export function validateCourseEnquiry(values: Omit<CourseEnquiry, "type">): Enqu
   checkCourses(values, errors, "course");
   if (!values.location) errors.location = "Choose where you would like to train.";
   else if (!(trainingLocations as readonly string[]).includes(values.location)) errors.location = "Choose a location from the list.";
+  if (!values.consent) errors.consent = CONSENT_ERROR;
   return errors;
 }
 
@@ -85,5 +92,6 @@ export function validateCorporateEnquiry(values: Omit<CorporateEnquiry, "type">)
   else if (teamSize.length > LIMITS.teamSize || !/^\d+$/.test(teamSize) || Number(teamSize) < 1)
     errors.teamSize = "Team size must be a whole number of 1 or more.";
   checkCourses(values, errors, "certification");
+  if (!values.consent) errors.consent = CONSENT_ERROR;
   return errors;
 }

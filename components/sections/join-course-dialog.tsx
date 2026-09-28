@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/dialog";
 import { FormTrustSignals } from "@/components/ui/form-trust-signals";
 import { joinCourseOptions } from "@/lib/data";
-import { Honeypot } from "@/components/forms/fields";
+import { ConsentCheckbox, Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
 import { PhoneInput } from "@/components/forms/phone-input";
 
@@ -167,6 +167,8 @@ function JoinCourseForm({ courseOptions, preselectCourse }: { courseOptions: str
         />
         {lead.error("message")}
       </div>
+      <ConsentCheckbox id="join-consent" inputProps={lead.field("consent")} errorLine={lead.error("consent")} />
+
       <Button
         type="submit"
         disabled={lead.sending}

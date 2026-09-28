@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { NavyBandTexture } from "@/components/ui/navy-band-texture";
 import { contactInfo, courseSelectOptions } from "@/lib/data";
-import { Honeypot } from "@/components/forms/fields";
+import { ConsentCheckbox, Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
 import { PhoneInput } from "@/components/forms/phone-input";
 
@@ -161,6 +161,8 @@ export function QuickEnquiry() {
                 />
                 {lead.error("message")}
               </div>
+
+              <ConsentCheckbox id="enquiry-consent" inputProps={lead.field("consent")} errorLine={lead.error("consent")} />
 
               <button
                 type="submit"

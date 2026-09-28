@@ -13,7 +13,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { NavyBandTexture } from "@/components/ui/navy-band-texture";
 import { locationSelectOptions } from "@/lib/data";
-import { Honeypot } from "@/components/forms/fields";
+import { ConsentCheckbox, Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
 import { PhoneInput } from "@/components/forms/phone-input";
 
@@ -217,6 +217,8 @@ export function ConsultancyEnquiry() {
                 />
                 {lead.error("message")}
               </div>
+
+              <ConsentCheckbox id="consultancy-consent" inputProps={lead.field("consent")} errorLine={lead.error("consent")} />
 
               <button
                 type="submit"

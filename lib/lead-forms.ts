@@ -2,7 +2,7 @@
  * The site's simpler lead forms (contact, quick enquiry, join course, careers, consultancy, LEEA),
  * described in one place so the browser and /api/enquiries apply exactly the same rules.
  */
-import { checkContact, type EnquiryErrors } from "@/lib/enquiry";
+import { CONSENT_ERROR, checkContact, type EnquiryErrors } from "@/lib/enquiry";
 import { careerJobOpenings, courseSelectOptions, locationSelectOptions } from "@/lib/data";
 
 export type LeadField =
@@ -19,7 +19,9 @@ export type LeadField =
   | "currentLocation"
   | "noticePeriod"
   | "certifications"
-  | "cvLink";
+  | "cvLink"
+  /** The consent checkbox: "yes" when ticked. Every form has it, last. */
+  | "consent";
 export type LeadValues = Partial<Record<LeadField, string>>;
 export type LeadErrors = Partial<Record<LeadField, string>>;
 
@@ -55,26 +57,26 @@ type LeadFormSpec = {
 export const leadForms = {
   contact: {
     label: "Contact form",
-    fields: ["name", "email", "phone", "course", "message"],
+    fields: ["name", "email", "phone", "course", "message", "consent"],
     optional: ["message"],
     options: { course: courseSelectOptions },
   },
   "quick-enquiry": {
     label: "Quick enquiry (Courses page)",
-    fields: ["name", "email", "phone", "course", "message"],
+    fields: ["name", "email", "phone", "course", "message", "consent"],
     optional: ["message"],
     options: { course: courseSelectOptions },
   },
   // The course list here also includes the current page's course, so it is not a fixed list.
   "join-course": {
     label: "Join course",
-    fields: ["name", "email", "phone", "course", "message"],
+    fields: ["name", "email", "phone", "course", "message", "consent"],
     optional: ["message"],
   },
   // Job applications from the Careers page.
   career: {
     label: "Job application",
-    fields: ["name", "email", "phone", "position", "experience", "currentLocation", "noticePeriod", "certifications", "cvLink", "message"],
+    fields: ["name", "email", "phone", "position", "experience", "currentLocation", "noticePeriod", "certifications", "cvLink", "message", "consent"],
     optional: ["certifications", "cvLink", "message"],
     options: {
       position: careerPositionOptions,
@@ -85,17 +87,17 @@ export const leadForms = {
   },
   consultancy: {
     label: "Consultancy enquiry",
-    fields: ["company", "name", "email", "phone", "service", "location", "message"],
+    fields: ["company", "name", "email", "phone", "service", "location", "message", "consent"],
     options: { service: consultancyServiceOptions, location: locationSelectOptions },
   },
   "leea-enroll": {
     label: "LEEA enrolment",
-    fields: ["name", "email", "phone", "company", "course"],
+    fields: ["name", "email", "phone", "company", "course", "consent"],
     options: { course: leeaCourseOptions },
   },
   "leea-foundation": {
     label: "LEEA course enquiry",
-    fields: ["name", "email", "phone", "company", "course"],
+    fields: ["name", "email", "phone", "company", "course", "consent"],
     options: { course: leeaCourseOptions },
   },
 } satisfies Record<string, LeadFormSpec>;
@@ -122,6 +124,7 @@ const requiredMessage: Record<LeadField, string> = {
   noticePeriod: "Please choose when you could start.",
   certifications: "Please list your certifications.",
   cvLink: "Please add a link to your CV.",
+  consent: CONSENT_ERROR,
 };
 
 export function validateLead(form: LeadFormKey, values: LeadValues): LeadErrors {
@@ -134,6 +137,11 @@ export function validateLead(form: LeadFormKey, values: LeadValues): LeadErrors 
     const value = (values[field] ?? "").trim();
     if (field === "name" || field === "email" || field === "phone") {
       if (contactErrors[field]) errors[field] = contactErrors[field];
+      continue;
+    }
+    // Consent is never optional and has one valid value.
+    if (field === "consent") {
+      if (value !== "yes") errors.consent = CONSENT_ERROR;
       continue;
     }
     if (!value) {

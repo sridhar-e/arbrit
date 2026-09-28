@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Honeypot } from "@/components/forms/fields";
+import { ConsentCheckbox, Honeypot } from "@/components/forms/fields";
 import { useLeadForm } from "@/components/forms/use-lead-form";
 import { PhoneInput } from "@/components/forms/phone-input";
 import { contactInfo } from "@/lib/data";
@@ -201,6 +201,8 @@ export function CareerForm() {
         />
         {lead.error("message")}
       </div>
+
+      <ConsentCheckbox id="career-consent" inputProps={lead.field("consent")} errorLine={lead.error("consent")} />
 
       <button
         type="submit"
