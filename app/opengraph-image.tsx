@@ -6,5 +6,5 @@ export const size = ogSize;
 export const contentType = "image/png";
 
 export default function OpengraphImage() {
-  return renderOgCard({ title: "Skills for a Safer Tomorrow", subtitle: "Accredited HSE training in Dubai, Abu Dhabi & KSA" });
+  return renderOgCard({ eyebrow: "Committed to Global Safety", title: "Skills for a Safer Tomorrow", subtitle: "Accredited HSE training in Dubai, Abu Dhabi & KSA" });
 }

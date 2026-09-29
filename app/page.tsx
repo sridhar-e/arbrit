@@ -15,6 +15,7 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   title: "Arbrit Safety Training & Consultancy | HSE Courses in Dubai, Abu Dhabi & KSA",
   absoluteTitle: true,
+  shareTitle: "Arbrit Safety Training & Consultancy | Committed to Global Safety",
   description:
     "Accredited HSE training in Dubai, Abu Dhabi & KSA: LEEA lifting, IOSH, Highfield, STI scaffolding, NFPA and industry safety courses. First LEEA Licensed Training Partner.",
   path: "/",
@@ -25,6 +26,7 @@ const jsonLd = {
   "@type": "EducationalOrganization",
   name: "Arbrit Safety Training & Consultancy LLC",
   url: siteUrl,
+  slogan: "Committed to Global Safety",
   logo: `${siteUrl}/arbritsafety-logo.png`,
   description:
     "Accredited health & safety, lifting, scaffolding, fire safety and industry training in Dubai, Abu Dhabi and KSA.",

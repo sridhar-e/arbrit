@@ -86,9 +86,13 @@ export function AboutUs() {
       </div>
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-8 sm:px-6 md:py-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16">
         <div>
+          <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-[13px] font-semibold text-white ring-1 ring-white/20">
+            <ShieldCheck className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+            Committed to Global Safety
+          </p>
           <h2
             id="about-heading"
-            className="font-heading text-[clamp(2.125rem,8.5vw,3.75rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-balance"
+            className="mt-4 font-heading text-[clamp(2.125rem,8.5vw,3.75rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-balance"
           >
             About Arbrit
           </h2>

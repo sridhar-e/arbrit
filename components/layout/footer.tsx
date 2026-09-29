@@ -80,7 +80,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-white/85 sm:flex-row sm:items-center sm:justify-between">
+        <p className="mt-12 border-t border-white/10 pt-8 font-heading text-2xl font-extrabold tracking-[-0.02em] text-white md:text-3xl">
+          Committed to Global Safety
+        </p>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-white/85 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Arbrit Safety Training &amp; Consultancy LLC. All rights reserved.</p>
           <nav className="flex gap-4" aria-label="Legal">
             <Link href="/terms-and-conditions" className="hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">

@@ -93,7 +93,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         title="About Us"
-        eyebrow="Committed to Safer Workplaces Since 2006"
+        eyebrow="Committed to Global Safety · Since 2006"
         description="We are committed to delivering quality, practical HSE training and consultancy that build safer workplaces and stronger safety cultures across the UAE and Saudi Arabia."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
         {...pageHeaderImages.about}
