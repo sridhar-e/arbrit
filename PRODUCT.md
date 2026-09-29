@@ -35,7 +35,7 @@ First LEEA Licensed Training Partner in the UAE & KSA. Courses are delivered und
 ## Brand Commitments
 
 - Client likes the current UI and colours and wants them kept: Arbrit blue `#0066b2` (logo colour) and navy `#123b6d` on white.
-- Use the existing logo files (`public/header-logo.svg`, `public/footer-logo.svg`) as-is, without the "Guarding you every day" tagline shown in the client mockup, until the client supplies a tagline logo.
+- Logo files (client-supplied, September 2026): `public/Arbrit-Logo.svg` (blue, on light backgrounds) and `public/Arbrit-Logo-W.svg` (white, on blue or photo backgrounds). Shield + "ARBRIT / Safety Training and Consultancy LLC" lockup; use as-is.
 - Homepage revamp is mobile-first, then scaled up to desktop; the client wants a "wow factor" the current site lacks.
 - The client's mobile hero mockup is binding: full-bleed worker/crane photo, eyebrow "Accredited Health & Safety Training", headline "Skills for a Safer Tomorrow", subline "Build safer workplaces. Develop competent professionals.", rounded course search with blue arrow button, four shortcuts (originally Workplace Safety, Lifting & Rigging, Fire Safety, Scaffolding; since September 2026 HSE Training, Crane / Lifting Services, Consultancy, Manpower Solutions), and a blue "Trusted by 15,000+ professionals across the UAE and KSA" band.
 

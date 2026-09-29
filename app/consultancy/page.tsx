@@ -9,7 +9,6 @@ import { ConsultancyOverview } from "@/components/sections/consultancy-overview"
 import { ConsultancyProcess } from "@/components/sections/consultancy-process";
 import { ConsultancySectors } from "@/components/sections/consultancy-sectors";
 import { ConsultancyServices } from "@/components/sections/consultancy-services";
-import { ConsultancyTeam } from "@/components/sections/consultancy-team";
 import { ConsultancyTrustStrip } from "@/components/sections/consultancy-trust-strip";
 import { OfficesContactBlock } from "@/components/sections/offices-contact-block";
 import { Button } from "@/components/ui/button";
@@ -55,12 +54,11 @@ export default function ConsultancyPage() {
         </div>
       </PageHeader>
 
-      {/* The story: what we do, how we work, who we are, proof, then the enquiry. */}
+      {/* The story: what we do, how we work, proof, then the enquiry. */}
       <ConsultancyTrustStrip />
       <ConsultancyOverview />
       <ConsultancyServices />
       <ConsultancyProcess />
-      <ConsultancyTeam />
       <ConsultancySectors />
       <ConsultancyEnquiry />
 

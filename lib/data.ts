@@ -159,6 +159,10 @@ export type CourseDetail = {
   accreditationLogo?: string;
   accreditationLogos?: string[];
   courseOfferings?: { label: string; description: string; href?: string }[];
+  /** Replaces the site-wide "How you'll train" rows when a course trains differently. */
+  trainingProof?: { icon: LucideIcon; text: string }[];
+  /** Fuller certification line for the "At a glance" card; defaults to the course card's short label. */
+  certification?: string;
   courseTable?: { name: string; type: string; starts: string }[];
   clientLogos?: ClientLogo[];
 };
@@ -260,6 +264,7 @@ export const coursesMegaMenu: MegaMenuGroup[] = [
       { label: "RoSPA Defensive Driving", href: "/courses/rospa" },
       { label: "Qualifi Level 7 Diploma in OHSM", href: "/courses/qualifi-level-7-diploma-ohsm" },
       { label: "NFPA Training", href: "/courses/nfpa-training" },
+      { label: "HSI Training", href: "/courses/hsi-training" },
     ],
   },
   {
@@ -287,6 +292,7 @@ export const courseCategories: CourseCategory[] = [
   { slug: "rospa", title: "RoSPA", icon: Car, image: "/course/ksa/rospa.webp", href: "/courses/rospa", description: "Level 2 International Award in Defensive Driving, including the ADNOC-approved version.", duration: "1–2 Days", location: "Dubai · Abu Dhabi · KSA", certification: "RoSPA Accredited" },
   { slug: "qualifi-level-7-diploma-ohsm", title: "Qualifi Level 7 Diploma in OHSM", icon: Landmark, image: "/course/ksa/qualifi-level-7-diploma-ohsm.webp", href: "/courses/qualifi-level-7-diploma-ohsm", description: "Postgraduate-level international diploma in occupational health and safety management.", duration: "Up to 18 Months", location: "Dubai · Abu Dhabi · KSA", certification: "Qualifi Level 7 (Ofqual)" },
   { slug: "nfpa-training", title: "NFPA Training", icon: Flame, image: "/course/ksa/nfpa-training.webp", href: "/courses/nfpa-training", description: "NFPA 10, 13, 25, 70, 70E, 72, 101 and more, from an NFPA-approved training provider.", duration: "1–3 Days", location: "Dubai · Abu Dhabi · KSA", certification: "NFPA Training Certificate" },
+  { slug: "hsi-training", title: "HSI Training", icon: HeartPulse, image: "/course/ksa/hsi-training.webp", href: "/courses/hsi-training", description: "CPR, AED, First Aid, Basic Life Support (BLS) and Instructor Development courses to HSI standards.", duration: "½–2 Days", location: "Dubai · Abu Dhabi · KSA", certification: "HSI Certified" },
 ];
 
 export const featuredCourses: Course[] = [
@@ -584,23 +590,23 @@ export const careerJobOpenings = [
 ];
 
 export const historyGallery = [
-  { src: "/about/Arbirt-safety-2-300x225.webp", alt: "Arbrit Safety team at a training event" },
-  { src: "/about/Arbirt-safety-3-300x200.webp", alt: "Arbrit Safety trainers with course delegates" },
-  { src: "/about/Arbirt-safety-4-300x200.webp", alt: "Arbrit Safety team during a company gathering" },
-  { src: "/about/Arbirt-safety-5-300x200.webp", alt: "Arbrit Safety staff at a certification ceremony" },
-  { src: "/about/Arbirt-safety-6-300x200.webp", alt: "Arbrit Safety team on a training site visit" },
-  { src: "/about/blood-donation-2-big-300x225.webp", alt: "Arbrit Safety staff donating blood at a community drive" },
-  { src: "/about/blood-donation-3-big-300x225.webp", alt: "Arbrit Safety team volunteers at the blood donation camp" },
-  { src: "/about/blood-donation-award-big-300x225.webp", alt: "Arbrit Safety receiving a blood donation appreciation award" },
-  { src: "/about/confined-space-big-scaled-300x182.webp", alt: "Trainee entering a confined space under supervision" },
-  { src: "/about/confined-space-training-big-scaled-300x186.webp", alt: "Confined space entry and rescue training session" },
-  { src: "/about/fire-fighting-training-big-300x189.webp", alt: "Delegates using fire extinguishers in live fire fighting training" },
-  { src: "/about/gitex-conference-big-1-scaled-300x225.webp", alt: "Arbrit Safety team at the GITEX conference in Dubai" },
-  { src: "/about/iosh-event-big-scaled-300x225.webp", alt: "Arbrit Safety delegates at an IOSH networking event" },
-  { src: "/about/Leea-big-300x225.png", alt: "Arbrit Safety at a LEEA lifting industry event" },
-  { src: "/about/managing-safely-big-300x228.webp", alt: "IOSH Managing Safely classroom training in progress" },
-  { src: "/about/women-luncheon-big-300x226.webp", alt: "Women in safety luncheon hosted by Arbrit Safety" },
-  { src: "/about/women-luncheon-uae-big-300x225.webp", alt: "Women in safety luncheon attendees in the UAE" },
+  { src: "/about/gallery/arbrit-safety-2.webp", alt: "Arbrit Safety team at a training event" },
+  { src: "/about/gallery/arbrit-safety-3.webp", alt: "Arbrit Safety trainers with course delegates" },
+  { src: "/about/gallery/arbrit-safety-4.webp", alt: "Arbrit Safety team during a company gathering" },
+  { src: "/about/gallery/arbrit-safety-5.webp", alt: "Arbrit Safety staff at a certification ceremony" },
+  { src: "/about/gallery/arbrit-safety-6.webp", alt: "Arbrit Safety team on a training site visit" },
+  { src: "/about/gallery/blood-donation-2.webp", alt: "Arbrit Safety staff donating blood at a community drive" },
+  { src: "/about/gallery/blood-donation-3.webp", alt: "Arbrit Safety team volunteers at the blood donation camp" },
+  { src: "/about/gallery/blood-donation-award.webp", alt: "Arbrit Safety receiving a blood donation appreciation award" },
+  { src: "/about/gallery/confined-space.webp", alt: "Trainee entering a confined space under supervision" },
+  { src: "/about/gallery/confined-space-training.webp", alt: "Confined space entry and rescue training session" },
+  { src: "/about/gallery/fire-fighting-training.webp", alt: "Delegates using fire extinguishers in live fire fighting training" },
+  { src: "/about/gallery/gitex-conference.webp", alt: "Arbrit Safety team at the GITEX conference in Dubai" },
+  { src: "/about/gallery/iosh-event.webp", alt: "Arbrit Safety delegates at an IOSH networking event" },
+  { src: "/about/gallery/leea.webp", alt: "Arbrit Safety at a LEEA lifting industry event" },
+  { src: "/about/gallery/managing-safely.webp", alt: "IOSH Managing Safely classroom training in progress" },
+  { src: "/about/gallery/women-luncheon.webp", alt: "Women in safety luncheon hosted by Arbrit Safety" },
+  { src: "/about/gallery/women-luncheon-uae.webp", alt: "Women in safety luncheon attendees in the UAE" },
 ];
 
 /**

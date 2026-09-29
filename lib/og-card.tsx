@@ -9,7 +9,7 @@ export const ogSize = { width: 1200, height: 630 };
  * brand blue gradient, with the main accreditation bodies along the bottom.
  */
 export async function renderOgCard({ eyebrow, title, subtitle }: { eyebrow?: string; title: string; subtitle: string }) {
-  const logo = await readFile(join(process.cwd(), "public", "footer-logo.svg"));
+  const logo = await readFile(join(process.cwd(), "public", "Arbrit-Logo-W.svg"));
   const logoSrc = `data:image/svg+xml;base64,${logo.toString("base64")}`;
   const titleSize = title.length > 60 ? 50 : title.length > 36 ? 58 : 68;
 
@@ -28,7 +28,7 @@ export async function renderOgCard({ eyebrow, title, subtitle }: { eyebrow?: str
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} alt="" width={400} height={109} />
+        <img src={logoSrc} alt="" width={400} height={128} />
         <div style={{ display: "flex", flexDirection: "column" }}>
           {eyebrow && (
             <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.8 }}>{eyebrow}</div>

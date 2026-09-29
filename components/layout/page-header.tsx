@@ -48,8 +48,10 @@ export function PageHeader({
         }
         fill
         preload
-        quality={65}
-        sizes="100vw"
+        quality={75}
+        // Phones show the header as a tall crop of a landscape photo, so the image renders about twice the
+        // screen width; "100vw" would fetch a variant half the size needed and look soft.
+        sizes="(max-width: 767px) 200vw, 100vw"
         className={`object-cover ${imagePosition} motion-safe:animate-[hero-settle_1.8s_cubic-bezier(0.16,1,0.3,1)_both]`}
       />
       <div

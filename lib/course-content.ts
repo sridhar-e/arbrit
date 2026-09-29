@@ -2,6 +2,7 @@
  * Course detail pages, taken from arbritsafety.sa (September 2026) and reworded for a site that serves
  * both the UAE and Saudi Arabia. Server-only: import through lib/content.
  */
+import { HeartPulse, MapPin, UserRound } from "lucide-react";
 import type { CourseDetail } from "@/lib/data";
 
 export const courseDetails: CourseDetail[] = [
@@ -2161,6 +2162,54 @@ export const courseDetails: CourseDetail[] = [
         question: "How do we register?",
         answer: "Contact our NFPA training team or submit an enquiry to receive upcoming schedules and enrolment guidance."
       }
+    ]
+  },
+  {
+    slug: "hsi-training",
+    title: "HSI Training",
+    track: "International",
+    tagline: "Lifesaving CPR and first aid training for every workplace",
+    image: "/course/ksa/hsi-training.webp",
+    certification: "HSI certified, valid for 2 years (Bloodborne Pathogens: 1 year)",
+    courseInfoParagraphs: [
+      "Arbrit delivers Health & Safety Institute (HSI) emergency care training across the UAE and Saudi Arabia. The courses prepare your people to respond with confidence to cardiac arrest, serious injury and sudden illness at work.",
+      "HSI programmes are video-based and led by an instructor, using realistic scenarios that help learners remember what to do under pressure. Course content follows the latest resuscitation science and treatment recommendations from the International Liaison Committee on Resuscitation (ILCOR).",
+      "From office teams to site supervisors and healthcare staff, our HSI courses build a reliable first-response capability on every shift. We offer individual enrolment, corporate batches and on-site training for oil & gas, construction, manufacturing, healthcare, education and facilities management."
+    ],
+    courseOfferings: [
+      {
+        label: "First Aid | CPR AED (Adult, Child & Infant)",
+        description: "Core first aid, CPR and AED skills for workplace responders, covering adults, children and infants."
+      },
+      {
+        label: "Basic Life Support (BLS)",
+        description: "High-quality CPR, AED use and team resuscitation skills for healthcare providers and professional responders."
+      },
+      {
+        label: "Pediatric First Aid | CPR AED",
+        description: "Emergency care for infants and children, designed for teachers, childcare staff and school nurses."
+      },
+      {
+        label: "Advanced Cardiac Life Support (ACLS)",
+        description: "Advanced resuscitation training for doctors, nurses and paramedics managing cardiac emergencies."
+      },
+      {
+        label: "Stop Life-Threatening Bleeding",
+        description: "Practical bleeding control using direct pressure, wound packing and tourniquets."
+      },
+      {
+        label: "Bloodborne Pathogens",
+        description: "How to protect yourself from infection when giving first aid or handling blood and body fluids."
+      },
+      {
+        label: "Instructor Development Course (IDC)",
+        description: "Become an authorised HSI instructor and deliver CPR and first aid training within your organisation."
+      }
+    ],
+    trainingProof: [
+      { icon: MapPin, text: "Training at our centres in Dubai, Abu Dhabi and KSA, or on your site" },
+      { icon: HeartPulse, text: "Hands-on practice on CPR manikins and AED trainers, with scenario-based skill checks" },
+      { icon: UserRound, text: "Authorised HSI instructors who bring real emergency response experience to every course" }
     ]
   },
   {

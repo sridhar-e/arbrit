@@ -65,7 +65,8 @@ export function ConsultancyOverview() {
               src="/hero/slide-1-construction-safety.jpg"
               alt="Arbrit HSE team in hi-vis vests and hard hats on a construction site in Dubai"
               fill
-              sizes="(min-width: 1280px) 34rem, (min-width: 1024px) 42vw, 100vw"
+              // A 16:9 photo cropped into a 4:5 box renders ~2.2x the box width (4:3 on phones: ~1.33x).
+              sizes="(min-width: 1280px) 76rem, (min-width: 1024px) 95vw, 134vw"
               className="object-cover object-[48%_center]"
             />
           </div>

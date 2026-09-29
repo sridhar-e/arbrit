@@ -8,6 +8,7 @@ import {
   ScrollText,
   ShieldAlert,
   Siren,
+  TableProperties,
   TriangleAlert,
   Users,
   ChevronDown,
@@ -156,10 +157,24 @@ const services: Service[] = [
     duration: "Secondment, contract or permanent placement",
     output: "Placed personnel, competency matrix and certification records",
   },
+  {
+    title: "Training Matrix Development",
+    icon: TableProperties,
+    summary:
+      "A clear record of who needs which training, by role, site and risk level. We map every position against its legal, client and operational requirements, set refresher intervals, and flag gaps and expiring certificates before an auditor finds them. The result is a matrix your HR and site teams can keep up to date.",
+    includes: [
+      "Role-by-role mapping of legal, client and operational training requirements",
+      "Requirements broken down by site and risk level",
+      "Refresher intervals set for every course and certificate",
+      "Gap and expiry report, with handover so your team can maintain it",
+    ],
+    duration: "1–3 weeks depending on headcount and number of sites",
+    output: "Editable training matrix plus a gap and expiring-certificate report",
+  },
 ];
 
 /**
- * What we do: nine services as hairline-divided rows (icon disc, title, summary). The scope, timeline and
+ * What we do: ten services as hairline-divided rows (icon disc, title, summary). The scope, timeline and
  * deliverables sit in a native disclosure under each row, so the list scans on a phone without losing detail.
  */
 export function ConsultancyServices() {
@@ -178,7 +193,7 @@ export function ConsultancyServices() {
             What we can take off your desk
           </h2>
           <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-navy-deep/80 md:text-lg">
-            Nine services covering the full arc of an HSE programme, from the study that identifies the hazard to
+            Ten services covering the full arc of an HSE programme, from the study that identifies the hazard to
             the competent person who manages it on site. Every one is scoped and priced before work starts.
           </p>
         </div>

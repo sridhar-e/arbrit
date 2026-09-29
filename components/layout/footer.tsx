@@ -13,10 +13,10 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_1.2fr_0.8fr]">
           <div>
             <Image
-              src="/footer-logo.svg"
+              src="/Arbrit-Logo-W.svg"
               alt="Arbrit Safety Training & Consultancy logo"
               width={180}
-              height={49}
+              height={58}
             />
             <p className="mt-4 text-sm text-white/85">
               Arbrit Safety training and Consultancy L.L.C has developed a reputation for providing

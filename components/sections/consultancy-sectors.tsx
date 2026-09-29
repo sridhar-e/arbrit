@@ -3,43 +3,53 @@ import Image from "next/image";
 const sectors = [
   {
     name: "Construction & Infrastructure",
-    image: "/general-safety/constructions.webp",
+    image: "/course/ksa/construction-industry.webp",
     note: "Work at height, lifting operations, excavation and Trakhees / municipality approvals.",
   },
   {
     name: "Oil, Gas & Petrochemical",
-    image: "/general-safety/Oil-and-gas.webp",
+    image: "/course/ksa/nfpa-training.webp",
     note: "HAZOP and SIL studies, permit-to-work systems, confined space and hot work control.",
   },
   {
     name: "Manufacturing",
-    image: "/general-safety/Forklift-Operator.webp",
+    image: "/course/ksa/manufacturing-industry.webp",
     note: "Machine guarding, LOTO, materials handling and ISO 45001 system build-out.",
   },
   {
     name: "Healthcare",
-    image: "/general-safety/first-aid.webp",
+    image: "/course/ksa/healthcare-sector.webp",
     note: "Infection control interfaces, emergency response planning and staff competency records.",
   },
   {
     name: "Facilities Management",
-    image: "/Hands-on-Experience/Crane-slider.webp",
+    image: "/course/ksa/iso-45001-lead-auditor.webp",
     note: "Contractor control, lifting equipment registers and planned inspection regimes.",
   },
   {
     name: "Logistics & Warehousing",
-    image: "/general-safety/Rescue-Training.webp",
+    image: "/general-safety/Forklift-Operator.webp",
     note: "Traffic management, racking inspection, fire strategy and rescue arrangements.",
+  },
+  {
+    name: "Food Safety",
+    image: "/course/ksa/food-industry.webp",
+    note: "Food safety training, with course levels tailored to specific roles such as food handlers, supervisors and managers.",
+  },
+  {
+    name: "Marine",
+    image: "/course/ksa/oil-and-gas-offshore.webp",
+    note: "Survival, firefighting and risk management skills that crew members and maritime workers need to operate safely aboard vessels.",
   },
 ];
 
 /**
- * Proof: the sectors our consultants know, as hairline rows with a small photo. Most sources are 350px wide,
- * so the photos stay thumbnail-sized rather than stretched into large panels.
+ * Proof: the sectors our consultants know, as hairline rows with a small photo. Sources are 1000px+ course photos:
+ * the old 350px, heavily compressed files looked soft once re-encoded at 2x.
  */
 export function ConsultancySectors() {
   return (
-    <section aria-labelledby="consultancy-sectors-heading" className="bg-[#f5f7fa] py-8 md:py-12">
+    <section aria-labelledby="consultancy-sectors-heading" className="bg-white py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <h2
           id="consultancy-sectors-heading"
@@ -59,7 +69,7 @@ export function ConsultancySectors() {
                   src={sector.image}
                   alt={`${sector.name} HSE consultancy by Arbrit Safety in Dubai, Abu Dhabi and Saudi Arabia`}
                   fill
-                  sizes="128px"
+                  sizes="(min-width: 768px) 128px, 96px"
                   className="object-cover"
                 />
               </span>

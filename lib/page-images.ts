@@ -1,6 +1,6 @@
 /**
- * Header photos for inner pages, one per page so no two sections of the site open on the same
- * picture. Only wide sources (1200px+) are used, since the header spans the full screen.
+ * Header photos for inner pages. Only sharp landscape sources 1900px+ wide are used: the header spans the
+ * full screen and crops to a wide strip, so portrait or small photos get zoomed in and look blurry.
  */
 type HeaderImage = { image: string; imageAlt: string; imagePosition?: string };
 
@@ -14,31 +14,28 @@ export const pageHeaderImages = {
     imageAlt: "Delegates in hard hats attending a workplace health and safety class",
   },
   consultancy: {
-    image: "/slider-bannder.webp",
-    imageAlt: "HSE consultant reviewing a site at sunrise",
+    image: "/blog/leea-training-courses-dubai-hero.webp",
+    imageAlt: "HSE consultant and site engineer reviewing drawings together on site",
   },
   contact: {
-    image: "/slider-img.webp",
-    imageAlt: "Site engineers in hard hats reviewing documents together",
+    image: "/home/hero-2-desktop.webp",
+    imageAlt: "Site supervisor directing a crane lift with a colleague on site",
   },
   career: {
-    image: "/home/step-arrive.webp",
-    imageAlt: "HSE professionals arriving on site with their hard hats and hi-vis vests",
-    // Portrait source: keep the faces in the wide crop.
-    imagePosition: "object-[center_22%]",
+    image: "/home/hero-3-desktop.webp",
+    imageAlt: "HSE professional in a full-body harness working at height above the city",
   },
   blog: {
     image: "/home/hero-desktop.webp",
     imageAlt: "Safety officer in a hard hat overlooking a construction site in Dubai",
   },
   trainers: {
-    image: "/home/step-learn.webp",
-    imageAlt: "Arbrit Safety trainer presenting to a class of delegates",
-    imagePosition: "object-[center_6%]",
+    image: "/hero/slide-2-training-classroom.jpg",
+    imageAlt: "Arbrit Safety trainer presenting to a class of delegates in hard hats",
   },
   legal: {
-    image: "/Hands-on-Experience/Crane-slider.webp",
-    imageAlt: "Tower cranes silhouetted against a sunset over a construction site",
+    image: "/hero/slide-3-lifting-operations.jpg",
+    imageAlt: "Mobile crane lifting a steel beam at sunset on a construction site",
   },
 } satisfies Record<string, HeaderImage>;
 
@@ -61,9 +58,8 @@ const courseTopics: [RegExp, HeaderImage][] = [
 export function courseHeaderImage(title: string): HeaderImage {
   return (
     courseTopics.find(([pattern]) => pattern.test(title))?.[1] ?? {
-      image: "/home/step-certified.webp",
-      imageAlt: "Delegates celebrating after completing a safety training course",
-      imagePosition: "object-[center_35%]",
+      image: "/hero/slide-2-training-classroom.jpg",
+      imageAlt: "Delegates in hard hats attending a workplace health and safety class",
     }
   );
 }

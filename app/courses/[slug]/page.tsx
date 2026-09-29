@@ -129,10 +129,11 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
   const cards = [...courseCategories, ...featuredCourses];
   const card = cards.find((c) => c.href === href) ?? cards.find((c) => c.href === parentHref);
   const duration = course.duration ?? card?.duration;
+  const certification = course.certification ?? card?.certification;
   const facts: { icon: LucideIcon; label: string; value: string }[] = [
     ...(duration ? [{ icon: Clock, label: "Duration", value: duration }] : []),
     { icon: MapPin, label: "Where", value: card?.location ?? "Dubai · Abu Dhabi · KSA" },
-    ...(card?.certification ? [{ icon: BadgeCheck, label: "Certification", value: card.certification }] : []),
+    ...(certification ? [{ icon: BadgeCheck, label: "Certification", value: certification }] : []),
   ];
 
   const logos = course.accreditationLogos ?? (course.accreditationLogo ? [course.accreditationLogo] : []);
@@ -369,7 +370,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
             <div className="mt-12 md:mt-14">
               <h3 className={subHeading}>How you&apos;ll train</h3>
               <ul className="mt-5 max-w-2xl divide-y divide-navy-deep/10 border-y border-navy-deep/10">
-                {trainingProof.map(({ icon: Icon, text }) => (
+                {(course.trainingProof ?? trainingProof).map(({ icon: Icon, text }) => (
                   <li key={text} className="flex items-center gap-4 py-4">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0066b2]/10 text-[#0066b2]">
                       <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />

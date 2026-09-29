@@ -76,10 +76,10 @@ export function Header({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
         <Link href="/" className="flex items-center">
           <Image
-            src={transparent ? "/footer-logo.svg" : "/header-logo.svg"}
+            src={transparent ? "/Arbrit-Logo-W.svg" : "/Arbrit-Logo.svg"}
             alt="Arbrit Safety Training & Consultancy logo"
             width={180}
-            height={49}
+            height={58}
             preload
             className="rounded-md"
           />
@@ -193,10 +193,10 @@ export function Header({ courseMenu }: { courseMenu: MegaMenuGroup[] }) {
           <SheetContent side="right" className="w-[300px] sm:w-[360px]">
             <SheetTitle className="sr-only">Menu</SheetTitle>
             <Image
-              src="/header-logo.svg"
+              src="/Arbrit-Logo.svg"
               alt="Arbrit Safety Training & Consultancy logo"
               width={140}
-              height={38}
+              height={45}
               className="mt-2 ml-4"
             />
             <nav className="mt-2 flex flex-1 flex-col gap-4 overflow-y-auto px-4" aria-label="Mobile">
