@@ -7,6 +7,11 @@ export type SubmitResult = { ok: true } | { ok: false; message: string; errors?:
  * Plain objects go as JSON; FormData (used when a form can carry a file) goes as multipart.
  */
 export async function submitEnquiry(payload: Record<string, unknown> | FormData): Promise<SubmitResult> {
+  // The page the form sits on, for the Sheet's "Page" column. The server prefers the Referer header and
+  // falls back to this when a browser or privacy extension withholds it.
+  const page = window.location.pathname;
+  if (payload instanceof FormData) payload.set("page", page);
+  else payload = { ...payload, page };
   try {
     const response = await fetch(
       "/api/enquiries",

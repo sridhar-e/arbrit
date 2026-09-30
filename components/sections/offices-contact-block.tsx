@@ -61,7 +61,7 @@ export function OfficesContactBlock({
                     >
                       <CountryFlag country={office.country} className="ring-navy-deep/10" />
                       <span className="tabular-nums">{phone.number}</span>
-                      <span className="ml-auto text-[11px] font-semibold uppercase tracking-[0.08em] text-navy-deep/55">
+                      <span className="ml-auto text-[11px] font-semibold uppercase tracking-[0.08em] text-navy-deep/80">
                         {phone.kind}
                       </span>
                     </a>

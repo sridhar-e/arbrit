@@ -54,7 +54,7 @@ export function Contact() {
                           aria-label={`Call ${office.label} ${phone.kind.toLowerCase()} on ${phone.number}`}
                           className="block rounded-md text-sm font-semibold tabular-nums text-[#000] hover:text-[#0066b2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066b2]"
                         >
-                          <span className="block text-[11px] font-medium uppercase tracking-wide text-navy-deep/60">
+                          <span className="block text-[11px] font-medium uppercase tracking-wide text-navy-deep/80">
                             {phone.kind}
                           </span>
                           {phone.number}

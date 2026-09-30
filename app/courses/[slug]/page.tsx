@@ -401,14 +401,15 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
                 </h2>
                 <dl className="mt-3 divide-y divide-navy-deep/10 border-y border-navy-deep/10">
                   {facts.map(({ icon: Icon, label, value }) => (
-                    <div key={label} className="flex items-center gap-3.5 py-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0066b2]/10 text-[#0066b2]">
-                        <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
-                      </span>
-                      <div className="min-w-0">
-                        <dt className="text-[13px] font-semibold text-navy-deep/75">{label}</dt>
-                        <dd className="text-[15px] font-semibold leading-snug text-navy-deep">{value}</dd>
-                      </div>
+                    // The icon sits inside the <dt> so the list keeps valid dt/dd structure for screen readers.
+                    <div key={label} className="relative flex min-h-16 flex-col justify-center py-3 pl-[3.375rem]">
+                      <dt className="text-[13px] font-semibold text-navy-deep/75">
+                        <span className="absolute left-0 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[#0066b2]/10 text-[#0066b2]">
+                          <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                        </span>
+                        {label}
+                      </dt>
+                      <dd className="text-[15px] font-semibold leading-snug text-navy-deep">{value}</dd>
                     </div>
                   ))}
                 </dl>

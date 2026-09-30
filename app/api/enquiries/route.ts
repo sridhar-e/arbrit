@@ -249,11 +249,14 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, message: "Too many enquiries in a short time. Please try again in a few minutes or call us." }, { status: 429 });
   }
 
-  // The page the form was on, from the Referer header (path only; empty if the browser withholds it).
+  // The page the form was on: the Referer header (path only), or the path the form sent when the browser
+  // withholds the header.
   let page = "";
   try {
     page = new URL(request.headers.get("referer") ?? "").pathname;
   } catch {}
+  const sentPage = str(body.page).trim();
+  if (!page && /^\/[\w\-/.%]{0,200}$/.test(sentPage)) page = sentPage;
 
   const submission = parse(body);
   if (!submission) return Response.json({ ok: false, message: "Invalid request." }, { status: 400 });
